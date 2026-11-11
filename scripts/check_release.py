@@ -8,7 +8,7 @@
 The app repo's (foundry-f029) deploy_ios.sh calls this script (from the site repo, no --root) before every
 TestFlight upload, so a build can no longer go out without its release note (Davy 11-07: app version =
 TF build = release note, no bypass). The in-app release notes are the source of truth for what testers
-read; content/releases.json is this site's data copy of the same notes — there is no release page here yet.
+read; content/releases.json is this site's data copy of the same notes, rendered by the public page /releases/.
 
 For an entry whose `build` is N it checks:
   1. exactly one entry with that build number;

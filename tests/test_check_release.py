@@ -28,10 +28,10 @@ class ReleaseGate(unittest.TestCase):
     def test_repo_entries_are_complete(self):
         self.assertEqual(cr.check_all(REPO), [])
 
-    def test_repo_has_build_1_and_2(self):
+    def test_repo_has_build_1_2_3(self):
         entries, errs = cr.load_releases(REPO)
         self.assertEqual(errs, [])
-        self.assertEqual({str(e["build"]) for e in entries}, {"1", "2"})
+        self.assertEqual({str(e["build"]) for e in entries}, {"1", "2", "3"})
 
     def test_missing_build_fails(self):
         d = self.make_root([entry(2)])

@@ -1,6 +1,21 @@
 {
- "_note": "Data copy of the TestFlight release notes — the in-app release notes are the source of truth (no release page on this site yet). Checked by scripts/check_release.py; the app repo's (foundry-f029) deploy_ios.sh runs `--build N [--latest]` before every upload.",
+ "_note": "Data copy of the TestFlight release notes — the in-app release notes are the source of truth. Rendered by the public page /releases/ (fetches this file). Checked by scripts/check_release.py; the app repo's (foundry-f029) deploy_ios.sh runs `--build N [--latest]` before every upload.",
  "releases": [
+  {
+   "id": "1.0.0-3",
+   "version": "1.0.0",
+   "build": "3",
+   "status": "testflight",
+   "date": "2026-11-11",
+   "notes": {
+    "en": [
+     "Added a release notes link in the app's Settings menu."
+    ],
+    "ko": [
+     "앱 안 설정에서 릴리스 노트 링크 추가"
+    ]
+   }
+  },
   {
    "id": "1.0.0-2",
    "version": "1.0.0",
