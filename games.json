@@ -1,0 +1,13 @@
+{
+ "_note": "The ONE place where the game's name and domain live. scripts/check_release.py reads \"langs\" from here to know which languages content/releases.json must cover. Site landing pending — fields will be extended then (theme color, assets, etc.).",
+ "id": "bottledmarbles",
+ "foundry": "F-029",
+ "name": "Bottled Marbles",
+ "name_ko": "구슬병",
+ "domain": "bottledmarbles.ipe.rest",
+ "genre": "Puzzle",
+ "platforms": ["iOS"],
+ "operator": "Davy Kim (ipe Studio)",
+ "langs": ["en", "ko"],
+ "main_langs": ["en", "ko"]
+}

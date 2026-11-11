@@ -1,0 +1,39 @@
+{
+ "_note": "Data copy of the TestFlight release notes — the in-app release notes are the source of truth (no release page on this site yet). Checked by scripts/check_release.py; the app repo's (foundry-f029) deploy_ios.sh runs `--build N [--latest]` before every upload.",
+ "releases": [
+  {
+   "id": "1.0.0-2",
+   "version": "1.0.0",
+   "build": "2",
+   "status": "testflight",
+   "date": "2026-11-11",
+   "notes": {
+    "en": [
+     "Fixed: the home level grid could overlap the title.",
+     "Made the success popup wider."
+    ],
+    "ko": [
+     "홈 레벨 격자 겹침 수정",
+     "성공 팝업 폭 확대"
+    ]
+   }
+  },
+  {
+   "id": "1.0.0-1",
+   "version": "1.0.0",
+   "build": "1",
+   "status": "testflight",
+   "date": "2026-11-11",
+   "notes": {
+    "en": [
+     "First TestFlight build of Bottled Marbles: move the marbles until each bottle holds a single color. 150 levels.",
+     "Includes solver-based hints and 11 languages."
+    ],
+    "ko": [
+     "구슬병의 첫 TestFlight 빌드입니다. 한 병에 같은 색 구슬만 모이도록 구슬을 옮기는 병 정렬 퍼즐입니다(레벨 150개).",
+     "풀이(솔버) 기반 힌트와 11개 언어를 지원합니다."
+    ]
+   }
+  }
+ ]
+}
