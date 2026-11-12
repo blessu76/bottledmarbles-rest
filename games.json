@@ -1,5 +1,5 @@
 {
- "_note": "The ONE place where the game's name and domain live. \"langs\" = the landing's languages (ipe_web_kit languages.SUPPORTED, kit-0029) — scripts/build_landing.py builds one page per entry. \"release_langs\" = the languages the TestFlight notes must cover (scripts/check_release.py); the in-app notes are en·ko only.",
+ "_note": "The ONE place where the game's name and domain live. \"langs\" = the landing's languages (ipe_web_kit languages.SUPPORTED, kit-0029) — scripts/build_landing.py builds one page per entry.",
  "id": "bottledmarbles",
  "foundry": "F-029",
  "name": "Bottled Marbles",
@@ -9,6 +9,5 @@
  "platforms": ["iOS"],
  "operator": "Davy Kim (ipe Studio)",
  "langs": ["en", "ko", "ja", "zh-Hant", "es", "pt-BR", "fr", "de", "id", "th", "vi", "tr"],
- "main_langs": ["en", "ko", "ja", "zh-Hant", "es", "pt-BR", "fr", "de", "id", "th", "vi", "tr"],
- "release_langs": ["en", "ko"]
+ "main_langs": ["en", "ko", "ja", "zh-Hant", "es", "pt-BR", "fr", "de", "id", "th", "vi", "tr"]
 }

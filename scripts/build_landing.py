@@ -16,9 +16,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 SITE = "https://bottledmarbles.ipe.rest"
 DEFAULT = "en"
-ASSET_V = "20261112a"
-RELEASES_HREF = "/releases/?v=20261111a"
-KEYS = ("name", "genre", "tagline", "body", "f1", "f2", "f3", "store", "release", "lang_label")
+ASSET_V = "20261112b"
+KEYS = ("name", "genre", "tagline", "body", "f1", "f2", "f3", "store", "lang_label")
 MARBLES = ("c1", "c2", "c3", "c4", "c5", "c6")
 BOTTLES = (("c1", "c2", "c3"), ("c4", "c5", "c6"), ())
 
@@ -119,7 +118,6 @@ def _page(lang, langs, strings):
 <ul class="features">{feats}</ul>
 <div class="cta">
 <span class="store" aria-disabled="true">{store}</span>
-<a class="rel" href="{rel_href}">{release}</a>
 </div>
 </main>
 <footer><p>ipe() 2026</p></footer>
@@ -138,8 +136,6 @@ def _page(lang, langs, strings):
         bottles=bottles,
         feats=feats,
         store=_e(s["store"]),
-        rel_href=RELEASES_HREF,
-        release=_e(s["release"]),
     )
 
 
