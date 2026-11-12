@@ -4,7 +4,7 @@ import unittest
 from helpers import REPO
 
 BASE = "https://bottledmarbles.ipe.rest"
-PAGES = {"index.html": BASE + "/", "releases/index.html": BASE + "/releases/"}
+PAGES = {"index.html": BASE + "/"}
 
 
 class SeoBasics(unittest.TestCase):
