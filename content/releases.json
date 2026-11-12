@@ -2,6 +2,21 @@
  "_note": "Data copy of the TestFlight release notes — the in-app release notes are the source of truth. Rendered by the public page /releases/ (fetches this file). Checked by scripts/check_release.py; the app repo's (foundry-f029) deploy_ios.sh runs `--build N [--latest]` before every upload.",
  "releases": [
   {
+   "id": "1.0.0-4",
+   "version": "1.0.0",
+   "build": "4",
+   "status": "testflight",
+   "date": "2026-11-12",
+   "notes": {
+    "en": [
+     "Added 12 languages: English, Korean, Japanese, Traditional Chinese, Spanish, Portuguese (Brazil), French, German, Indonesian, Thai, Vietnamese, and Turkish."
+    ],
+    "ko": [
+     "12개 언어 지원 추가: 영어, 한국어, 일본어, 중국어 번체, 스페인어, 포르투갈어(브라질), 프랑스어, 독일어, 인도네시아어, 태국어, 베트남어, 튀르키예어"
+    ]
+   }
+  },
+  {
    "id": "1.0.0-3",
    "version": "1.0.0",
    "build": "3",

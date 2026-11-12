@@ -13,7 +13,7 @@ read; content/releases.json is this site's data copy of the same notes, rendered
 For an entry whose `build` is N it checks:
   1. exactly one entry with that build number;
   2. version is set and id is "<version>-<build>"; a "testflight" status carries a date;
-  3. notes are filled in for every language in games.json (en ko) — non-empty lists of non-empty strings.
+  3. notes are filled in for every language in games.json "release_langs" (en ko; "langs" when absent) — non-empty lists of non-empty strings.
 --latest additionally requires no entry with a higher build number (a note for a newer build means the app is behind).
 """
 import argparse
@@ -32,14 +32,14 @@ def parse_build(raw):
 
 
 def langs(root):
-    """Languages the site publishes — games.json is the single source of truth."""
+    """Languages the release notes must cover — games.json is the single source of truth."""
     try:
         g = json.loads((Path(root) / "games.json").read_text(encoding="utf-8"))
     except (OSError, ValueError) as ex:
         raise SystemExit("check_release: cannot read games.json: %s" % ex)
-    ls = tuple(g.get("langs", ()))
+    ls = tuple(g.get("release_langs") or g.get("langs", ()))
     if not ls:
-        raise SystemExit('check_release: games.json has no "langs"')
+        raise SystemExit('check_release: games.json has no "release_langs" or "langs"')
     return ls
 
 

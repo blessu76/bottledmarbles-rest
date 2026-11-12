@@ -28,10 +28,21 @@ class ReleaseGate(unittest.TestCase):
     def test_repo_entries_are_complete(self):
         self.assertEqual(cr.check_all(REPO), [])
 
-    def test_repo_has_build_1_2_3(self):
+    def test_repo_has_builds_1_to_4(self):
         entries, errs = cr.load_releases(REPO)
         self.assertEqual(errs, [])
-        self.assertEqual({str(e["build"]) for e in entries}, {"1", "2", "3"})
+        self.assertEqual({str(e["build"]) for e in entries}, {"1", "2", "3", "4"})
+
+    def test_release_langs_override_site_langs(self):
+        d = self.make_root([entry(2)])
+        (d / "games.json").write_text(json.dumps({"langs": ["en", "ko", "ja"], "release_langs": ["en", "ko"]}),
+                                      encoding="utf-8")
+        self.assertEqual(cr.check(d, "2"), [])
+
+    def test_site_langs_without_notes_do_not_block_release(self):
+        d = self.make_root([entry(2)])
+        (d / "games.json").write_text(json.dumps({"langs": ["en", "ko", "ja"]}), encoding="utf-8")
+        self.assertTrue(any("notes.ja" in x for x in cr.check(d, "2")))
 
     def test_missing_build_fails(self):
         d = self.make_root([entry(2)])

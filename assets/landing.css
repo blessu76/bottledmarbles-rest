@@ -1,0 +1,30 @@
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;background:#12353A;color:#fff;font-family:-apple-system,system-ui,"Apple SD Gothic Neo","Noto Sans KR","Hiragino Sans","PingFang TC","Noto Sans Thai","Noto Sans",sans-serif;line-height:1.55;overflow-wrap:anywhere}
+html[lang="th"] body{line-height:1.8}
+.top{max-width:34rem;margin:0 auto;padding:.75rem 1rem 0}
+.langs{display:flex;flex-wrap:wrap;gap:.35rem}
+.langs a{font-size:.75rem;line-height:1.2;padding:.3rem .6rem;border-radius:999px;border:1px solid rgba(255,255,255,.35);color:#fff;text-decoration:none;white-space:nowrap}
+.langs a[aria-current="true"]{background:#fff;color:#12353A;border-color:#fff}
+main{max-width:34rem;margin:0 auto;padding:1.5rem 1rem 0}
+.bottles{display:flex;justify-content:center;gap:1rem;margin:0 0 1.5rem}
+.bottle{width:3.4rem;height:6.4rem;border:2px solid rgba(255,255,255,.55);border-radius:.45rem .45rem 1.3rem 1.3rem;display:flex;flex-direction:column-reverse;align-items:center;gap:.25rem;padding:.4rem .3rem;background:rgba(255,255,255,.06)}
+.bottle i{display:block;width:1.6rem;height:1.6rem;border-radius:50%}
+.c1{background:#ff5d73}
+.c2{background:#ffd93d}
+.c3{background:#4cd964}
+.c4{background:#38b6ff}
+.c5{background:#a66bff}
+.c6{background:#ff9f43}
+h1{font-size:clamp(1.7rem,7vw,2.3rem);line-height:1.2;margin:0 0 .3rem;text-align:center}
+.genre{margin:0 0 1rem;text-align:center;color:#FFCF5C;font-weight:600;font-size:1rem}
+.tagline{margin:0 0 .5rem;text-align:center;font-size:1.1rem}
+.body{margin:0 auto;max-width:28rem;text-align:center;font-size:.98rem;color:rgba(255,255,255,.78)}
+.features{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;gap:.6rem}
+.features li{background:#1B474D;border-radius:10px;padding:.75rem 1rem;font-size:.95rem}
+.cta{display:flex;flex-direction:column;align-items:center;gap:.8rem;margin-top:1.4rem}
+.store{display:inline-block;max-width:100%;padding:.7rem 1.1rem;border-radius:12px;background:#1B474D;border:1px dashed rgba(255,255,255,.45);color:rgba(255,255,255,.85);font-weight:600;text-align:center}
+.rel{color:#a9c4ff;font-size:.95rem}
+footer{max-width:34rem;margin:0 auto;padding:1.5rem 1rem 1.5rem;text-align:center;font-size:.78rem;opacity:.6}
+footer p{margin:0}
+@media (min-width:600px){main{padding-top:2.5rem}}
