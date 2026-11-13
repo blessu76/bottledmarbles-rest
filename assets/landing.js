@@ -2,8 +2,10 @@
   "use strict";
   var KEY = "bm-lang";
   var DEFAULT = "en";
-  var links = Array.prototype.slice.call(document.querySelectorAll(".langs a[hreflang]"));
-  var supported = links.map(function (a) { return a.getAttribute("hreflang"); });
+  var sel = document.querySelector("select[data-langsel]");
+  var opts = sel ? Array.prototype.slice.call(sel.options) : [];
+  var supported = opts.map(function (o) { return o.getAttribute("lang"); });
+  if (!supported.length) supported = ["en", "ko", "ja", "zh-Hant", "es", "pt-BR", "fr", "de", "id", "th", "vi", "tr"];
 
   function split(tag) {
     return String(tag || "").trim().toLowerCase().split(/[-_]/).filter(Boolean);
@@ -42,9 +44,13 @@
     } catch (e) { /* storage blocked: the link still works */ }
   }
 
-  links.forEach(function (a) {
-    a.addEventListener("click", function () { save(a.getAttribute("hreflang")); });
-  });
+  if (sel) {
+    sel.addEventListener("change", function () {
+      var o = sel.options[sel.selectedIndex];
+      save(o.getAttribute("lang"));
+      location.href = o.value;
+    });
+  }
 
   if (location.pathname === "/" || location.pathname === "/index.html") {
     var pick = saved() || resolve(navigator.language);

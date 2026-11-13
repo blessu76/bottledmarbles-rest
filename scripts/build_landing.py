@@ -15,12 +15,19 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_journal  # noqa: E402
+import chrome  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 SITE = "https://bottledmarbles.ipe.rest"
 DEFAULT = "en"
+<<<<<<< HEAD
 ASSET_V = "20261113a"
 KEYS = ("name", "genre", "tagline", "body", "f1", "f2", "f3", "store", "lang_label", "journal")
+=======
+ASSET_V = "20261114a"
+RELEASES_HREF = "/releases/?v=20261111a"
+KEYS = ("name", "genre", "tagline", "body", "f1", "f2", "f3", "store", "release", "lang_label", "journal", "privacy", "terms")
+>>>>>>> b8ec6fa (feat: 푸터에만 개인정보·이용약관 링크 + 언어 select(label·noscript 폴백) — 랜딩 12개·저널 en/ko, 테스트)
 MARBLES = ("c1", "c2", "c3", "c4", "c5", "c6")
 BOTTLES = (("c1", "c2", "c3"), ("c4", "c5", "c6"), ())
 
@@ -73,12 +80,7 @@ def _e(s):
 
 
 def _picker(langs, strings, cur):
-    out = []
-    for l in langs:
-        aria = ' aria-current="true"' if l == cur else ""
-        out.append('<a href="%s" hreflang="%s" lang="%s"%s>%s</a>' % (
-            ppath(l), l, l, aria, _e(strings[l]["name"])))
-    return "".join(out)
+    return chrome.lang_select([(l, ppath(l), strings[l]["name"]) for l in langs], cur, strings[cur]["lang_label"])
 
 
 def _alternates(langs):
@@ -109,7 +111,7 @@ def _page(lang, langs, strings):
 <script src="/assets/landing.js?v={v}" defer></script>
 </head>
 <body>
-<header class="top"><nav class="langs" aria-label="{lang_label}">{picker}</nav></header>
+<header class="top">{picker}</header>
 <main>
 <section class="hero">
 <div class="bottles" aria-hidden="true">{bottles}</div>
@@ -124,7 +126,7 @@ def _page(lang, langs, strings):
 <a class="rel" href="{jhref}">{journal}</a>
 </div>
 </main>
-<footer><p><a href="{jhref}">{journal}</a> · ipe() 2026</p></footer>
+<footer>{legal}<p><a href="{jhref}">{journal}</a> · ipe() 2026</p></footer>
 </body>
 </html>
 """.format(
@@ -135,7 +137,7 @@ def _page(lang, langs, strings):
         canon=SITE + ppath(lang),
         alts=_alternates(langs),
         v=ASSET_V,
-        lang_label=_e(s["lang_label"]),
+        legal=chrome.legal_links(s["privacy"], s["terms"]),
         picker=_picker(langs, strings, lang),
         bottles=bottles,
         feats=feats,

@@ -46,14 +46,27 @@ class Landing(unittest.TestCase):
                     'hreflang="ru"', 'hreflang="ar"', 'hreflang="hi"'):
             self.assertNotIn(bad, blob, bad)
 
-    def test_picker_marks_own_language(self):
+    def test_picker_is_a_labelled_select_in_fixed_order(self):
         for rel, h in self.pages.items():
             if not rel.endswith("index.html"):
                 continue
             lang = page_lang(rel)
-            nav = re.search(r'<nav class="langs".*?</nav>', h, re.S).group(0)
-            self.assertEqual(re.findall(r'hreflang="([^"]+)"[^>]*aria-current', nav), [lang], rel)
-            self.assertEqual(len(re.findall(r"<a ", nav)), len(LANGS), rel)
+            sel = re.search(r'<select id="langsel".*?</select>', h, re.S).group(0)
+            self.assertRegex(h, r'<label for="langsel">[^<]+</label>', rel)
+            self.assertEqual(re.findall(r'<option value="[^"]*" lang="([^"]+)"', sel), list(LANGS), rel)
+            self.assertEqual(re.findall(r'lang="([^"]+)" selected', sel), [lang], rel)
+            self.assertIn("<noscript>", h, rel)
+            self.assertEqual(len(re.findall(r"<noscript>.*?</noscript>", h, re.S)[0].split("<a ")) - 1, len(LANGS), rel)
+
+    def test_legal_links_only_in_footer(self):
+        for rel, h in self.pages.items():
+            if not rel.endswith("index.html"):
+                continue
+            header = re.search(r"<header.*?</header>", h, re.S).group(0)
+            footer = re.search(r"<footer.*?</footer>", h, re.S).group(0)
+            self.assertNotRegex(header, r'href="/(privacy|terms)/"', rel)
+            self.assertEqual(len(re.findall(r'href="/(?:privacy|terms)/"', footer)), 2, rel)
+            self.assertEqual(len(re.findall(r'href="/(?:privacy|terms)/"', h)), 2, rel)
 
     def test_assets_are_cache_busted(self):
         for rel, h in self.pages.items():

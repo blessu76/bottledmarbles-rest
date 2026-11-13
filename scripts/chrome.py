@@ -1,0 +1,34 @@
+"""Shared page chrome for the landing and the journal: the language <select> (+ no-JS link list) and the legal footer links.
+
+Privacy / terms links live ONLY in the footer (never in the header nav). Language options keep the fixed order of games.json "langs".
+"""
+import html
+import json
+from pathlib import Path
+
+PRIVACY_HREF = "/privacy/"
+TERMS_HREF = "/terms/"
+
+
+def _e(s):
+    return html.escape(s, quote=True)
+
+
+def lang_select(options, cur, label):
+    """options = [(code, href, native name)] in display order -> <label>+<select> (JS navigates on change) + <noscript> links."""
+    opts = "".join('<option value="%s" lang="%s"%s>%s</option>' % (_e(h), c, " selected" if c == cur else "", _e(n))
+                   for c, h, n in options)
+    nojs = "".join('<a href="%s" hreflang="%s" lang="%s">%s</a>' % (_e(h), c, c, _e(n)) for c, h, n in options)
+    return ('<div class="langs"><label for="langsel">%s</label>'
+            '<select id="langsel" class="langsel" data-langsel>%s</select>'
+            '<noscript><span class="langs-nojs">%s</span></noscript></div>') % (_e(label), opts, nojs)
+
+
+def legal_links(privacy, terms):
+    return '<p class="legal"><a href="%s">%s</a> · <a href="%s">%s</a></p>' % (
+        PRIVACY_HREF, _e(privacy), TERMS_HREF, _e(terms))
+
+
+def legal_labels(root, lang):
+    s = json.loads((Path(root) / "content" / "landing.json").read_text(encoding="utf-8"))["strings"][lang]
+    return s["privacy"], s["terms"]

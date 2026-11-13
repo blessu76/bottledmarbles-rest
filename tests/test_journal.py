@@ -1,4 +1,5 @@
 """Journal: front matter, en/ko pairing, future-date refusal, sitemap rows, committed pages match the build."""
+import re
 import shutil
 import tempfile
 import unittest
@@ -16,6 +17,7 @@ def make_root(date="2026-11-13", time="10:00", ko_time=None):
     p.mkdir(parents=True)
     (p / "en.md").write_text(POST % (date, time), encoding="utf-8")
     (p / "ko.md").write_text(POST % (date, ko_time or time), encoding="utf-8")
+    shutil.copy(REPO / "content" / "landing.json", d / "content" / "landing.json")
     return d
 
 
@@ -30,6 +32,16 @@ class JournalTest(unittest.TestCase):
         self.assertEqual(sorted(pages), ["journal/a-post/index.html", "journal/index.html", "ko/journal/a-post/index.html", "ko/journal/index.html"])
         self.assertIn("<strong>bold</strong>", pages["journal/a-post/index.html"])
         self.assertIn("<li>two</li>", pages["ko/journal/a-post/index.html"])
+
+    def test_journal_select_and_footer_legal(self):
+        for rel, h in bj.render(self.root()).items():
+            header = h.split("</header>")[0]
+            footer = h.split("<footer")[1]
+            self.assertNotRegex(header, r'href="/(privacy|terms)/"', rel)
+            self.assertEqual(len(re.findall(r'href="/(?:privacy|terms)/"', footer)), 2, rel)
+            self.assertEqual(len(re.findall(r'href="/(?:privacy|terms)/"', h)), 2, rel)
+            self.assertRegex(h, r'<label for="langsel">[^<]+</label><select id="langsel"')
+            self.assertEqual(re.findall(r'<option value="[^"]*" lang="([^"]+)"', h), ["en", "ko"], rel)
 
     def test_future_date_refused(self):
         with self.assertRaises(SystemExit):

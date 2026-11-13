@@ -16,17 +16,19 @@ import re
 import sys
 from pathlib import Path
 
+import chrome
+
 HERE = Path(__file__).resolve().parent
 SITE = "https://bottledmarbles.ipe.rest"
-ASSET_V = "20261113a"
+ASSET_V = "20261114a"
 LANGS = ("en", "ko")
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 KST = dt.timezone(dt.timedelta(hours=9))
 UI = {
     "en": {"journal": "Journal", "home": "Bottled Marbles", "lead": "How Bottled Marbles gets made: decisions, dead ends and fixes, one post a day.",
-           "back": "All posts", "read": "Read", "other": "한국어", "by": "Posted"},
+           "back": "All posts", "read": "Read", "other": "한국어", "by": "Posted", "lang_label": "Language"},
     "ko": {"journal": "저널", "home": "구슬병", "lead": "구슬병(Bottled Marbles)을 만드는 과정 — 결정, 막힌 곳, 고친 방법을 하루 한 편씩.",
-           "back": "전체 글", "read": "읽기", "other": "English", "by": "발행"},
+           "back": "전체 글", "read": "읽기", "other": "English", "by": "발행", "lang_label": "언어"},
 }
 
 
@@ -131,26 +133,30 @@ def _head(lang, title, desc, canon, alts):
 <link rel="canonical" href="{canon}">
 {alt}
 <link rel="stylesheet" href="/assets/landing.css?v={v}">
+<script src="/assets/landing.js?v={v}" defer></script>
 </head>
 """.format(lang=lang, title=_e(title), desc=_e(desc), canon=canon, alt=alt, v=ASSET_V)
 
 
-def _top(lang, other_path):
+NAMES = {"en": "English", "ko": "한국어"}
+
+
+def _top(lang, slug=None):
+    """Header: home + journal links and the language select (journal exists in en and ko only). No legal links here."""
     u = UI[lang]
     home = "/" if lang == "en" else "/%s/" % lang
-    return ('<header class="top"><nav class="langs" aria-label="Journal">'
-            '<a href="%s">%s</a><a href="%s" aria-current="true">%s</a>'
-            '<a href="%s" hreflang="%s" lang="%s">%s</a></nav></header>\n') % (
-        home, _e(u["home"]), jpath(lang), _e(u["journal"]), other_path, "ko" if lang == "en" else "en",
-        "ko" if lang == "en" else "en", _e(u["other"]))
+    sel = chrome.lang_select([(l, jpath(l, slug), NAMES[l]) for l in LANGS], lang, u["lang_label"])
+    return ('<header class="top"><nav class="topnav" aria-label="Journal"><a href="%s">%s</a>'
+            '<a href="%s" aria-current="true">%s</a></nav>%s</header>\n') % (
+        home, _e(u["home"]), jpath(lang), _e(u["journal"]), sel)
 
 
-FOOT = '<footer><p>ipe() 2026</p></footer>\n</body>\n</html>\n'
+def _foot(root, lang):
+    return '<footer>%s<p>ipe() 2026</p></footer>\n</body>\n</html>\n' % chrome.legal_links(*chrome.legal_labels(root, lang))
 
 
-def index_page(lang, posts):
+def index_page(lang, posts, root):
     u = UI[lang]
-    other = "ko" if lang == "en" else "en"
     alts = [(l, jpath(l)) for l in LANGS]
     cards = "\n".join(
         '<li><a href="{href}"><span class="when">{date} {time} KST</span><strong>{title}</strong>'
@@ -158,22 +164,21 @@ def index_page(lang, posts):
             href=jpath(lang, p["slug"]), date=p["date"], time=p["time"], title=_e(p[lang]["meta"]["title"]),
             sum=_e(p[lang]["meta"]["summary"])) for p in posts)
     title = "%s — %s" % (u["journal"], "Bottled Marbles")
-    return (_head(lang, title, u["lead"], SITE + jpath(lang), alts) + "<body>\n" + _top(lang, jpath(other))
+    return (_head(lang, title, u["lead"], SITE + jpath(lang), alts) + "<body>\n" + _top(lang)
             + '<main class="journal">\n<h1>%s</h1>\n<p class="lead">%s</p>\n<ul class="posts">\n%s\n</ul>\n</main>\n'
-            % (_e(u["journal"]), _e(u["lead"]), cards) + FOOT)
+            % (_e(u["journal"]), _e(u["lead"]), cards) + _foot(root, lang))
 
 
-def post_page(lang, post):
+def post_page(lang, post, root):
     u = UI[lang]
-    other = "ko" if lang == "en" else "en"
     m = post[lang]["meta"]
     alts = [(l, jpath(l, post["slug"])) for l in LANGS]
     return (_head(lang, "%s — Bottled Marbles" % m["title"], m["summary"], SITE + jpath(lang, post["slug"]), alts)
-            + "<body>\n" + _top(lang, jpath(other, post["slug"]))
+            + "<body>\n" + _top(lang, post["slug"])
             + '<main class="journal">\n<article>\n<h1>%s</h1>\n<p class="when">%s: %s %s KST</p>\n%s\n</article>\n'
               '<p class="back"><a href="%s">&larr; %s</a></p>\n</main>\n' % (
                   _e(m["title"]), _e(u["by"]), post["date"], post["time"], body_html(post[lang]["body"]),
-                  jpath(lang), _e(u["back"])) + FOOT)
+                  jpath(lang), _e(u["back"])) + _foot(root, lang))
 
 
 def sitemap_rows(root):
@@ -193,9 +198,9 @@ def render(root):
     posts = load(root)
     out = {}
     for l in LANGS:
-        out[jpath(l).strip("/") + "/index.html"] = index_page(l, posts)
+        out[jpath(l).strip("/") + "/index.html"] = index_page(l, posts, root)
         for p in posts:
-            out[jpath(l, p["slug"]).strip("/") + "/index.html"] = post_page(l, p)
+            out[jpath(l, p["slug"]).strip("/") + "/index.html"] = post_page(l, p, root)
     return out
 
 
