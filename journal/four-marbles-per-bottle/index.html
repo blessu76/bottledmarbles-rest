@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Four marbles per bottle: the whole rulebook — Bottled Marbles</title>
+<meta name="description" content="The rules of Bottled Marbles fit on a few lines. Here they are, with the small decisions around them.">
+<link rel="canonical" href="https://bottledmarbles.ipe.rest/journal/four-marbles-per-bottle/">
+<link rel="alternate" hreflang="en" href="https://bottledmarbles.ipe.rest/journal/four-marbles-per-bottle/">
+<link rel="alternate" hreflang="ko" href="https://bottledmarbles.ipe.rest/ko/journal/four-marbles-per-bottle/">
+<link rel="alternate" hreflang="x-default" href="https://bottledmarbles.ipe.rest/journal/four-marbles-per-bottle/">
+<link rel="stylesheet" href="/assets/landing.css?v=20261113a">
+</head>
+<body>
+<header class="top"><nav class="langs" aria-label="Journal"><a href="/">Bottled Marbles</a><a href="/journal/" aria-current="true">Journal</a><a href="/ko/journal/four-marbles-per-bottle/" hreflang="ko" lang="ko">한국어</a></nav></header>
+<main class="journal">
+<article>
+<h1>Four marbles per bottle: the whole rulebook</h1>
+<p class="when">Posted: 2026-11-13 22:28 KST</p>
+<p>Bottled Marbles is a sorting puzzle: move marbles between glass bottles until each bottle holds a single color. The whole rulebook is short on purpose.</p>
+<h2>The rules, as written down</h2>
+<ul><li>A bottle holds <strong>4 marbles</strong>. A level with n colors has 4 × n marbles.</li><li>There are n + 2 bottles: n of them start filled, and <strong>2 start empty</strong>.</li><li>You can pour from a bottle that is not empty into a bottle that is not full, and only onto an empty bottle or onto a marble of the same color.</li><li>You pour the whole run of same-colored marbles on top, as far as the target has room, and that counts as <strong>one move</strong>.</li><li>You win when every bottle is either empty or full of one color.</li></ul>
+<p>The number of colors grows with the level: <code>min(3 + floor((level + 1) / 2), 8)</code>, so early levels have three colors and later ones stop growing at eight.</p>
+<h2>Four and two</h2>
+<p>Capacity four and two spare bottles come straight from the first prototype. The two empty bottles are the breathing room that makes pouring possible at all, and we have not needed to change either number.</p>
+<h2>Small decisions that matter</h2>
+<ul><li>Tapping the same bottle again deselects it, and an empty bottle can&#x27;t be selected.</li><li>Tapping a bottle you can&#x27;t pour into says so and moves your selection there, instead of silently ignoring the tap.</li><li>Undo is unlimited and takes a move back off the counter. Restart returns the level to its first layout.</li></ul>
+<p>These rules came from the first playable prototype and were kept unchanged in the app. The record we keep for each level is the fewest moves you needed.</p>
+</article>
+<p class="back"><a href="/journal/">&larr; All posts</a></p>
+</main>
+<footer><p>ipe() 2026</p></footer>
+</body>
+</html>

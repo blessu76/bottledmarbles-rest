@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ko" data-lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>병마다 구슬 네 개 — 규칙 전부 — Bottled Marbles</title>
+<meta name="description" content="구슬병의 규칙은 몇 줄이면 끝납니다. 규칙 전체와 그 둘레의 작은 결정들을 적었습니다.">
+<link rel="canonical" href="https://bottledmarbles.ipe.rest/ko/journal/four-marbles-per-bottle/">
+<link rel="alternate" hreflang="en" href="https://bottledmarbles.ipe.rest/journal/four-marbles-per-bottle/">
+<link rel="alternate" hreflang="ko" href="https://bottledmarbles.ipe.rest/ko/journal/four-marbles-per-bottle/">
+<link rel="alternate" hreflang="x-default" href="https://bottledmarbles.ipe.rest/journal/four-marbles-per-bottle/">
+<link rel="stylesheet" href="/assets/landing.css?v=20261113a">
+</head>
+<body>
+<header class="top"><nav class="langs" aria-label="Journal"><a href="/ko/">구슬병</a><a href="/ko/journal/" aria-current="true">저널</a><a href="/journal/four-marbles-per-bottle/" hreflang="en" lang="en">English</a></nav></header>
+<main class="journal">
+<article>
+<h1>병마다 구슬 네 개 — 규칙 전부</h1>
+<p class="when">발행: 2026-11-13 22:28 KST</p>
+<p>구슬병(Bottled Marbles)은 유리병 사이로 구슬을 옮겨, 병마다 한 가지 색만 남기는 정렬 퍼즐입니다. 규칙은 일부러 짧게 만들었습니다.</p>
+<h2>적어 둔 규칙</h2>
+<ul><li>병 하나에는 구슬이 <strong>4개</strong>. 색이 n개인 레벨에는 구슬이 4 × n개 있습니다.</li><li>병은 n + 2개. n개는 채워진 채로 시작하고, <strong>2개는 빈 병</strong>으로 시작합니다.</li><li>빈 병이 아닌 병에서, 가득 차지 않은 병으로 옮길 수 있습니다. 도착 병이 비었거나, 맨 위 구슬이 같은 색일 때만입니다.</li><li>맨 위에 연속으로 쌓인 같은 색 구슬을 도착 병이 허용하는 만큼 한 번에 옮기고, 이것은 <strong>이동 1회</strong>로 셉니다.</li><li>모든 병이 비었거나 한 가지 색으로 가득 차면 승리입니다.</li></ul>
+<p>색의 수는 레벨에 따라 늘어납니다: <code>min(3 + floor((level + 1) / 2), 8)</code>. 처음에는 세 가지 색이고, 여덟 가지에서 멈춥니다.</p>
+<h2>네 개와 두 개</h2>
+<p>병 용량 4와 빈 병 2개는 첫 프로토타입에서 그대로 가져왔습니다. 빈 병 두 개는 붓기가 가능해지는 숨 쉴 틈이고, 두 숫자 모두 아직 바꿀 필요가 없었습니다.</p>
+<h2>사소하지만 중요한 결정</h2>
+<ul><li>같은 병을 다시 누르면 선택이 해제되고, 빈 병은 선택할 수 없습니다.</li><li>옮길 수 없는 병을 누르면 조용히 무시하지 않고, 안내를 보여 준 뒤 선택을 그 병으로 옮깁니다.</li><li>되돌리기는 횟수 제한이 없고 이동 수도 함께 되돌립니다. 다시 섞기는 레벨을 처음 배치로 돌립니다.</li></ul>
+<p>이 규칙은 첫 플레이 가능한 프로토타입에서 나왔고 앱에도 그대로 옮겼습니다. 레벨마다 남기는 기록은 가장 적게 쓴 이동 수입니다.</p>
+</article>
+<p class="back"><a href="/ko/journal/">&larr; 전체 글</a></p>
+</main>
+<footer><p>ipe() 2026</p></footer>
+</body>
+</html>

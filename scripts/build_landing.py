@@ -13,11 +13,14 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import build_journal  # noqa: E402
+
 HERE = Path(__file__).resolve().parent
 SITE = "https://bottledmarbles.ipe.rest"
 DEFAULT = "en"
-ASSET_V = "20261112b"
-KEYS = ("name", "genre", "tagline", "body", "f1", "f2", "f3", "store", "lang_label")
+ASSET_V = "20261113a"
+KEYS = ("name", "genre", "tagline", "body", "f1", "f2", "f3", "store", "lang_label", "journal")
 MARBLES = ("c1", "c2", "c3", "c4", "c5", "c6")
 BOTTLES = (("c1", "c2", "c3"), ("c4", "c5", "c6"), ())
 
@@ -118,9 +121,10 @@ def _page(lang, langs, strings):
 <ul class="features">{feats}</ul>
 <div class="cta">
 <span class="store" aria-disabled="true">{store}</span>
+<a class="rel" href="{jhref}">{journal}</a>
 </div>
 </main>
-<footer><p>ipe() 2026</p></footer>
+<footer><p><a href="{jhref}">{journal}</a> · ipe() 2026</p></footer>
 </body>
 </html>
 """.format(
@@ -136,10 +140,12 @@ def _page(lang, langs, strings):
         bottles=bottles,
         feats=feats,
         store=_e(s["store"]),
+        journal=_e(s["journal"]),
+        jhref=build_journal.jpath("ko" if lang == "ko" else "en"),
     )
 
 
-def _sitemap(langs):
+def _sitemap(langs, extra=()):
     rows = []
     for l in langs:
         links = "".join('<xhtml:link rel="alternate" hreflang="%s" href="%s%s"/>' % (k, SITE, ppath(k)) for k in langs)
@@ -147,13 +153,13 @@ def _sitemap(langs):
         rows.append("<url><loc>%s%s</loc>%s</url>" % (SITE, ppath(l), links))
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
-            'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n%s\n</urlset>\n') % "\n".join(rows)
+            'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n%s\n</urlset>\n') % "\n".join(list(rows) + list(extra))
 
 
 def render(root):
     """-> {relative path: text} for every generated file."""
     langs, strings = load(root)
-    out = {"sitemap.xml": _sitemap(langs)}
+    out = {"sitemap.xml": _sitemap(langs, build_journal.sitemap_rows(root))}
     for l in langs:
         rel = "index.html" if l == DEFAULT else "%s/index.html" % l
         out[rel] = _page(l, langs, strings)

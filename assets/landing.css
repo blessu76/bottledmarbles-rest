@@ -27,3 +27,20 @@ h1{font-size:clamp(1.7rem,7vw,2.3rem);line-height:1.2;margin:0 0 .3rem;text-alig
 footer{max-width:34rem;margin:0 auto;padding:1.5rem 1rem 1.5rem;text-align:center;font-size:.78rem;opacity:.6}
 footer p{margin:0}
 @media (min-width:600px){main{padding-top:2.5rem}}
+.cta a.rel+a.rel{margin-top:-.2rem}
+footer a{color:inherit}
+main.journal{max-width:40rem}
+main.journal h1{text-align:left;font-size:clamp(1.5rem,6vw,2rem)}
+main.journal h2{font-size:1.15rem;margin:1.6rem 0 .4rem;color:#FFCF5C}
+main.journal p,main.journal li{font-size:1rem;line-height:1.7}
+main.journal ul{padding-left:1.2rem}
+main.journal code{background:#1B474D;border-radius:4px;padding:.05rem .3rem;font-size:.92em}
+main.journal a{color:#a9c4ff}
+.lead{color:rgba(255,255,255,.78);margin:0 0 1.4rem}
+.when{display:block;font-size:.78rem;opacity:.65;margin:0 0 .6rem}
+ul.posts{list-style:none;margin:0;padding:0;display:grid;gap:.7rem}
+ul.posts a{display:block;background:#1B474D;border-radius:10px;padding:.85rem 1rem;text-decoration:none;color:#fff}
+ul.posts a .when{margin:0 0 .15rem}
+ul.posts strong{display:block;font-size:1.02rem;line-height:1.35}
+ul.posts .sum{display:block;margin-top:.25rem;font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.45}
+.back{margin-top:2rem}

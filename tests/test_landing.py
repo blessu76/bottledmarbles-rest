@@ -63,8 +63,11 @@ class Landing(unittest.TestCase):
 
     def test_sitemap_lists_every_page(self):
         sm = self.pages["sitemap.xml"]
-        self.assertEqual(sm.count("<url>"), len(LANGS))
-        self.assertEqual(sm.count('hreflang="x-default"'), len(LANGS))
+        # 12 landing pages + the journal rows (journal tests cover those)
+        self.assertGreaterEqual(sm.count("<url>"), len(LANGS))
+        self.assertEqual(sm.count('hreflang="x-default"'), sm.count("<url>"))
+        for l in LANGS:
+            self.assertIn("<loc>https://bottledmarbles.ipe.rest/%s</loc>" % ("" if l == "en" else l + "/"), sm)
 
     def test_committed_files_match_build(self):
         for rel, text in self.pages.items():
