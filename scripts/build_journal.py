@@ -63,7 +63,7 @@ def jpath(lang, slug=None):
     return base if slug is None else "%s%s/" % (base, slug)
 
 
-def parse(text, where="?"):
+def parse_meta(text, required, where="?"):
     m = re.match(r"^---\n(.*?)\n---\n(.*)$", text, re.S)
     if not m:
         raise SystemExit("build_journal: %s has no front matter" % where)
@@ -71,14 +71,19 @@ def parse(text, where="?"):
     for line in m.group(1).split("\n"):
         k, _, v = line.partition(":")
         meta[k.strip()] = v.strip()
-    for k in ("title", "date", "time", "summary"):
+    for k in required:
         if not meta.get(k):
             raise SystemExit("build_journal: %s front matter missing %s" % (where, k))
+    return meta, m.group(2).strip()
+
+
+def parse(text, where="?"):
+    meta, body = parse_meta(text, ("title", "date", "time", "summary"), where)
     if not re.match(r"^\d{4}-\d{2}-\d{2}$", meta["date"]) or not re.match(r"^([01]\d|2[0-3]):[0-5]\d$", meta["time"]):
         raise SystemExit("build_journal: %s bad date/time (%s %s)" % (where, meta["date"], meta["time"]))
     if meta.get("copy_review") and not REVIEW_RE.match(meta["copy_review"]):
         raise SystemExit("build_journal: %s copy_review must look like 'iris YYYY-MM-DD'" % where)
-    return meta, m.group(2).strip()
+    return meta, body
 
 
 def _inline(s):
@@ -182,7 +187,7 @@ def _top(root, lang, slug=None, have=LANGS):
 
 def _foot(root, lang):
     st = _strings(root)[lang]
-    return '<footer>%s<p>ipe() 2026</p></footer>\n</body>\n</html>\n' % chrome.legal_links(st["privacy"], st["terms"])
+    return '<footer>%s<p>ipe() 2026</p></footer>\n</body>\n</html>\n' % chrome.legal_links(st["privacy"], st["terms"], lang)
 
 
 def index_page(lang, posts, root):

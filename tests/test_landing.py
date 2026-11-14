@@ -78,9 +78,9 @@ class Landing(unittest.TestCase):
                 continue
             header = re.search(r"<header.*?</header>", h, re.S).group(0)
             footer = re.search(r"<footer.*?</footer>", h, re.S).group(0)
-            self.assertNotRegex(header, r'href="/(privacy|terms)/"', rel)
-            self.assertEqual(len(re.findall(r'href="/(?:privacy|terms)/"', footer)), 2, rel)
-            self.assertEqual(len(re.findall(r'href="/(?:privacy|terms)/"', h)), 2, rel)
+            self.assertNotRegex(header, r'href="/(?:ko/)?(privacy|terms)/"', rel)
+            self.assertEqual(len(re.findall(r'href="/(?:ko/)?(?:privacy|terms)/"', footer)), 2, rel)
+            self.assertEqual(len(re.findall(r'href="/(?:ko/)?(?:privacy|terms)/"', h)), 2, rel)
 
     def test_assets_are_cache_busted(self):
         for rel, h in self.pages.items():

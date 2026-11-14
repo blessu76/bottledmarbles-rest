@@ -8,6 +8,7 @@ from pathlib import Path
 
 PRIVACY_HREF = "/privacy/"
 TERMS_HREF = "/terms/"
+LEGAL_LANGS = ("en", "ko")   # languages that have their own /<lang>/privacy/ and /<lang>/terms/ (the rest link the English pages)
 
 
 def _e(s):
@@ -24,9 +25,13 @@ def lang_select(options, cur, label):
             '<noscript><span class="langs-nojs">%s</span></noscript></div>') % (_e(label), opts, nojs)
 
 
-def legal_links(privacy, terms):
+def legal_path(doc, lang="en"):
+    return "/%s/" % doc if lang not in LEGAL_LANGS or lang == "en" else "/%s/%s/" % (lang, doc)
+
+
+def legal_links(privacy, terms, lang="en"):
     return '<p class="legal"><a href="%s">%s</a> · <a href="%s">%s</a></p>' % (
-        PRIVACY_HREF, _e(privacy), TERMS_HREF, _e(terms))
+        legal_path("privacy", lang), _e(privacy), legal_path("terms", lang), _e(terms))
 
 
 def legal_labels(root, lang):
