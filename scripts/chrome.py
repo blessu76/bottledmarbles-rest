@@ -32,3 +32,9 @@ def legal_links(privacy, terms):
 def legal_labels(root, lang):
     s = json.loads((Path(root) / "content" / "landing.json").read_text(encoding="utf-8"))["strings"][lang]
     return s["privacy"], s["terms"]
+
+
+def header(nav, select_html):
+    """Page header: nav = [(href, label, is_current)] then the language select. Privacy/terms never go here."""
+    links = "".join('<a href="%s"%s>%s</a>' % (_e(h), ' aria-current="true"' if cur else "", _e(t)) for h, t, cur in nav)
+    return '<header class="top"><nav class="topnav" aria-label="Site">%s</nav>%s</header>' % (links, select_html)

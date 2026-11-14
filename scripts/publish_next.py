@@ -3,12 +3,14 @@
 
 Runs inside the dedicated publish clone (cwd or --repo, default ~/.ipe/bottledmarbles-publish/repo), never the working checkout.
   1. lock · git pull --ff-only
-  2. take the first folder of the queue (~/.ipe/queue/bottledmarbles/<NN-slug>/{en,ko}.md), slug = name without the "NN-" prefix
+  2. take the first folder of the queue (~/.ipe/queue/bottledmarbles/<NN-slug>/<lang>.md x 12), slug = name without the "NN-" prefix.
+     Ready only when ALL 12 language files exist and each has "copy_review: iris YYYY-MM-DD" — otherwise warn and stop (exit 4);
+     the queue never skips ahead to the next folder.
   3. stamp date/time = the real KST moment now (never back-dated), copy into content/journal/<slug>/
   4. build journal + landing (sitemap) · scripts/check.sh must be green · commit only the allowed paths · push
   5. queue folder -> queue/.published/ ; <3 posts left -> low-stock warning on stdout
 Any failure rolls the clone back (reset --hard + clean of the allowed paths) and leaves the queue untouched.
-Exit: 0 published · 3 queue empty · 1 failure.  --dry-run: stop after the build/check, roll back, change nothing.
+Exit: 0 published · 3 queue empty · 4 head of queue not ready (languages/copy_review missing) · 1 failure.  --dry-run: stop after the build/check, roll back, change nothing.
 """
 import argparse
 import datetime as dt
@@ -24,7 +26,11 @@ KST = dt.timezone(dt.timedelta(hours=9))
 HOME = Path(os.path.expanduser("~"))
 QUEUE = Path(os.environ.get("BM_QUEUE_DIR", str(HOME / ".ipe" / "queue" / "bottledmarbles")))
 LOW_STOCK = 3
-ALLOWED = re.compile(r"^(content/journal/[a-z0-9-]+/(en|ko)\.md|journal/.*index\.html|ko/journal/.*index\.html|sitemap\.xml)$")
+LANGS = ("en", "ko", "ja", "zh-Hant", "es", "pt-BR", "fr", "de", "id", "th", "vi", "tr")
+_ALT = "|".join(re.escape(l) for l in LANGS)
+ALLOWED = re.compile(r"^(content/journal/[a-z0-9-]+/(%s)\.md|(%s)/journal/.*index\.html|journal/.*index\.html|sitemap\.xml)$" % (_ALT, _ALT))
+REVIEW = re.compile(r"^copy_review:\s*iris \d{4}-\d{2}-\d{2}\s*$", re.M)
+NOT_READY = 4
 ROOM = ["--trailer", "Publisher: scripts/publish_next.py"]
 
 
@@ -49,9 +55,23 @@ def next_post():
     return dirs
 
 
+def readiness(src):
+    """-> list of problems; empty = all 12 language files exist and each carries copy_review."""
+    bad = []
+    for l in LANGS:
+        f = src / ("%s.md" % l)
+        if not f.is_file():
+            bad.append("%s.md missing" % l)
+            continue
+        m = re.match(r"^---\n(.*?)\n---\n", f.read_text(encoding="utf-8"), re.S)
+        if not (m and REVIEW.search(m.group(1))):
+            bad.append("%s.md has no 'copy_review: iris YYYY-MM-DD'" % l)
+    return bad
+
+
 def rollback(repo):
     sh(["git", "reset", "--hard", "HEAD"], repo, check=False)
-    sh(["git", "clean", "-fdq", "--", "content/journal", "journal", "ko/journal"], repo, check=False)
+    sh(["git", "clean", "-fdq", "--", "content/journal", "journal"] + ["%s/journal" % l for l in LANGS if l != "en"], repo, check=False)
 
 
 def main(argv=None):
@@ -73,6 +93,10 @@ def main(argv=None):
         print("publish_next: queue empty — write more posts")
         return 3
     src = dirs[0]
+    problems = readiness(src)
+    if problems:
+        print("publish_next: WARNING — %s is not ready, nothing published (the queue does not skip ahead): %s" % (src.name, "; ".join(problems)))
+        return NOT_READY
     slug = re.sub(r"^\d+-", "", src.name)
     now = dt.datetime.now(KST)
     date, time = now.strftime("%Y-%m-%d"), now.strftime("%H:%M")
@@ -83,10 +107,8 @@ def main(argv=None):
             raise RuntimeError("slug %s already published" % slug)
         dst = repo / "content" / "journal" / slug
         dst.mkdir(parents=True)
-        for l in ("en", "ko"):
+        for l in LANGS:
             f = src / ("%s.md" % l)
-            if not f.is_file():
-                raise RuntimeError("%s/%s.md missing" % (src.name, l))
             (dst / ("%s.md" % l)).write_text(stamp(f.read_text(encoding="utf-8"), date, time), encoding="utf-8")
         sh([sys.executable, "scripts/build_journal.py"], repo)
         sh([sys.executable, "scripts/build_landing.py"], repo)

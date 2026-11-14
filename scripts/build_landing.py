@@ -20,7 +20,7 @@ import chrome  # noqa: E402
 HERE = Path(__file__).resolve().parent
 SITE = "https://bottledmarbles.ipe.rest"
 DEFAULT = "en"
-ASSET_V = "20261114a"
+ASSET_V = "20261114b"
 KEYS = ("name", "genre", "tagline", "body", "f1", "f2", "f3", "store", "lang_label", "journal", "privacy", "terms")
 MARBLES = ("c1", "c2", "c3", "c4", "c5", "c6")
 BOTTLES = (("c1", "c2", "c3"), ("c4", "c5", "c6"), ())
@@ -85,6 +85,7 @@ def _alternates(langs):
 
 def _page(lang, langs, strings):
     s = strings[lang]
+    jpath = build_journal.jpath(lang)
     bottles = "".join('<span class="bottle">%s</span>' % "".join('<i class="%s"></i>' % c for c in b)
                       for b in BOTTLES)
     feats = "".join("<li>%s</li>" % _e(s[k]) for k in ("f1", "f2", "f3"))
@@ -105,7 +106,7 @@ def _page(lang, langs, strings):
 <script src="/assets/landing.js?v={v}" defer></script>
 </head>
 <body>
-<header class="top">{picker}</header>
+{header}
 <main>
 <section class="hero">
 <div class="bottles" aria-hidden="true">{bottles}</div>
@@ -117,7 +118,6 @@ def _page(lang, langs, strings):
 <ul class="features">{feats}</ul>
 <div class="cta">
 <span class="store" aria-disabled="true">{store}</span>
-<a class="rel" href="{jhref}">{journal}</a>
 </div>
 </main>
 <footer>{legal}<p><a href="{jhref}">{journal}</a> · ipe() 2026</p></footer>
@@ -132,12 +132,12 @@ def _page(lang, langs, strings):
         alts=_alternates(langs),
         v=ASSET_V,
         legal=chrome.legal_links(s["privacy"], s["terms"]),
-        picker=_picker(langs, strings, lang),
+        header=chrome.header([(jpath, s["journal"], False)], _picker(langs, strings, lang)),
         bottles=bottles,
         feats=feats,
         store=_e(s["store"]),
         journal=_e(s["journal"]),
-        jhref=build_journal.jpath("ko" if lang == "ko" else "en"),
+        jhref=jpath,
     )
 
 

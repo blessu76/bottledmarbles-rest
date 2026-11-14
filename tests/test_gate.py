@@ -71,6 +71,11 @@ class GateTest(unittest.TestCase):
         self.assertEqual(self.run_gate("11-14T12:30"), 0)
         self.assertTrue(self.read()["published"])
 
+    def test_not_ready_queue_exit_4_stays_open_and_is_logged(self):
+        self.state.write_text(json.dumps({"date": "2026-11-14", "time": "12:00", "prev_date": None, "prev_time": None, "published": False}))
+        self.assertEqual(self.run_gate("11-14T12:15", cmd="exit 4"), 4)
+        self.assertFalse(self.read()["published"])
+
     def test_missing_state_draws_fresh_slot(self):
         self.run_gate("11-14T12:00", cmd="true")
         s = self.read()

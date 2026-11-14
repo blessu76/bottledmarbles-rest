@@ -98,7 +98,8 @@ def main(argv=None):
         save_state(a.state, state)
         log("published", now)
         return 0
-    log("publish exited %d — slot stays open, next tick retries" % rc, now)
+    why = {3: "queue empty", 4: "head of queue not ready (12 languages + copy_review) — nothing published, no skipping ahead"}.get(rc, "failed")
+    log("publish exited %d (%s) — slot stays open, next tick retries" % (rc, why), now)
     return rc
 
 

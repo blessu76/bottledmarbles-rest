@@ -5,13 +5,17 @@
   python3 scripts/build_journal.py --check    # fail if the committed pages differ from the build
   python3 scripts/build_journal.py --root DIR
 
-Source: content/journal/<slug>/{en,ko}.md  =  "---\\ntitle: ..\\ndate: YYYY-MM-DD\\ntime: HH:MM\\nsummary: ..\\n---\\n" + body.
-Body subset: paragraphs, "## " headings, "- " lists, **bold**, `code`. Both languages must exist (a post is published in en AND ko).
+Source: content/journal/<slug>/<lang>.md for the 12 site languages (LANGS)  =
+"---\\ntitle: ..\\ndate: YYYY-MM-DD\\ntime: HH:MM\\nsummary: ..\\ncopy_review: iris YYYY-MM-DD\\n---\\n" + body.
+Body subset: paragraphs, "## " headings, "- " lists, **bold**, `code`. en is required; a post is PUBLISHED (publish_next.py) only with all 12
+files and copy_review in each. Pages exist only for the languages a post has; a language's journal index shows an untranslated
+post as its English card (linking to /journal/<slug>/).
 date/time = the real publish moment in KST (stamped by scripts/publish_next.py, never back-dated; the build refuses a future date).
 """
 import argparse
 import datetime as dt
 import html
+import json
 import re
 import sys
 from pathlib import Path
@@ -20,16 +24,34 @@ import chrome
 
 HERE = Path(__file__).resolve().parent
 SITE = "https://bottledmarbles.ipe.rest"
-ASSET_V = "20261114a"
-LANGS = ("en", "ko")
+ASSET_V = "20261114b"
+LANGS = ("en", "ko", "ja", "zh-Hant", "es", "pt-BR", "fr", "de", "id", "th", "vi", "tr")
+REVIEW_RE = re.compile(r"^iris \d{4}-\d{2}-\d{2}$")
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 KST = dt.timezone(dt.timedelta(hours=9))
 UI = {
-    "en": {"journal": "Journal", "home": "Bottled Marbles", "lead": "How Bottled Marbles gets made: decisions, dead ends and fixes, one post a day.",
-           "back": "All posts", "read": "Read", "other": "한국어", "by": "Posted", "lang_label": "Language"},
-    "ko": {"journal": "저널", "home": "구슬병", "lead": "구슬병(Bottled Marbles)을 만드는 과정 — 결정, 막힌 곳, 고친 방법을 하루 한 편씩.",
-           "back": "전체 글", "read": "읽기", "other": "English", "by": "발행", "lang_label": "언어"},
+    "en": {"home": "Bottled Marbles", "lead": "How Bottled Marbles gets made: decisions, dead ends and fixes, one post a day.", "back": "All posts", "by": "Posted"},
+    "ko": {"home": "구슬병", "lead": "구슬병(Bottled Marbles)을 만드는 과정 — 결정, 막힌 곳, 고친 방법을 하루 한 편씩.", "back": "전체 글", "by": "발행"},
+    "ja": {"home": "ビー玉ボトル", "lead": "Bottled Marbles ができるまで：決めたこと、行き詰まったこと、直したことを一日一本ずつ。", "back": "すべての記事", "by": "公開"},
+    "zh-Hant": {"home": "彈珠瓶", "lead": "Bottled Marbles 的製作過程：決定、卡關與修正，每天一篇。", "back": "所有文章", "by": "發布"},
+    "es": {"home": "Bottled Marbles", "lead": "Cómo se hace Bottled Marbles: decisiones, callejones sin salida y arreglos, una entrada al día.", "back": "Todas las entradas", "by": "Publicado"},
+    "pt-BR": {"home": "Bottled Marbles", "lead": "Como o Bottled Marbles é feito: decisões, becos sem saída e correções, um post por dia.", "back": "Todos os posts", "by": "Publicado"},
+    "fr": {"home": "Bottled Marbles", "lead": "Comment Bottled Marbles se fabrique : décisions, impasses et corrections, un billet par jour.", "back": "Tous les billets", "by": "Publié"},
+    "de": {"home": "Bottled Marbles", "lead": "Wie Bottled Marbles entsteht: Entscheidungen, Sackgassen und Korrekturen, ein Beitrag pro Tag.", "back": "Alle Beiträge", "by": "Veröffentlicht"},
+    "id": {"home": "Bottled Marbles", "lead": "Bagaimana Bottled Marbles dibuat: keputusan, jalan buntu, dan perbaikan, satu tulisan per hari.", "back": "Semua tulisan", "by": "Diterbitkan"},
+    "th": {"home": "Bottled Marbles", "lead": "เบื้องหลังการสร้าง Bottled Marbles: การตัดสินใจ ทางตัน และการแก้ไข วันละหนึ่งโพสต์", "back": "โพสต์ทั้งหมด", "by": "เผยแพร่"},
+    "vi": {"home": "Bottled Marbles", "lead": "Bottled Marbles được làm ra thế nào: quyết định, ngõ cụt và cách sửa, mỗi ngày một bài.", "back": "Tất cả bài viết", "by": "Đăng"},
+    "tr": {"home": "Bottled Marbles", "lead": "Bottled Marbles nasıl yapılıyor: kararlar, çıkmaz sokaklar ve düzeltmeler, günde bir yazı.", "back": "Tüm yazılar", "by": "Yayınlandı"},
 }
+_LANDING = {}
+
+
+def _strings(root):
+    """content/landing.json strings (name, lang_label, journal, privacy, terms per language), cached per root."""
+    root = str(root)
+    if root not in _LANDING:
+        _LANDING[root] = json.loads((Path(root) / "content" / "landing.json").read_text(encoding="utf-8"))["strings"]
+    return _LANDING[root]
 
 
 def _e(s):
@@ -54,6 +76,8 @@ def parse(text, where="?"):
             raise SystemExit("build_journal: %s front matter missing %s" % (where, k))
     if not re.match(r"^\d{4}-\d{2}-\d{2}$", meta["date"]) or not re.match(r"^([01]\d|2[0-3]):[0-5]\d$", meta["time"]):
         raise SystemExit("build_journal: %s bad date/time (%s %s)" % (where, meta["date"], meta["time"]))
+    if meta.get("copy_review") and not REVIEW_RE.match(meta["copy_review"]):
+        raise SystemExit("build_journal: %s copy_review must look like 'iris YYYY-MM-DD'" % where)
     return meta, m.group(2).strip()
 
 
@@ -93,7 +117,7 @@ def body_html(body):
 
 
 def load(root):
-    """-> list of posts (newest first): {slug, date, time, en:{meta,body}, ko:{meta,body}}."""
+    """-> list of posts (newest first): {slug, date, time, langs:[...], <lang>:{meta,body}} — only the languages a post has; en is required."""
     root = Path(root)
     posts = []
     base = root / "content" / "journal"
@@ -101,16 +125,22 @@ def load(root):
     for d in sorted(p for p in base.iterdir() if p.is_dir()) if base.is_dir() else []:
         if not SLUG_RE.match(d.name):
             raise SystemExit("build_journal: bad slug %r" % d.name)
-        post = {"slug": d.name}
+        extra = sorted(f.name for f in d.iterdir() if f.name not in ["%s.md" % l for l in LANGS])
+        if extra:
+            raise SystemExit("build_journal: %s has unexpected files %s (only <lang>.md for the 12 languages)" % (d.name, extra))
+        post = {"slug": d.name, "langs": []}
         for l in LANGS:
             f = d / ("%s.md" % l)
-            if not f.is_file():
-                raise SystemExit("build_journal: %s/%s.md missing (a post needs en and ko)" % (d.name, l))
-            meta, body = parse(f.read_text(encoding="utf-8"), "%s/%s.md" % (d.name, l))
-            post[l] = {"meta": meta, "body": body}
-        e, k = post["en"]["meta"], post["ko"]["meta"]
-        if (e["date"], e["time"]) != (k["date"], k["time"]):
-            raise SystemExit("build_journal: %s en/ko date+time differ" % d.name)
+            if f.is_file():
+                meta, body = parse(f.read_text(encoding="utf-8"), "%s/%s.md" % (d.name, l))
+                post[l] = {"meta": meta, "body": body}
+                post["langs"].append(l)
+        if "en" not in post["langs"]:
+            raise SystemExit("build_journal: %s/en.md missing (en is required)" % d.name)
+        e = post["en"]["meta"]
+        for l in post["langs"]:
+            if (post[l]["meta"]["date"], post[l]["meta"]["time"]) != (e["date"], e["time"]):
+                raise SystemExit("build_journal: %s %s/en date+time differ" % (d.name, l))
         stamp = dt.datetime.strptime("%s %s" % (e["date"], e["time"]), "%Y-%m-%d %H:%M").replace(tzinfo=KST)
         if stamp > now + dt.timedelta(minutes=1):
             raise SystemExit("build_journal: %s is dated in the future (%s %s KST)" % (d.name, e["date"], e["time"]))
@@ -120,9 +150,12 @@ def load(root):
     return posts
 
 
-def _head(lang, title, desc, canon, alts):
+def _head(lang, title, desc, canon, alts, jsonld=None):
     alt = "\n".join('<link rel="alternate" hreflang="%s" href="%s%s">' % (l, SITE, p) for l, p in alts)
     alt += '\n<link rel="alternate" hreflang="x-default" href="%s%s">' % (SITE, alts[0][1])
+    ld = ""
+    if jsonld:
+        ld = '\n<script type="application/ld+json">%s</script>' % json.dumps(jsonld, ensure_ascii=False).replace("</", "<\\/")
     return """<!doctype html>
 <html lang="{lang}" data-lang="{lang}">
 <head>
@@ -131,50 +164,55 @@ def _head(lang, title, desc, canon, alts):
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{canon}">
-{alt}
+{alt}{ld}
 <link rel="stylesheet" href="/assets/landing.css?v={v}">
 <script src="/assets/landing.js?v={v}" defer></script>
 </head>
-""".format(lang=lang, title=_e(title), desc=_e(desc), canon=canon, alt=alt, v=ASSET_V)
+""".format(lang=lang, title=_e(title), desc=_e(desc), canon=canon, alt=alt, ld=ld, v=ASSET_V)
 
 
-NAMES = {"en": "English", "ko": "한국어"}
-
-
-def _top(lang, slug=None):
-    """Header: home + journal links and the language select (journal exists in en and ko only). No legal links here."""
-    u = UI[lang]
+def _top(root, lang, slug=None, have=LANGS):
+    """Header: home + journal links and the language select (all 12; a language without this post points to its journal index)."""
+    st = _strings(root)
     home = "/" if lang == "en" else "/%s/" % lang
-    sel = chrome.lang_select([(l, jpath(l, slug), NAMES[l]) for l in LANGS], lang, u["lang_label"])
-    return ('<header class="top"><nav class="topnav" aria-label="Journal"><a href="%s">%s</a>'
-            '<a href="%s" aria-current="true">%s</a></nav>%s</header>\n') % (
-        home, _e(u["home"]), jpath(lang), _e(u["journal"]), sel)
+    opts = [(l, jpath(l, slug if l in have else None), st[l]["name"]) for l in LANGS]
+    sel = chrome.lang_select(opts, lang, st[lang]["lang_label"])
+    return chrome.header([(home, UI[lang]["home"], False), (jpath(lang), st[lang]["journal"], True)], sel) + "\n"
 
 
 def _foot(root, lang):
-    return '<footer>%s<p>ipe() 2026</p></footer>\n</body>\n</html>\n' % chrome.legal_links(*chrome.legal_labels(root, lang))
+    st = _strings(root)[lang]
+    return '<footer>%s<p>ipe() 2026</p></footer>\n</body>\n</html>\n' % chrome.legal_links(st["privacy"], st["terms"])
 
 
 def index_page(lang, posts, root):
-    u = UI[lang]
+    u, st = UI[lang], _strings(root)[lang]
     alts = [(l, jpath(l)) for l in LANGS]
-    cards = "\n".join(
-        '<li><a href="{href}"><span class="when">{date} {time} KST</span><strong>{title}</strong>'
-        '<span class="sum">{sum}</span></a></li>'.format(
-            href=jpath(lang, p["slug"]), date=p["date"], time=p["time"], title=_e(p[lang]["meta"]["title"]),
-            sum=_e(p[lang]["meta"]["summary"])) for p in posts)
-    title = "%s — %s" % (u["journal"], "Bottled Marbles")
-    return (_head(lang, title, u["lead"], SITE + jpath(lang), alts) + "<body>\n" + _top(lang)
+    cards = []
+    for p in posts:
+        cl = lang if lang in p["langs"] else "en"   # untranslated posts show the English card
+        m = p[cl]["meta"]
+        cards.append('<li><a href="{href}"{la}><span class="when">{date} {time} KST</span><strong>{title}</strong>'
+                     '<span class="sum">{sum}</span></a></li>'.format(
+                         href=jpath(cl, p["slug"]), la="" if cl == lang else ' hreflang="en" lang="en"', date=p["date"],
+                         time=p["time"], title=_e(m["title"]), sum=_e(m["summary"])))
+    title = "%s — %s" % (st["journal"], "Bottled Marbles")
+    return (_head(lang, title, u["lead"], SITE + jpath(lang), alts) + "<body>\n" + _top(root, lang)
             + '<main class="journal">\n<h1>%s</h1>\n<p class="lead">%s</p>\n<ul class="posts">\n%s\n</ul>\n</main>\n'
-            % (_e(u["journal"]), _e(u["lead"]), cards) + _foot(root, lang))
+            % (_e(st["journal"]), _e(u["lead"]), "\n".join(cards)) + _foot(root, lang))
 
 
 def post_page(lang, post, root):
     u = UI[lang]
     m = post[lang]["meta"]
-    alts = [(l, jpath(l, post["slug"])) for l in LANGS]
-    return (_head(lang, "%s — Bottled Marbles" % m["title"], m["summary"], SITE + jpath(lang, post["slug"]), alts)
-            + "<body>\n" + _top(lang, post["slug"])
+    have = post["langs"]
+    alts = [(l, jpath(l, post["slug"])) for l in LANGS if l in have]
+    canon = SITE + jpath(lang, post["slug"])
+    ld = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": m["title"], "description": m["summary"],
+          "inLanguage": lang, "datePublished": "%sT%s:00+09:00" % (post["date"], post["time"]),
+          "mainEntityOfPage": canon, "author": {"@type": "Organization", "name": "ipe Studio"}}
+    return (_head(lang, "%s — Bottled Marbles" % m["title"], m["summary"], canon, alts, ld)
+            + "<body>\n" + _top(root, lang, post["slug"], have)
             + '<main class="journal">\n<article>\n<h1>%s</h1>\n<p class="when">%s: %s %s KST</p>\n%s\n</article>\n'
               '<p class="back"><a href="%s">&larr; %s</a></p>\n</main>\n' % (
                   _e(m["title"]), _e(u["by"]), post["date"], post["time"], body_html(post[lang]["body"]),
@@ -182,14 +220,13 @@ def post_page(lang, post, root):
 
 
 def sitemap_rows(root):
-    """Sitemap <url> rows for the journal (index + posts, en and ko, with hreflang pairs)."""
+    """Sitemap <url> rows for the journal: 12 index pages + each post in the languages it has (hreflang pairs + x-default)."""
     posts = load(root)
     rows = []
-    pairs = [(None,)] + [(p["slug"],) for p in posts]
-    for (slug,) in pairs:
-        links = "".join('<xhtml:link rel="alternate" hreflang="%s" href="%s%s"/>' % (l, SITE, jpath(l, slug)) for l in LANGS)
+    for slug, have in [(None, LANGS)] + [(p["slug"], p["langs"]) for p in posts]:
+        links = "".join('<xhtml:link rel="alternate" hreflang="%s" href="%s%s"/>' % (l, SITE, jpath(l, slug)) for l in have)
         links += '<xhtml:link rel="alternate" hreflang="x-default" href="%s%s"/>' % (SITE, jpath("en", slug))
-        for l in LANGS:
+        for l in have:
             rows.append("<url><loc>%s%s</loc>%s</url>" % (SITE, jpath(l, slug), links))
     return rows
 
@@ -200,7 +237,8 @@ def render(root):
     for l in LANGS:
         out[jpath(l).strip("/") + "/index.html"] = index_page(l, posts, root)
         for p in posts:
-            out[jpath(l, p["slug"]).strip("/") + "/index.html"] = post_page(l, p, root)
+            if l in p["langs"]:
+                out[jpath(l, p["slug"]).strip("/") + "/index.html"] = post_page(l, p, root)
     return out
 
 

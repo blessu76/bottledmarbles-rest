@@ -58,6 +58,20 @@ class Landing(unittest.TestCase):
             self.assertIn("<noscript>", h, rel)
             self.assertEqual(len(re.findall(r"<noscript>.*?</noscript>", h, re.S)[0].split("<a ")) - 1, len(LANGS), rel)
 
+    def test_header_has_select_and_journal_link_footer_has_journal_and_legal(self):
+        for rel, h in self.pages.items():
+            if not rel.endswith("index.html"):
+                continue
+            lang = page_lang(rel)
+            header = re.search(r"<header.*?</header>", h, re.S).group(0)
+            footer = re.search(r"<footer.*?</footer>", h, re.S).group(0)
+            jh = "/journal/" if lang == "en" else "/%s/journal/" % lang
+            self.assertIn('<select id="langsel"', header, rel)
+            self.assertIn('href="%s"' % jh, header, rel)
+            self.assertIn('href="%s"' % jh, footer, rel)
+            self.assertNotIn("<select", h.split("</header>")[1], rel)
+            self.assertNotIn('class="langs"', h.split("</header>")[1], rel)
+
     def test_legal_links_only_in_footer(self):
         for rel, h in self.pages.items():
             if not rel.endswith("index.html"):
