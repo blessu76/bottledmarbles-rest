@@ -4,7 +4,7 @@
 Runs inside the dedicated publish clone (cwd or --repo, default ~/.ipe/bottledmarbles-publish/repo), never the working checkout.
   1. lock · git pull --ff-only
   2. take the first folder of the queue (~/.ipe/queue/bottledmarbles/<NN-slug>/<lang>.md x 12), slug = name without the "NN-" prefix.
-     Ready only when ALL 12 language files exist and each has "copy_review: iris YYYY-MM-DD" — otherwise warn and stop (exit 4);
+     Ready only when ALL 12 language files exist and the 10 translations (not the en/ko originals) have "copy_review: iris [YYYY-MM-DD]" — otherwise warn and stop (exit 4);
      the queue never skips ahead to the next folder.
   3. stamp date/time = the real KST moment now (never back-dated), copy into content/journal/<slug>/
   4. build journal + landing (sitemap) · scripts/check.sh must be green · commit only the allowed paths · push
@@ -29,7 +29,8 @@ LOW_STOCK = 3
 LANGS = ("en", "ko", "ja", "zh-Hant", "es", "pt-BR", "fr", "de", "id", "th", "vi", "tr")
 _ALT = "|".join(re.escape(l) for l in LANGS)
 ALLOWED = re.compile(r"^(content/journal/[a-z0-9-]+/(%s)\.md|(%s)/journal/.*index\.html|journal/.*index\.html|sitemap\.xml)$" % (_ALT, _ALT))
-REVIEW = re.compile(r"^copy_review:\s*iris \d{4}-\d{2}-\d{2}\s*$", re.M)
+REVIEW = re.compile(r"^copy_review:\s*iris( \d{4}-\d{2}-\d{2})?\s*$", re.M)
+ORIGINALS = ("en", "ko")  # our own originals — Iris reviews the 10 translations only
 NOT_READY = 4
 ROOM = ["--trailer", "Publisher: scripts/publish_next.py"]
 
@@ -56,16 +57,18 @@ def next_post():
 
 
 def readiness(src):
-    """-> list of problems; empty = all 12 language files exist and each carries copy_review."""
+    """-> list of problems; empty = all 12 language files exist and the 10 translations (not en/ko originals) carry copy_review."""
     bad = []
     for l in LANGS:
         f = src / ("%s.md" % l)
         if not f.is_file():
             bad.append("%s.md missing" % l)
             continue
+        if l in ORIGINALS:
+            continue
         m = re.match(r"^---\n(.*?)\n---\n", f.read_text(encoding="utf-8"), re.S)
         if not (m and REVIEW.search(m.group(1))):
-            bad.append("%s.md has no 'copy_review: iris YYYY-MM-DD'" % l)
+            bad.append("%s.md has no 'copy_review: iris [YYYY-MM-DD]'" % l)
     return bad
 
 

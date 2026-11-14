@@ -26,7 +26,7 @@ HERE = Path(__file__).resolve().parent
 SITE = "https://bottledmarbles.ipe.rest"
 ASSET_V = "20261114b"
 LANGS = ("en", "ko", "ja", "zh-Hant", "es", "pt-BR", "fr", "de", "id", "th", "vi", "tr")
-REVIEW_RE = re.compile(r"^iris \d{4}-\d{2}-\d{2}$")
+REVIEW_RE = re.compile(r"^iris( \d{4}-\d{2}-\d{2})?$")
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 KST = dt.timezone(dt.timedelta(hours=9))
 UI = {

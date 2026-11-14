@@ -89,6 +89,17 @@ class PublishTest(unittest.TestCase):
         self.assert_blocked(r)
         self.assertIn("ja.md has no", r.stdout)
 
+    def test_en_ko_originals_need_no_copy_review_and_date_is_optional(self):
+        d = self.queue / "02-first-post"
+        for l in LANGS:
+            f = d / ("%s.md" % l)
+            t = f.read_text(encoding="utf-8").replace("copy_review: iris 2026-11-14\n", "copy_review: iris\n" if l not in ("en", "ko") else "")
+            f.write_text(t, encoding="utf-8")
+        import importlib
+        sys.path.insert(0, str(REPO / "scripts"))
+        pn = importlib.import_module("publish_next")
+        self.assertEqual(pn.readiness(d), [])
+
     def test_allowed_regex_covers_12_languages_only(self):
         import importlib
         sys.path.insert(0, str(REPO / "scripts"))

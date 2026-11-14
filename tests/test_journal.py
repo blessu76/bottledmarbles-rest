@@ -78,6 +78,9 @@ class JournalTest(unittest.TestCase):
         with self.assertRaises(SystemExit):
             bj.parse(POST.replace("iris 2026-11-13", "bob") % ("2026-11-13", "10:00"))
 
+    def test_copy_review_date_optional(self):
+        bj.parse(POST.replace("iris 2026-11-13", "iris") % ("2026-11-13", "10:00"))
+
     def test_future_date_refused(self):
         with self.assertRaises(SystemExit):
             bj.load(self.root(date="2099-01-01"))
