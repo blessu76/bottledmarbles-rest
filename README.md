@@ -7,12 +7,15 @@ Static site for Bottled Marbles (bottledmarbles.ipe.rest). Generated HTML is com
 ```
 python3 scripts/build_landing.py   # 12 landing pages + sitemap.xml
 python3 scripts/build_journal.py   # journal indexes + post pages (12 languages)
+python3 scripts/build_redirects.py # 10 redirect stubs for retired languages
 bash scripts/check.sh              # gate: unit tests, landing match, journal up to date
 ```
 
 Languages (fixed): en (/), ko, ja, zh-Hant, es, pt-BR, fr, de, id, th, vi, tr.
 The header holds the language `<select>` and the Journal link; the footer holds only privacy/terms and the journal link.
 `assets/landing.js` picks the language: saved `ipe_lang` (localStorage) wins; otherwise, only on the language-less roots (`/`, `/journal/…`), `navigator.languages` decides and redirects. `/<lang>/…` URLs and bots are never redirected.
+
+**Retired-language stubs** (`scripts/build_redirects.py`, kit v0.7.0 rules): `/pt`→`/pt-BR/` · `/zh`→`/zh-Hant/` · `/ar` `/hi` `/ru`→`/` (home and `/journal/` only). GitHub Pages cannot 301, so each stub is meta refresh + `location.replace` (query/hash kept) + canonical + `noindex,follow` + visible link; never in sitemap/hreflang (tested).
 
 ## Journal procedure (standing rules)
 
