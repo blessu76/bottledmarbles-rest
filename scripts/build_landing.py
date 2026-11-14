@@ -20,14 +20,8 @@ import chrome  # noqa: E402
 HERE = Path(__file__).resolve().parent
 SITE = "https://bottledmarbles.ipe.rest"
 DEFAULT = "en"
-<<<<<<< HEAD
-ASSET_V = "20261113a"
-KEYS = ("name", "genre", "tagline", "body", "f1", "f2", "f3", "store", "lang_label", "journal")
-=======
 ASSET_V = "20261114a"
-RELEASES_HREF = "/releases/?v=20261111a"
-KEYS = ("name", "genre", "tagline", "body", "f1", "f2", "f3", "store", "release", "lang_label", "journal", "privacy", "terms")
->>>>>>> b8ec6fa (feat: 푸터에만 개인정보·이용약관 링크 + 언어 select(label·noscript 폴백) — 랜딩 12개·저널 en/ko, 테스트)
+KEYS = ("name", "genre", "tagline", "body", "f1", "f2", "f3", "store", "lang_label", "journal", "privacy", "terms")
 MARBLES = ("c1", "c2", "c3", "c4", "c5", "c6")
 BOTTLES = (("c1", "c2", "c3"), ("c4", "c5", "c6"), ())
 
