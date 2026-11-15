@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR" data-lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Os níveis vêm de um solucionador, não da sorte — Bottled Marbles</title>
+<meta name="description" content="Embaralhar as bolinhas ao acaso pode gerar tabuleiros sem solução. Por isso geramos todos os níveis com antecedência e provamos que dá para terminá-los.">
+<link rel="canonical" href="https://bottledmarbles.ipe.rest/pt-BR/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="en" href="https://bottledmarbles.ipe.rest/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="ko" href="https://bottledmarbles.ipe.rest/ko/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="ja" href="https://bottledmarbles.ipe.rest/ja/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="zh-Hant" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="es" href="https://bottledmarbles.ipe.rest/es/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="pt-BR" href="https://bottledmarbles.ipe.rest/pt-BR/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="fr" href="https://bottledmarbles.ipe.rest/fr/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="de" href="https://bottledmarbles.ipe.rest/de/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="id" href="https://bottledmarbles.ipe.rest/id/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="th" href="https://bottledmarbles.ipe.rest/th/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="vi" href="https://bottledmarbles.ipe.rest/vi/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="tr" href="https://bottledmarbles.ipe.rest/tr/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="x-default" href="https://bottledmarbles.ipe.rest/journal/levels-from-a-solver/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Os níveis vêm de um solucionador, não da sorte", "description": "Embaralhar as bolinhas ao acaso pode gerar tabuleiros sem solução. Por isso geramos todos os níveis com antecedência e provamos que dá para terminá-los.", "inLanguage": "pt-BR", "datePublished": "2026-11-15T19:10:00+09:00", "mainEntityOfPage": "https://bottledmarbles.ipe.rest/pt-BR/journal/levels-from-a-solver/", "author": {"@type": "Organization", "name": "ipe Studio"}}</script>
+<link rel="stylesheet" href="/assets/landing.css?v=20261114b">
+<script src="/assets/landing.js?v=20261114b" defer></script>
+</head>
+<body>
+<header class="top"><nav class="topnav" aria-label="Site"><a href="/pt-BR/">Bottled Marbles</a><a href="/pt-BR/journal/" aria-current="true">Diário</a></nav><div class="langs"><label for="langsel">Idioma</label><select id="langsel" class="langsel" data-langsel><option value="/journal/levels-from-a-solver/" lang="en">English</option><option value="/ko/journal/levels-from-a-solver/" lang="ko">한국어</option><option value="/ja/journal/levels-from-a-solver/" lang="ja">日本語</option><option value="/zh-Hant/journal/levels-from-a-solver/" lang="zh-Hant">繁體中文</option><option value="/es/journal/levels-from-a-solver/" lang="es">Español</option><option value="/pt-BR/journal/levels-from-a-solver/" lang="pt-BR" selected>Português (Brasil)</option><option value="/fr/journal/levels-from-a-solver/" lang="fr">Français</option><option value="/de/journal/levels-from-a-solver/" lang="de">Deutsch</option><option value="/id/journal/levels-from-a-solver/" lang="id">Bahasa Indonesia</option><option value="/th/journal/levels-from-a-solver/" lang="th">ไทย</option><option value="/vi/journal/levels-from-a-solver/" lang="vi">Tiếng Việt</option><option value="/tr/journal/levels-from-a-solver/" lang="tr">Türkçe</option></select><noscript><span class="langs-nojs"><a href="/journal/levels-from-a-solver/" hreflang="en" lang="en">English</a><a href="/ko/journal/levels-from-a-solver/" hreflang="ko" lang="ko">한국어</a><a href="/ja/journal/levels-from-a-solver/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/journal/levels-from-a-solver/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a><a href="/es/journal/levels-from-a-solver/" hreflang="es" lang="es">Español</a><a href="/pt-BR/journal/levels-from-a-solver/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/fr/journal/levels-from-a-solver/" hreflang="fr" lang="fr">Français</a><a href="/de/journal/levels-from-a-solver/" hreflang="de" lang="de">Deutsch</a><a href="/id/journal/levels-from-a-solver/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/th/journal/levels-from-a-solver/" hreflang="th" lang="th">ไทย</a><a href="/vi/journal/levels-from-a-solver/" hreflang="vi" lang="vi">Tiếng Việt</a><a href="/tr/journal/levels-from-a-solver/" hreflang="tr" lang="tr">Türkçe</a></span></noscript></div></header>
+<main class="journal">
+<article>
+<h1>Os níveis vêm de um solucionador, não da sorte</h1>
+<p class="when">Publicado: 2026-11-15 19:10 KST</p>
+<p>Todo quebra-cabeça de separar tem uma armadilha: se você embaralha as bolinhas ao acaso, algumas combinações simplesmente não têm solução. Ninguém gosta de descobrir isso na jogada quarenta.</p>
+<h2>A decisão</h2>
+<p>Os níveis não são gerados enquanto você joga. Um solucionador os constrói antes de o app ser lançado, e o app inclui o resultado como um arquivo estático: para cada nível, a disposição das garrafas e o <strong>menor número de movimentos</strong> necessário para resolvê-lo. O app lê os níveis por uma única interface pequena, então a forma de criá-los pode mudar sem mexer nas telas.</p>
+<p>Escolhemos assim porque um nível já construído tem solução garantida, e porque saber o mínimo permite que o app o mostre ao lado do seu melhor resultado.</p>
+<h2>Como um nível é feito</h2>
+<ul><li>Começamos com n cores e uma semente aleatória fixa: n garrafas cheias, mais 2 vazias.</li><li>Procuramos uma solução. O primeiro protótipo usou busca em profundidade com limite de 60.000 estados.</li><li>A busca ignora movimentos que não podem ajudar: mexer numa garrafa que já está completa, despejar em garrafas vazias mais de uma vez, passar uma única bolinha de uma garrafa com uma só bolinha para uma garrafa vazia.</li><li>Um estado é guardado como a lista ordenada das garrafas, então duas disposições que só diferem na ordem das garrafas contam como a mesma.</li><li>Depois calculamos o menor número de movimentos: busca em largura para níveis pequenos e aprofundamento iterativo para os grandes.</li><li>Níveis sem solução, já resolvidos ou fáceis demais são descartados. O que sobra é ordenado do mais fácil ao mais difícil.</li></ul>
+<h2>Verificação</h2>
+<p>O plano inclui um teste que resolve de novo cada nível incluído, e a primeira versão jogável mirava pelo menos 30 níveis. A página inicial agora diz 150.</p>
+</article>
+<p class="back"><a href="/pt-BR/journal/">&larr; Todos os posts</a></p>
+</main>
+<footer><p class="legal"><a href="/privacy/">Política de Privacidade</a> · <a href="/terms/">Termos de Uso</a></p><p>ipe() 2026</p></footer>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>レベルは運ではなく、ソルバーが作る — Bottled Marbles</title>
+<meta name="description" content="ビー玉をランダムに混ぜると、解けない盤面ができてしまうことがあります。そこで全レベルを事前に生成し、クリアできることを確かめています。">
+<link rel="canonical" href="https://bottledmarbles.ipe.rest/ja/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="en" href="https://bottledmarbles.ipe.rest/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="ko" href="https://bottledmarbles.ipe.rest/ko/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="ja" href="https://bottledmarbles.ipe.rest/ja/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="zh-Hant" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="es" href="https://bottledmarbles.ipe.rest/es/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="pt-BR" href="https://bottledmarbles.ipe.rest/pt-BR/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="fr" href="https://bottledmarbles.ipe.rest/fr/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="de" href="https://bottledmarbles.ipe.rest/de/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="id" href="https://bottledmarbles.ipe.rest/id/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="th" href="https://bottledmarbles.ipe.rest/th/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="vi" href="https://bottledmarbles.ipe.rest/vi/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="tr" href="https://bottledmarbles.ipe.rest/tr/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="x-default" href="https://bottledmarbles.ipe.rest/journal/levels-from-a-solver/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "レベルは運ではなく、ソルバーが作る", "description": "ビー玉をランダムに混ぜると、解けない盤面ができてしまうことがあります。そこで全レベルを事前に生成し、クリアできることを確かめています。", "inLanguage": "ja", "datePublished": "2026-11-15T19:10:00+09:00", "mainEntityOfPage": "https://bottledmarbles.ipe.rest/ja/journal/levels-from-a-solver/", "author": {"@type": "Organization", "name": "ipe Studio"}}</script>
+<link rel="stylesheet" href="/assets/landing.css?v=20261114b">
+<script src="/assets/landing.js?v=20261114b" defer></script>
+</head>
+<body>
+<header class="top"><nav class="topnav" aria-label="Site"><a href="/ja/">ビー玉ボトル</a><a href="/ja/journal/" aria-current="true">制作ジャーナル</a></nav><div class="langs"><label for="langsel">言語</label><select id="langsel" class="langsel" data-langsel><option value="/journal/levels-from-a-solver/" lang="en">English</option><option value="/ko/journal/levels-from-a-solver/" lang="ko">한국어</option><option value="/ja/journal/levels-from-a-solver/" lang="ja" selected>日本語</option><option value="/zh-Hant/journal/levels-from-a-solver/" lang="zh-Hant">繁體中文</option><option value="/es/journal/levels-from-a-solver/" lang="es">Español</option><option value="/pt-BR/journal/levels-from-a-solver/" lang="pt-BR">Português (Brasil)</option><option value="/fr/journal/levels-from-a-solver/" lang="fr">Français</option><option value="/de/journal/levels-from-a-solver/" lang="de">Deutsch</option><option value="/id/journal/levels-from-a-solver/" lang="id">Bahasa Indonesia</option><option value="/th/journal/levels-from-a-solver/" lang="th">ไทย</option><option value="/vi/journal/levels-from-a-solver/" lang="vi">Tiếng Việt</option><option value="/tr/journal/levels-from-a-solver/" lang="tr">Türkçe</option></select><noscript><span class="langs-nojs"><a href="/journal/levels-from-a-solver/" hreflang="en" lang="en">English</a><a href="/ko/journal/levels-from-a-solver/" hreflang="ko" lang="ko">한국어</a><a href="/ja/journal/levels-from-a-solver/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/journal/levels-from-a-solver/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a><a href="/es/journal/levels-from-a-solver/" hreflang="es" lang="es">Español</a><a href="/pt-BR/journal/levels-from-a-solver/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/fr/journal/levels-from-a-solver/" hreflang="fr" lang="fr">Français</a><a href="/de/journal/levels-from-a-solver/" hreflang="de" lang="de">Deutsch</a><a href="/id/journal/levels-from-a-solver/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/th/journal/levels-from-a-solver/" hreflang="th" lang="th">ไทย</a><a href="/vi/journal/levels-from-a-solver/" hreflang="vi" lang="vi">Tiếng Việt</a><a href="/tr/journal/levels-from-a-solver/" hreflang="tr" lang="tr">Türkçe</a></span></noscript></div></header>
+<main class="journal">
+<article>
+<h1>レベルは運ではなく、ソルバーが作る</h1>
+<p class="when">公開: 2026-11-15 19:10 KST</p>
+<p>仕分けパズルには落とし穴があります。ビー玉をランダムに混ぜると、どうやっても解けない配置が生まれることがあるのです。40手目でそれに気づいて喜ぶ人はいません。</p>
+<h2>決めたこと</h2>
+<p>レベルはプレイ中に生成しません。アプリを出す前にソルバーが作り、結果を静的ファイルとしてアプリに同梱します。各レベルには、ボトルの配置と、解くのに必要な<strong>最少手数</strong>が入っています。アプリは小さなインターフェース一つだけを通してレベルを読むので、作り方を変えても画面には手を入れずに済みます。</p>
+<p>この方法にしたのは、事前に作ったレベルなら必ず解けると保証できるからです。最少手数がわかっていれば、自己ベストの横に表示することもできます。</p>
+<h2>レベルの作り方</h2>
+<ul><li>色数 n と固定のランダムシードから始めます。n 本のボトルを満たし、空のボトルを 2 本足します。</li><li>解を探索します。最初の試作では、状態数の上限を 60,000 とした深さ優先探索を使いました。</li><li>役に立たない手は探索から外します。すでに完成したボトルを触る手、空のボトルへ何度も注ぐ手、ビー玉 1 個だけのボトルから空のボトルへ 1 個を移す手などです。</li><li>状態は、ボトルを並べ替えた一覧として保存します。ボトルの順番だけが違う配置は同じものとして数えます。</li><li>そのうえで最少手数を求めます。小さいレベルは幅優先探索、大きいレベルは反復深化を使います。</li><li>解けないレベル、最初から完成しているレベル、簡単すぎるレベルは捨てます。残ったものを易しい順から難しい順に並べます。</li></ul>
+<h2>検証</h2>
+<p>計画には、同梱した全レベルを解き直すテストが含まれています。最初に遊べる版では、30 レベル以上を目標にしていました。ランディングページでは現在 150 と表示しています。</p>
+</article>
+<p class="back"><a href="/ja/journal/">&larr; すべての記事</a></p>
+</main>
+<footer><p class="legal"><a href="/privacy/">プライバシーポリシー</a> · <a href="/terms/">利用規約</a></p><p>ipe() 2026</p></footer>
+</body>
+</html>

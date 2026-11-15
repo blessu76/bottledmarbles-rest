@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko" data-lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>레벨은 운이 아니라 솔버가 만든다 — Bottled Marbles</title>
+<meta name="description" content="구슬을 무작위로 섞으면 풀 수 없는 판이 나올 수 있습니다. 그래서 모든 레벨을 미리 만들고, 풀 수 있음을 증명합니다.">
+<link rel="canonical" href="https://bottledmarbles.ipe.rest/ko/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="en" href="https://bottledmarbles.ipe.rest/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="ko" href="https://bottledmarbles.ipe.rest/ko/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="ja" href="https://bottledmarbles.ipe.rest/ja/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="zh-Hant" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="es" href="https://bottledmarbles.ipe.rest/es/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="pt-BR" href="https://bottledmarbles.ipe.rest/pt-BR/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="fr" href="https://bottledmarbles.ipe.rest/fr/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="de" href="https://bottledmarbles.ipe.rest/de/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="id" href="https://bottledmarbles.ipe.rest/id/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="th" href="https://bottledmarbles.ipe.rest/th/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="vi" href="https://bottledmarbles.ipe.rest/vi/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="tr" href="https://bottledmarbles.ipe.rest/tr/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="x-default" href="https://bottledmarbles.ipe.rest/journal/levels-from-a-solver/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "레벨은 운이 아니라 솔버가 만든다", "description": "구슬을 무작위로 섞으면 풀 수 없는 판이 나올 수 있습니다. 그래서 모든 레벨을 미리 만들고, 풀 수 있음을 증명합니다.", "inLanguage": "ko", "datePublished": "2026-11-15T19:10:00+09:00", "mainEntityOfPage": "https://bottledmarbles.ipe.rest/ko/journal/levels-from-a-solver/", "author": {"@type": "Organization", "name": "ipe Studio"}}</script>
+<link rel="stylesheet" href="/assets/landing.css?v=20261114b">
+<script src="/assets/landing.js?v=20261114b" defer></script>
+</head>
+<body>
+<header class="top"><nav class="topnav" aria-label="Site"><a href="/ko/">구슬병</a><a href="/ko/journal/" aria-current="true">저널</a></nav><div class="langs"><label for="langsel">언어</label><select id="langsel" class="langsel" data-langsel><option value="/journal/levels-from-a-solver/" lang="en">English</option><option value="/ko/journal/levels-from-a-solver/" lang="ko" selected>한국어</option><option value="/ja/journal/levels-from-a-solver/" lang="ja">日本語</option><option value="/zh-Hant/journal/levels-from-a-solver/" lang="zh-Hant">繁體中文</option><option value="/es/journal/levels-from-a-solver/" lang="es">Español</option><option value="/pt-BR/journal/levels-from-a-solver/" lang="pt-BR">Português (Brasil)</option><option value="/fr/journal/levels-from-a-solver/" lang="fr">Français</option><option value="/de/journal/levels-from-a-solver/" lang="de">Deutsch</option><option value="/id/journal/levels-from-a-solver/" lang="id">Bahasa Indonesia</option><option value="/th/journal/levels-from-a-solver/" lang="th">ไทย</option><option value="/vi/journal/levels-from-a-solver/" lang="vi">Tiếng Việt</option><option value="/tr/journal/levels-from-a-solver/" lang="tr">Türkçe</option></select><noscript><span class="langs-nojs"><a href="/journal/levels-from-a-solver/" hreflang="en" lang="en">English</a><a href="/ko/journal/levels-from-a-solver/" hreflang="ko" lang="ko">한국어</a><a href="/ja/journal/levels-from-a-solver/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/journal/levels-from-a-solver/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a><a href="/es/journal/levels-from-a-solver/" hreflang="es" lang="es">Español</a><a href="/pt-BR/journal/levels-from-a-solver/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/fr/journal/levels-from-a-solver/" hreflang="fr" lang="fr">Français</a><a href="/de/journal/levels-from-a-solver/" hreflang="de" lang="de">Deutsch</a><a href="/id/journal/levels-from-a-solver/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/th/journal/levels-from-a-solver/" hreflang="th" lang="th">ไทย</a><a href="/vi/journal/levels-from-a-solver/" hreflang="vi" lang="vi">Tiếng Việt</a><a href="/tr/journal/levels-from-a-solver/" hreflang="tr" lang="tr">Türkçe</a></span></noscript></div></header>
+<main class="journal">
+<article>
+<h1>레벨은 운이 아니라 솔버가 만든다</h1>
+<p class="when">발행: 2026-11-15 19:10 KST</p>
+<p>정렬 퍼즐에는 함정이 있습니다. 구슬을 무작위로 섞으면 어떤 배치는 아예 풀 수 없습니다. 마흔 번째 수에서 그걸 알게 되면 아무도 즐겁지 않습니다.</p>
+<h2>결정</h2>
+<p>레벨은 플레이 중에 만들지 않습니다. 앱을 내보내기 전에 솔버가 만들고, 앱은 그 결과를 정적 파일로 담습니다. 레벨마다 병 배치와 풀이에 필요한 <strong>최소 이동 수</strong>가 들어 있습니다. 앱은 작은 인터페이스 하나로만 레벨을 읽기 때문에, 만드는 방식이 바뀌어도 화면 코드는 건드리지 않습니다.</p>
+<p>미리 만든 레벨은 풀 수 있음이 보장되고, 최소 이동 수를 알면 내 기록 옆에 보여 줄 수 있어서 이렇게 정했습니다.</p>
+<h2>레벨이 만들어지는 과정</h2>
+<ul><li>색 n개와 고정된 무작위 시드로 시작합니다: 채운 병 n개 + 빈 병 2개.</li><li>풀이를 찾습니다. 첫 프로토타입은 상태 6만 개까지만 보는 깊이 우선 탐색이었습니다.</li><li>도움이 안 되는 수는 건너뜁니다: 이미 완성된 병 건드리기, 빈 병으로 가는 이동을 여러 번 시도하기, 구슬 1개짜리 병을 빈 병으로 옮기기.</li><li>상태는 병을 정렬한 목록으로 저장해서, 병 순서만 다른 배치는 같은 것으로 봅니다.</li><li>그다음 최소 이동 수를 구합니다: 작은 판은 너비 우선 탐색, 큰 판은 반복 심화.</li><li>풀 수 없거나, 이미 풀려 있거나, 너무 쉬운 판은 버립니다. 남은 것을 쉬운 순서로 정렬합니다.</li></ul>
+<h2>검증</h2>
+<p>계획에는 번들된 모든 레벨을 솔버로 다시 풀어 보는 테스트가 들어 있고, 첫 플레이 버전의 목표는 최소 30개였습니다. 지금 랜딩 페이지에는 150개로 적혀 있습니다.</p>
+</article>
+<p class="back"><a href="/ko/journal/">&larr; 전체 글</a></p>
+</main>
+<footer><p class="legal"><a href="/ko/privacy/">개인정보처리방침</a> · <a href="/ko/terms/">이용약관</a></p><p>ipe() 2026</p></footer>
+</body>
+</html>

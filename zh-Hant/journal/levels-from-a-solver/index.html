@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-Hant" data-lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>關卡由求解器生成，而不是靠運氣 — Bottled Marbles</title>
+<meta name="description" content="隨機打亂彈珠，可能產生無解的盤面。所以我們事先生成每一個關卡，並確認它一定能過關。">
+<link rel="canonical" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="en" href="https://bottledmarbles.ipe.rest/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="ko" href="https://bottledmarbles.ipe.rest/ko/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="ja" href="https://bottledmarbles.ipe.rest/ja/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="zh-Hant" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="es" href="https://bottledmarbles.ipe.rest/es/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="pt-BR" href="https://bottledmarbles.ipe.rest/pt-BR/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="fr" href="https://bottledmarbles.ipe.rest/fr/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="de" href="https://bottledmarbles.ipe.rest/de/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="id" href="https://bottledmarbles.ipe.rest/id/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="th" href="https://bottledmarbles.ipe.rest/th/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="vi" href="https://bottledmarbles.ipe.rest/vi/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="tr" href="https://bottledmarbles.ipe.rest/tr/journal/levels-from-a-solver/">
+<link rel="alternate" hreflang="x-default" href="https://bottledmarbles.ipe.rest/journal/levels-from-a-solver/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "關卡由求解器生成，而不是靠運氣", "description": "隨機打亂彈珠，可能產生無解的盤面。所以我們事先生成每一個關卡，並確認它一定能過關。", "inLanguage": "zh-Hant", "datePublished": "2026-11-15T19:10:00+09:00", "mainEntityOfPage": "https://bottledmarbles.ipe.rest/zh-Hant/journal/levels-from-a-solver/", "author": {"@type": "Organization", "name": "ipe Studio"}}</script>
+<link rel="stylesheet" href="/assets/landing.css?v=20261114b">
+<script src="/assets/landing.js?v=20261114b" defer></script>
+</head>
+<body>
+<header class="top"><nav class="topnav" aria-label="Site"><a href="/zh-Hant/">彈珠瓶</a><a href="/zh-Hant/journal/" aria-current="true">製作日誌</a></nav><div class="langs"><label for="langsel">語言</label><select id="langsel" class="langsel" data-langsel><option value="/journal/levels-from-a-solver/" lang="en">English</option><option value="/ko/journal/levels-from-a-solver/" lang="ko">한국어</option><option value="/ja/journal/levels-from-a-solver/" lang="ja">日本語</option><option value="/zh-Hant/journal/levels-from-a-solver/" lang="zh-Hant" selected>繁體中文</option><option value="/es/journal/levels-from-a-solver/" lang="es">Español</option><option value="/pt-BR/journal/levels-from-a-solver/" lang="pt-BR">Português (Brasil)</option><option value="/fr/journal/levels-from-a-solver/" lang="fr">Français</option><option value="/de/journal/levels-from-a-solver/" lang="de">Deutsch</option><option value="/id/journal/levels-from-a-solver/" lang="id">Bahasa Indonesia</option><option value="/th/journal/levels-from-a-solver/" lang="th">ไทย</option><option value="/vi/journal/levels-from-a-solver/" lang="vi">Tiếng Việt</option><option value="/tr/journal/levels-from-a-solver/" lang="tr">Türkçe</option></select><noscript><span class="langs-nojs"><a href="/journal/levels-from-a-solver/" hreflang="en" lang="en">English</a><a href="/ko/journal/levels-from-a-solver/" hreflang="ko" lang="ko">한국어</a><a href="/ja/journal/levels-from-a-solver/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/journal/levels-from-a-solver/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a><a href="/es/journal/levels-from-a-solver/" hreflang="es" lang="es">Español</a><a href="/pt-BR/journal/levels-from-a-solver/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/fr/journal/levels-from-a-solver/" hreflang="fr" lang="fr">Français</a><a href="/de/journal/levels-from-a-solver/" hreflang="de" lang="de">Deutsch</a><a href="/id/journal/levels-from-a-solver/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/th/journal/levels-from-a-solver/" hreflang="th" lang="th">ไทย</a><a href="/vi/journal/levels-from-a-solver/" hreflang="vi" lang="vi">Tiếng Việt</a><a href="/tr/journal/levels-from-a-solver/" hreflang="tr" lang="tr">Türkçe</a></span></noscript></div></header>
+<main class="journal">
+<article>
+<h1>關卡由求解器生成，而不是靠運氣</h1>
+<p class="when">發布: 2026-11-15 19:10 KST</p>
+<p>分類類的益智遊戲有個陷阱：把彈珠隨機打亂後，有些排列根本無解。沒有人願意玩到第四十步才發現這件事。</p>
+<h2>我們的決定</h2>
+<p>關卡不是在你遊玩時才生成的。求解器在 App 上架之前就把關卡做好，結果以靜態檔案的形式內建於 App 中：每個關卡都包含瓶子的排列，以及解開它所需的<strong>最少步數</strong>。App 只透過一個小小的介面讀取關卡，因此關卡的產生方式可以更動，而不必改動任何畫面。</p>
+<p>之所以這樣選擇，是因為預先做好的關卡保證有解；而且知道最少步數後，App 就能把它顯示在你的最佳成績旁邊。</p>
+<h2>關卡如何產生</h2>
+<ul><li>從 n 種顏色和固定的隨機種子開始：裝滿 n 個瓶子，再加上 2 個空瓶。</li><li>搜尋解法。最初的原型使用深度優先搜尋，並將狀態數上限設為 60,000。</li><li>搜尋時會略過不可能有幫助的步驟：動已經完成的瓶子、重複倒入空瓶、把只有一顆彈珠的瓶子裡的那一顆移到空瓶。</li><li>每個狀態以排序後的瓶子清單儲存，因此只有瓶子順序不同的兩種排列視為同一個狀態。</li><li>接著求出最少步數：小型關卡用廣度優先搜尋，大型關卡用迭代加深搜尋。</li><li>無解、一開始就已完成、或過於簡單的關卡都會被捨棄。剩下的依由易到難排序。</li></ul>
+<h2>驗證</h2>
+<p>計畫中包含一項測試，會重新求解每一個內建關卡；第一個可遊玩版本的目標是至少 30 個關卡。目前落地頁上寫的是 150。</p>
+</article>
+<p class="back"><a href="/zh-Hant/journal/">&larr; 所有文章</a></p>
+</main>
+<footer><p class="legal"><a href="/privacy/">隱私權政策</a> · <a href="/terms/">使用條款</a></p><p>ipe() 2026</p></footer>
+</body>
+</html>
