@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title>Journal — Bottled Marbles</title>
+<link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/journal/feed.xml"/>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/journal/"/>
+<id>https://bottledmarbles.ipe.rest/journal/</id>
+<updated>2026-11-19T14:15:00+09:00</updated>
+<author><name>ipe Studio</name></author>
+<entry>
+<title>No ads in Bottled Marbles</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/journal/no-ads-in-the-app/"/>
+<id>https://bottledmarbles.ipe.rest/journal/no-ads-in-the-app/</id>
+<published>2026-11-19T14:15:00+09:00</published>
+<updated>2026-11-19T14:15:00+09:00</updated>
+<summary>We decided not to put ads in the app, not even ads you watch for a reward. Paid in-app purchases are planned instead.</summary>
+</entry>
+<entry>
+<title>What stays on your phone</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/journal/what-stays-on-your-phone/"/>
+<id>https://bottledmarbles.ipe.rest/journal/what-stays-on-your-phone/</id>
+<published>2026-11-18T12:30:00+09:00</published>
+<updated>2026-11-18T12:30:00+09:00</updated>
+<summary>Bottled Marbles has no account and no server of its own. Here is what that means for your progress and your data.</summary>
+</entry>
+<entry>
+<title>Marbles you can tell apart without color</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/journal/marbles-without-color/"/>
+<id>https://bottledmarbles.ipe.rest/journal/marbles-without-color/</id>
+<published>2026-11-17T17:00:00+09:00</published>
+<updated>2026-11-17T17:00:00+09:00</updated>
+<summary>Ten marble colors, ten symbols, and a few layout tests on small screens. Plus one button that could not be tapped.</summary>
+</entry>
+<entry>
+<title>Two design proposals, and one &quot;too simple&quot;</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/journal/two-designs-then-too-simple/"/>
+<id>https://bottledmarbles.ipe.rest/journal/two-designs-then-too-simple/</id>
+<published>2026-11-16T12:15:00+09:00</published>
+<updated>2026-11-16T12:15:00+09:00</updated>
+<summary>We compared two full design proposals for the app, took ideas from both, and then threw the result away after one piece of feedback.</summary>
+</entry>
+<entry>
+<title>Levels come from a solver, not from luck</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/journal/levels-from-a-solver/"/>
+<id>https://bottledmarbles.ipe.rest/journal/levels-from-a-solver/</id>
+<published>2026-11-15T19:10:00+09:00</published>
+<updated>2026-11-15T19:10:00+09:00</updated>
+<summary>A random shuffle can leave a level unsolvable. We generate every level ahead of time and prove it can be finished.</summary>
+</entry>
+<entry>
+<title>Four marbles per bottle: the whole rulebook</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/journal/four-marbles-per-bottle/"/>
+<id>https://bottledmarbles.ipe.rest/journal/four-marbles-per-bottle/</id>
+<published>2026-11-13T22:28:00+09:00</published>
+<updated>2026-11-13T22:28:00+09:00</updated>
+<summary>The rules of Bottled Marbles fit on a few lines. Here they are, with the small decisions around them.</summary>
+</entry>
+</feed>

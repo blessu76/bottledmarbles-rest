@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="pt-BR">
+<title>Diário — Bottled Marbles</title>
+<link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/pt-BR/journal/feed.xml"/>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/pt-BR/journal/"/>
+<id>https://bottledmarbles.ipe.rest/pt-BR/journal/</id>
+<updated>2026-11-19T14:15:00+09:00</updated>
+<author><name>ipe Studio</name></author>
+<entry>
+<title>O Bottled Marbles não tem anúncios</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/pt-BR/journal/no-ads-in-the-app/"/>
+<id>https://bottledmarbles.ipe.rest/pt-BR/journal/no-ads-in-the-app/</id>
+<published>2026-11-19T14:15:00+09:00</published>
+<updated>2026-11-19T14:15:00+09:00</updated>
+<summary>Decidimos não colocar anúncios no app, nem mesmo anúncios assistidos em troca de recompensa. Em vez disso, planejamos compras pagas dentro do app.</summary>
+</entry>
+<entry>
+<title>O que fica no seu celular</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/pt-BR/journal/what-stays-on-your-phone/"/>
+<id>https://bottledmarbles.ipe.rest/pt-BR/journal/what-stays-on-your-phone/</id>
+<published>2026-11-18T12:30:00+09:00</published>
+<updated>2026-11-18T12:30:00+09:00</updated>
+<summary>O Bottled Marbles não tem conta nem servidor próprio. Veja o que isso significa para o seu progresso e os seus dados.</summary>
+</entry>
+<entry>
+<title>Bolinhas que dá para distinguir sem usar a cor</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/pt-BR/journal/marbles-without-color/"/>
+<id>https://bottledmarbles.ipe.rest/pt-BR/journal/marbles-without-color/</id>
+<published>2026-11-17T17:00:00+09:00</published>
+<updated>2026-11-17T17:00:00+09:00</updated>
+<summary>Dez cores de bolinhas, dez símbolos, alguns testes de layout em telas pequenas e um botão que não dava para tocar.</summary>
+</entry>
+<entry>
+<title>Duas propostas de design e um &quot;simples demais&quot;</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/pt-BR/journal/two-designs-then-too-simple/"/>
+<id>https://bottledmarbles.ipe.rest/pt-BR/journal/two-designs-then-too-simple/</id>
+<published>2026-11-16T12:15:00+09:00</published>
+<updated>2026-11-16T12:15:00+09:00</updated>
+<summary>Comparamos duas propostas completas de design para o app, pegamos ideias das duas e depois jogamos o resultado fora por causa de um único comentário.</summary>
+</entry>
+<entry>
+<title>Os níveis vêm de um solucionador, não da sorte</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/pt-BR/journal/levels-from-a-solver/"/>
+<id>https://bottledmarbles.ipe.rest/pt-BR/journal/levels-from-a-solver/</id>
+<published>2026-11-15T19:10:00+09:00</published>
+<updated>2026-11-15T19:10:00+09:00</updated>
+<summary>Embaralhar as bolinhas ao acaso pode gerar tabuleiros sem solução. Por isso geramos todos os níveis com antecedência e provamos que dá para terminá-los.</summary>
+</entry>
+<entry>
+<title>Quatro bolinhas por garrafa: o regulamento completo</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/pt-BR/journal/four-marbles-per-bottle/"/>
+<id>https://bottledmarbles.ipe.rest/pt-BR/journal/four-marbles-per-bottle/</id>
+<published>2026-11-13T22:28:00+09:00</published>
+<updated>2026-11-13T22:28:00+09:00</updated>
+<summary>As regras do Bottled Marbles cabem em poucas linhas. Aqui estão elas, junto com as pequenas decisões ao redor.</summary>
+</entry>
+</feed>

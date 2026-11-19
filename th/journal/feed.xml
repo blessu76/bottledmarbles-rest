@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="th">
+<title>บันทึกการพัฒนา — Bottled Marbles</title>
+<link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/th/journal/feed.xml"/>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/th/journal/"/>
+<id>https://bottledmarbles.ipe.rest/th/journal/</id>
+<updated>2026-11-19T14:15:00+09:00</updated>
+<author><name>ipe Studio</name></author>
+<entry>
+<title>Bottled Marbles ไม่มีโฆษณา</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/th/journal/no-ads-in-the-app/"/>
+<id>https://bottledmarbles.ipe.rest/th/journal/no-ads-in-the-app/</id>
+<published>2026-11-19T14:15:00+09:00</published>
+<updated>2026-11-19T14:15:00+09:00</updated>
+<summary>เราตัดสินใจไม่ใส่โฆษณาในแอป รวมถึงโฆษณาที่ดูเพื่อรับรางวัลด้วย แต่เราวางแผนจะมีการซื้อภายในแอปแบบเสียเงินแทน</summary>
+</entry>
+<entry>
+<title>อะไรที่อยู่แค่ในโทรศัพท์ของคุณ</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/th/journal/what-stays-on-your-phone/"/>
+<id>https://bottledmarbles.ipe.rest/th/journal/what-stays-on-your-phone/</id>
+<published>2026-11-18T12:30:00+09:00</published>
+<updated>2026-11-18T12:30:00+09:00</updated>
+<summary>Bottled Marbles ไม่มีบัญชีผู้ใช้และไม่มีเซิร์ฟเวอร์ของตัวเอง นี่คือความหมายของเรื่องนี้ต่อความคืบหน้าและข้อมูลของคุณ</summary>
+</entry>
+<entry>
+<title>ลูกแก้วที่แยกแยะได้แม้ไม่ใช้สี</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/th/journal/marbles-without-color/"/>
+<id>https://bottledmarbles.ipe.rest/th/journal/marbles-without-color/</id>
+<published>2026-11-17T17:00:00+09:00</published>
+<updated>2026-11-17T17:00:00+09:00</updated>
+<summary>ลูกแก้วสิบสี สัญลักษณ์สิบแบบ การทดสอบเลย์เอาต์บนหน้าจอเล็ก และปุ่มหนึ่งปุ่มที่กดไม่ติด</summary>
+</entry>
+<entry>
+<title>ข้อเสนอดีไซน์สองแบบ และคำว่า &quot;เรียบเกินไป&quot;</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/th/journal/two-designs-then-too-simple/"/>
+<id>https://bottledmarbles.ipe.rest/th/journal/two-designs-then-too-simple/</id>
+<published>2026-11-16T12:15:00+09:00</published>
+<updated>2026-11-16T12:15:00+09:00</updated>
+<summary>เราเปรียบเทียบข้อเสนอดีไซน์ฉบับเต็มของแอปสองแบบ หยิบแนวคิดจากทั้งสอง แล้วทิ้งผลลัพธ์ทั้งหมดหลังได้รับความเห็นเพียงข้อเดียว</summary>
+</entry>
+<entry>
+<title>ด่านมาจากโปรแกรมแก้ปริศนา ไม่ใช่โชค</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/th/journal/levels-from-a-solver/"/>
+<id>https://bottledmarbles.ipe.rest/th/journal/levels-from-a-solver/</id>
+<published>2026-11-15T19:10:00+09:00</published>
+<updated>2026-11-15T19:10:00+09:00</updated>
+<summary>การสุ่มสลับลูกแก้วอาจทำให้เกิดด่านที่แก้ไม่ได้ เราจึงสร้างทุกด่านไว้ล่วงหน้าและพิสูจน์ว่าเล่นจบได้</summary>
+</entry>
+<entry>
+<title>ขวดละสี่ลูก: กติกาทั้งหมด</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/th/journal/four-marbles-per-bottle/"/>
+<id>https://bottledmarbles.ipe.rest/th/journal/four-marbles-per-bottle/</id>
+<published>2026-11-13T22:28:00+09:00</published>
+<updated>2026-11-13T22:28:00+09:00</updated>
+<summary>กติกาของ Bottled Marbles เขียนได้ในไม่กี่บรรทัด นี่คือกติกาทั้งหมด พร้อมการตัดสินใจเล็ก ๆ ที่อยู่รอบ ๆ</summary>
+</entry>
+</feed>

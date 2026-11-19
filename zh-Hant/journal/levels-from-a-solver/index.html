@@ -20,6 +20,8 @@
 <link rel="alternate" hreflang="tr" href="https://bottledmarbles.ipe.rest/tr/journal/levels-from-a-solver/">
 <link rel="alternate" hreflang="x-default" href="https://bottledmarbles.ipe.rest/journal/levels-from-a-solver/">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "關卡由求解器生成，而不是靠運氣", "description": "隨機打亂彈珠，可能產生無解的盤面。所以我們事先生成每一個關卡，並確認它一定能過關。", "inLanguage": "zh-Hant", "datePublished": "2026-11-15T19:10:00+09:00", "mainEntityOfPage": "https://bottledmarbles.ipe.rest/zh-Hant/journal/levels-from-a-solver/", "author": {"@type": "Organization", "name": "ipe Studio"}}</script>
+<link rel="alternate" type="application/atom+xml" title="製作日誌 — Bottled Marbles" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/feed.xml">
+<meta property="article:published_time" content="2026-11-15T19:10:00+09:00">
 <link rel="stylesheet" href="/assets/landing.css?v=20261114b">
 <script src="/assets/landing.js?v=20261114b" defer></script>
 </head>
@@ -28,7 +30,7 @@
 <main class="journal">
 <article>
 <h1>關卡由求解器生成，而不是靠運氣</h1>
-<p class="when">發布: 2026-11-15 19:10 KST</p>
+<p class="when">發布: <time datetime="2026-11-15T19:10:00+09:00">2026年11月15日 19:10 KST</time></p>
 <p>分類類的益智遊戲有個陷阱：把彈珠隨機打亂後，有些排列根本無解。沒有人願意玩到第四十步才發現這件事。</p>
 <h2>我們的決定</h2>
 <p>關卡不是在你遊玩時才生成的。求解器在 App 上架之前就把關卡做好，結果以靜態檔案的形式內建於 App 中：每個關卡都包含瓶子的排列，以及解開它所需的<strong>最少步數</strong>。App 只透過一個小小的介面讀取關卡，因此關卡的產生方式可以更動，而不必改動任何畫面。</p>

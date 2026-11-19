@@ -9,7 +9,7 @@ Source: content/journal/<slug>/<lang>.md for the 12 site languages (LANGS)  =
 "---\\ntitle: ..\\ndate: YYYY-MM-DD\\ntime: HH:MM\\nsummary: ..\\ncopy_review: iris YYYY-MM-DD\\n---\\n" + body.
 Body subset: paragraphs, "## " headings, "- " lists, **bold**, `code`. en is required; a post is PUBLISHED (publish_next.py) only with all 12
 files and copy_review in each. Pages exist only for the languages a post has; a language's journal index shows an untranslated
-post as its English card (linking to /journal/<slug>/).
+post as its English card (linking to /journal/<slug>/). Atom feeds: /journal/feed.xml + /<lang>/journal/feed.xml (that language's posts).
 date/time = the real publish moment in KST (stamped by scripts/publish_next.py, never back-dated; the build refuses a future date).
 """
 import argparse
@@ -58,9 +58,35 @@ def _e(s):
     return html.escape(s, quote=True)
 
 
+MONTHS = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+
+
 def jpath(lang, slug=None):
     base = "/journal/" if lang == "en" else "/%s/journal/" % lang
     return base if slug is None else "%s%s/" % (base, slug)
+
+
+def feed_path(lang):
+    return jpath(lang) + "feed.xml"
+
+
+def _iso(date, time):
+    """Publish moment as RFC 3339 with the KST offset — used by <time datetime>, article:published_time, <published>/<updated>, JSON-LD."""
+    return "%sT%s:00+09:00" % (date, time)
+
+
+def _when(lang, date, time):
+    """Visible date + time per language (KST). ko/ja/zh-Hant use CJK year-month-day, en a month name, the rest ISO."""
+    y, m, d = (int(x) for x in date.split("-"))
+    if lang == "en":
+        day = "%s %d, %d" % (MONTHS[m - 1], d, y)
+    elif lang == "ko":
+        day = "%d년 %d월 %d일" % (y, m, d)
+    elif lang in ("ja", "zh-Hant"):
+        day = "%d年%d月%d日" % (y, m, d)
+    else:
+        day = date
+    return "%s %s KST" % (day, time)
 
 
 def parse_meta(text, required, where="?"):
@@ -155,12 +181,15 @@ def load(root):
     return posts
 
 
-def _head(lang, title, desc, canon, alts, jsonld=None):
+def _head(lang, title, desc, canon, alts, jsonld=None, feed=None, extra=""):
     alt = "\n".join('<link rel="alternate" hreflang="%s" href="%s%s">' % (l, SITE, p) for l, p in alts)
     alt += '\n<link rel="alternate" hreflang="x-default" href="%s%s">' % (SITE, alts[0][1])
     ld = ""
     if jsonld:
         ld = '\n<script type="application/ld+json">%s</script>' % json.dumps(jsonld, ensure_ascii=False).replace("</", "<\\/")
+    fl = ""
+    if feed:
+        fl = '\n<link rel="alternate" type="application/atom+xml" title="%s" href="%s%s">' % (_e(feed[0]), SITE, feed[1])
     return """<!doctype html>
 <html lang="{lang}" data-lang="{lang}">
 <head>
@@ -169,11 +198,11 @@ def _head(lang, title, desc, canon, alts, jsonld=None):
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{canon}">
-{alt}{ld}
+{alt}{ld}{fl}{extra}
 <link rel="stylesheet" href="/assets/landing.css?v={v}">
 <script src="/assets/landing.js?v={v}" defer></script>
 </head>
-""".format(lang=lang, title=_e(title), desc=_e(desc), canon=canon, alt=alt, ld=ld, v=ASSET_V)
+""".format(lang=lang, title=_e(title), desc=_e(desc), canon=canon, alt=alt, ld=ld, fl=fl, extra=extra, v=ASSET_V)
 
 
 def _top(root, lang, slug=None, have=LANGS):
@@ -197,12 +226,14 @@ def index_page(lang, posts, root):
     for p in posts:
         cl = lang if lang in p["langs"] else "en"   # untranslated posts show the English card
         m = p[cl]["meta"]
-        cards.append('<li><a href="{href}"{la}><span class="when">{date} {time} KST</span><strong>{title}</strong>'
+        cards.append('<li><a href="{href}"{la}><span class="when"><time datetime="{iso}">{when}</time></span><strong>{title}</strong>'
                      '<span class="sum">{sum}</span></a></li>'.format(
-                         href=jpath(cl, p["slug"]), la="" if cl == lang else ' hreflang="en" lang="en"', date=p["date"],
-                         time=p["time"], title=_e(m["title"]), sum=_e(m["summary"])))
+                         href=jpath(cl, p["slug"]), la="" if cl == lang else ' hreflang="en" lang="en"',
+                         iso=_iso(p["date"], p["time"]), when=_e(_when(cl, p["date"], p["time"])),
+                         title=_e(m["title"]), sum=_e(m["summary"])))
     title = "%s — %s" % (st["journal"], "Bottled Marbles")
-    return (_head(lang, title, u["lead"], SITE + jpath(lang), alts) + "<body>\n" + _top(root, lang)
+    feed = ("%s — Bottled Marbles" % st["journal"], feed_path(lang))
+    return (_head(lang, title, u["lead"], SITE + jpath(lang), alts, feed=feed) + "<body>\n" + _top(root, lang)
             + '<main class="journal">\n<h1>%s</h1>\n<p class="lead">%s</p>\n<ul class="posts">\n%s\n</ul>\n</main>\n'
             % (_e(st["journal"]), _e(u["lead"]), "\n".join(cards)) + _foot(root, lang))
 
@@ -213,15 +244,42 @@ def post_page(lang, post, root):
     have = post["langs"]
     alts = [(l, jpath(l, post["slug"])) for l in LANGS if l in have]
     canon = SITE + jpath(lang, post["slug"])
+    iso = _iso(post["date"], post["time"])
     ld = {"@context": "https://schema.org", "@type": "BlogPosting", "headline": m["title"], "description": m["summary"],
-          "inLanguage": lang, "datePublished": "%sT%s:00+09:00" % (post["date"], post["time"]),
+          "inLanguage": lang, "datePublished": iso,
           "mainEntityOfPage": canon, "author": {"@type": "Organization", "name": "ipe Studio"}}
-    return (_head(lang, "%s — Bottled Marbles" % m["title"], m["summary"], canon, alts, ld)
+    feed = ("%s — Bottled Marbles" % _strings(root)[lang]["journal"], feed_path(lang))
+    extra = '\n<meta property="article:published_time" content="%s">' % iso
+    return (_head(lang, "%s — Bottled Marbles" % m["title"], m["summary"], canon, alts, ld, feed=feed, extra=extra)
             + "<body>\n" + _top(root, lang, post["slug"], have)
-            + '<main class="journal">\n<article>\n<h1>%s</h1>\n<p class="when">%s: %s %s KST</p>\n%s\n</article>\n'
+            + '<main class="journal">\n<article>\n<h1>%s</h1>\n<p class="when">%s: <time datetime="%s">%s</time></p>\n%s\n</article>\n'
               '<p class="back"><a href="%s">&larr; %s</a></p>\n</main>\n' % (
-                  _e(m["title"]), _e(u["by"]), post["date"], post["time"], body_html(post[lang]["body"]),
-                  jpath(lang), _e(u["back"])) + _foot(root, lang))
+                  _e(m["title"]), _e(u["by"]), iso, _e(_when(lang, post["date"], post["time"])),
+                  body_html(post[lang]["body"]), jpath(lang), _e(u["back"])) + _foot(root, lang))
+
+
+def feed_xml(root, lang, posts):
+    """Atom feed for one language: the posts that exist in that language, newest first, with published/updated = the KST publish moment."""
+    st = _strings(root)[lang]
+    own = [p for p in posts if lang in p["langs"]]
+    home = SITE + jpath(lang)
+    entries = []
+    for p in own:
+        m = p[lang]["meta"]
+        iso = _iso(p["date"], p["time"])
+        url = SITE + jpath(lang, p["slug"])
+        entries.append(
+            '<entry>\n<title>%s</title>\n<link rel="alternate" type="text/html" href="%s"/>\n<id>%s</id>\n'
+            '<published>%s</published>\n<updated>%s</updated>\n<summary>%s</summary>\n</entry>' % (
+                _e(m["title"]), url, url, iso, iso, _e(m["summary"])))
+    updated = _iso(own[0]["date"], own[0]["time"]) if own else "1970-01-01T00:00:00+09:00"
+    return ('<?xml version="1.0" encoding="utf-8"?>\n'
+            '<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="%s">\n'
+            '<title>%s — Bottled Marbles</title>\n'
+            '<link rel="self" type="application/atom+xml" href="%s%s"/>\n'
+            '<link rel="alternate" type="text/html" href="%s"/>\n'
+            '<id>%s</id>\n<updated>%s</updated>\n<author><name>ipe Studio</name></author>\n%s\n</feed>\n' % (
+                lang, _e(st["journal"]), SITE, feed_path(lang), home, home, updated, "\n".join(entries)))
 
 
 def sitemap_rows(root):
@@ -240,6 +298,7 @@ def render(root):
     posts = load(root)
     out = {}
     for l in LANGS:
+        out[feed_path(l).strip("/")] = feed_xml(root, l, posts)
         out[jpath(l).strip("/") + "/index.html"] = index_page(l, posts, root)
         for p in posts:
             if l in p["langs"]:
@@ -260,7 +319,7 @@ def main(argv=None):
         for l in LANGS:
             jd = root / jpath(l).strip("/")
             if jd.is_dir():
-                for f in jd.rglob("index.html"):
+                for f in [*jd.rglob("index.html"), *jd.rglob("feed.xml")]:
                     rel = f.relative_to(root).as_posix()
                     if rel not in pages:
                         bad.append(rel)

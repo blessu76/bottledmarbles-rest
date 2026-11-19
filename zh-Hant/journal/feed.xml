@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hant">
+<title>製作日誌 — Bottled Marbles</title>
+<link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/feed.xml"/>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/"/>
+<id>https://bottledmarbles.ipe.rest/zh-Hant/journal/</id>
+<updated>2026-11-19T14:15:00+09:00</updated>
+<author><name>ipe Studio</name></author>
+<entry>
+<title>Bottled Marbles 沒有廣告</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/no-ads-in-the-app/"/>
+<id>https://bottledmarbles.ipe.rest/zh-Hant/journal/no-ads-in-the-app/</id>
+<published>2026-11-19T14:15:00+09:00</published>
+<updated>2026-11-19T14:15:00+09:00</updated>
+<summary>我們決定不在 App 裡放廣告，連看廣告換獎勵的那種也不放。我們改為規劃付費的 App 內購買。</summary>
+</entry>
+<entry>
+<title>留在你手機裡的東西</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/what-stays-on-your-phone/"/>
+<id>https://bottledmarbles.ipe.rest/zh-Hant/journal/what-stays-on-your-phone/</id>
+<published>2026-11-18T12:30:00+09:00</published>
+<updated>2026-11-18T12:30:00+09:00</updated>
+<summary>Bottled Marbles 沒有帳號，也沒有自己的伺服器。這對你的進度與資料來說代表什麼，在這裡說明。</summary>
+</entry>
+<entry>
+<title>不靠顏色也能分辨的彈珠</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/marbles-without-color/"/>
+<id>https://bottledmarbles.ipe.rest/zh-Hant/journal/marbles-without-color/</id>
+<published>2026-11-17T17:00:00+09:00</published>
+<updated>2026-11-17T17:00:00+09:00</updated>
+<summary>十種彈珠顏色搭配十種符號、小螢幕版面測試，還有一顆點不到的按鈕。</summary>
+</entry>
+<entry>
+<title>兩份設計提案，與一句「太簡單了」</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/two-designs-then-too-simple/"/>
+<id>https://bottledmarbles.ipe.rest/zh-Hant/journal/two-designs-then-too-simple/</id>
+<published>2026-11-16T12:15:00+09:00</published>
+<updated>2026-11-16T12:15:00+09:00</updated>
+<summary>我們比較了兩份完整的 App 設計提案，從中各取所長，卻因為一則回饋而把成果全部推翻。</summary>
+</entry>
+<entry>
+<title>關卡由求解器生成，而不是靠運氣</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/levels-from-a-solver/"/>
+<id>https://bottledmarbles.ipe.rest/zh-Hant/journal/levels-from-a-solver/</id>
+<published>2026-11-15T19:10:00+09:00</published>
+<updated>2026-11-15T19:10:00+09:00</updated>
+<summary>隨機打亂彈珠，可能產生無解的盤面。所以我們事先生成每一個關卡，並確認它一定能過關。</summary>
+</entry>
+<entry>
+<title>每瓶四顆彈珠：完整規則</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/four-marbles-per-bottle/"/>
+<id>https://bottledmarbles.ipe.rest/zh-Hant/journal/four-marbles-per-bottle/</id>
+<published>2026-11-13T22:28:00+09:00</published>
+<updated>2026-11-13T22:28:00+09:00</updated>
+<summary>Bottled Marbles 的規則幾行就寫得完。這裡列出規則，以及圍繞規則的幾個小決定。</summary>
+</entry>
+</feed>

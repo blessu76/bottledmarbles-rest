@@ -33,13 +33,15 @@ class JournalTest(unittest.TestCase):
         want = set()
         for l in LANGS:
             base = "journal" if l == "en" else l + "/journal"
-            want |= {base + "/index.html", base + "/a-post/index.html"}
+            want |= {base + "/index.html", base + "/a-post/index.html", base + "/feed.xml"}
         self.assertEqual(set(pages), want)
         self.assertIn("<strong>bold</strong>", pages["journal/a-post/index.html"])
         self.assertIn("<li>two</li>", pages["ko/journal/a-post/index.html"])
 
     def test_header_select_nav_and_footer_legal(self):
         for rel, h in bj.render(self.root()).items():
+            if not rel.endswith(".html"):   # feed.xml has no header/footer
+                continue
             header = h.split("</header>")[0]
             footer = h.split("<footer")[1]
             self.assertNotRegex(header, r'href="/(?:ko/)?(privacy|terms)/"', rel)

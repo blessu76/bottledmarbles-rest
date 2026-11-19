@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="vi">
+<title>Nhật ký — Bottled Marbles</title>
+<link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/vi/journal/feed.xml"/>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/"/>
+<id>https://bottledmarbles.ipe.rest/vi/journal/</id>
+<updated>2026-11-19T14:15:00+09:00</updated>
+<author><name>ipe Studio</name></author>
+<entry>
+<title>Bottled Marbles không có quảng cáo</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/no-ads-in-the-app/"/>
+<id>https://bottledmarbles.ipe.rest/vi/journal/no-ads-in-the-app/</id>
+<published>2026-11-19T14:15:00+09:00</published>
+<updated>2026-11-19T14:15:00+09:00</updated>
+<summary>Chúng tôi quyết định không đặt quảng cáo trong ứng dụng, kể cả quảng cáo xem để nhận thưởng. Thay vào đó, chúng tôi dự định có các giao dịch mua trong ứng dụng có trả phí.</summary>
+</entry>
+<entry>
+<title>Những gì ở lại trên điện thoại của bạn</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/what-stays-on-your-phone/"/>
+<id>https://bottledmarbles.ipe.rest/vi/journal/what-stays-on-your-phone/</id>
+<published>2026-11-18T12:30:00+09:00</published>
+<updated>2026-11-18T12:30:00+09:00</updated>
+<summary>Bottled Marbles không có tài khoản và không có máy chủ riêng. Đây là ý nghĩa của điều đó đối với tiến trình và dữ liệu của bạn.</summary>
+</entry>
+<entry>
+<title>Những viên bi phân biệt được mà không cần màu</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/marbles-without-color/"/>
+<id>https://bottledmarbles.ipe.rest/vi/journal/marbles-without-color/</id>
+<published>2026-11-17T17:00:00+09:00</published>
+<updated>2026-11-17T17:00:00+09:00</updated>
+<summary>Mười màu bi, mười ký hiệu, vài bài kiểm tra bố cục trên màn hình nhỏ, và một nút bấm không chạm được.</summary>
+</entry>
+<entry>
+<title>Hai đề xuất thiết kế, và một lời nhận xét &quot;quá đơn giản&quot;</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/two-designs-then-too-simple/"/>
+<id>https://bottledmarbles.ipe.rest/vi/journal/two-designs-then-too-simple/</id>
+<published>2026-11-16T12:15:00+09:00</published>
+<updated>2026-11-16T12:15:00+09:00</updated>
+<summary>Chúng tôi so sánh hai đề xuất thiết kế hoàn chỉnh cho ứng dụng, lấy ý tưởng từ cả hai, rồi bỏ hết sau một lời góp ý.</summary>
+</entry>
+<entry>
+<title>Màn chơi do bộ giải tạo ra, không phải do may rủi</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/levels-from-a-solver/"/>
+<id>https://bottledmarbles.ipe.rest/vi/journal/levels-from-a-solver/</id>
+<published>2026-11-15T19:10:00+09:00</published>
+<updated>2026-11-15T19:10:00+09:00</updated>
+<summary>Xáo trộn bi ngẫu nhiên có thể tạo ra màn không thể giải. Vì vậy chúng tôi tạo sẵn mọi màn chơi và chứng minh rằng chúng đều hoàn thành được.</summary>
+</entry>
+<entry>
+<title>Bốn viên bi mỗi chai: toàn bộ luật chơi</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/four-marbles-per-bottle/"/>
+<id>https://bottledmarbles.ipe.rest/vi/journal/four-marbles-per-bottle/</id>
+<published>2026-11-13T22:28:00+09:00</published>
+<updated>2026-11-13T22:28:00+09:00</updated>
+<summary>Luật của Bottled Marbles gói gọn trong vài dòng. Đây là luật chơi, cùng những quyết định nhỏ xung quanh.</summary>
+</entry>
+</feed>
