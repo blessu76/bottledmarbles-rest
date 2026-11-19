@@ -35,6 +35,16 @@ class Redirects(unittest.TestCase):
         sm = (REPO / "sitemap.xml").read_text(encoding="utf-8")
         self.assertEqual(re.findall(r"://[^/<\s]+/(?:pt|zh|ar|hi|ru)(?:[/?#<\s\"']|$)", sm), [])
 
+    def test_releases_stub_goes_to_landing_and_stays_out_of_sitemap(self):
+        text = (REPO / "releases" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('http-equiv="refresh" content="0; url=/"', text)
+        self.assertIn('location.replace("/")', text)
+        self.assertIn('<link rel="canonical" href="https://bottledmarbles.ipe.rest/">', text)
+        self.assertIn('name="robots" content="noindex"', text)
+        self.assertIn('<a href="/">', text)
+        self.assertNotIn("hreflang", text)
+        self.assertNotIn("/releases/", (REPO / "sitemap.xml").read_text(encoding="utf-8"))
+
 
 if __name__ == "__main__":
     unittest.main()
