@@ -15,7 +15,6 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_journal  # noqa: E402
-import build_legal  # noqa: E402
 import chrome  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
@@ -176,7 +175,7 @@ def _sitemap(langs, extra=()):
 def render(root):
     """-> {relative path: text} for every generated file."""
     langs, strings = load(root)
-    out = {"sitemap.xml": _sitemap(langs, build_journal.sitemap_rows(root) + build_legal.sitemap_rows(root))}
+    out = {"sitemap.xml": _sitemap(langs, build_journal.sitemap_rows(root))}
     for l in langs:
         rel = "index.html" if l == DEFAULT else "%s/index.html" % l
         out[rel] = _page(l, langs, strings)

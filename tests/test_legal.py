@@ -1,71 +1,70 @@
-"""/privacy/ and /terms/ (en + ko): committed files match the build, structure, links, sitemap, footer links per language."""
+"""Privacy / terms: ipe.rest/legal is the source of truth. This site only keeps redirect stubs at /privacy/ /terms/ /ko/privacy/ /ko/terms/,
+and every footer, llms.txt and sitemap link points at ipe.rest (ko -> /ko/legal/…, the rest -> /legal/…)."""
 import re
 import unittest
 
 from helpers import REPO
 
 import build_landing as bl  # noqa: E402
-import build_legal as lg  # noqa: E402
+import build_redirects as br  # noqa: E402
 import chrome  # noqa: E402
 
 BASE = "https://bottledmarbles.ipe.rest"
-PATHS = {"privacy/index.html": "/privacy/", "terms/index.html": "/terms/",
-         "ko/privacy/index.html": "/ko/privacy/", "ko/terms/index.html": "/ko/terms/"}
+IPE = "https://ipe.rest"
+STUBS = {
+    "privacy/index.html": IPE + "/legal/privacy/",
+    "terms/index.html": IPE + "/legal/terms/",
+    "ko/privacy/index.html": IPE + "/ko/legal/privacy/",
+    "ko/terms/index.html": IPE + "/ko/legal/terms/",
+}
+LEGAL_HREF = r'href="https://ipe\.rest/(?:ko/)?legal/(?:privacy|terms)/"'
 
 
 class Legal(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        cls.pages = lg.render(REPO)
+    def test_four_stubs_match_build_and_point_to_ipe_rest(self):
+        pages = br.render()
+        for rel, url in STUBS.items():
+            self.assertIn(rel, pages)
+            self.assertEqual((REPO / rel).read_text(encoding="utf-8"), pages[rel], rel)
+            text = pages[rel]
+            self.assertIn('<link rel="canonical" href="%s">' % url, text, rel)
+            self.assertIn('http-equiv="refresh" content="0; url=%s"' % url, text, rel)
+            self.assertIn('location.replace("%s"+location.search+location.hash)' % url, text, rel)
+            self.assertIn('<a href="%s">' % url, text, rel)
+            self.assertIn('content="noindex,follow"', text, rel)
+            self.assertNotIn("hreflang", text, rel)
+            self.assertNotIn("googletagmanager", text, rel)
+            self.assertNotIn("<main", text, rel)   # a stub, not a page: no legal copy on this site
 
-    def test_four_pages_match_committed_files(self):
-        self.assertEqual(set(self.pages), set(PATHS))
-        for rel, text in self.pages.items():
-            self.assertEqual((REPO / rel).read_text(encoding="utf-8"), text, rel)
+    def test_chrome_legal_paths(self):
+        self.assertEqual(chrome.legal_path("privacy", "en"), IPE + "/legal/privacy/")
+        self.assertEqual(chrome.legal_path("terms", "ko"), IPE + "/ko/legal/terms/")
+        for lang in ("ja", "zh-Hant", "pt-BR", "tr", "de"):   # untranslated -> English policy
+            self.assertEqual(chrome.legal_path("privacy", lang), IPE + "/legal/privacy/", lang)
 
-    def test_canonical_hreflang_and_cache_busted_assets(self):
-        for rel, h in self.pages.items():
-            url = BASE + PATHS[rel]
-            self.assertIn('<link rel="canonical" href="%s">' % url, h, rel)
-            doc = "privacy" if "privacy" in rel else "terms"
-            self.assertEqual(sorted(re.findall(r'rel="alternate" hreflang="([^"]+)"', h)), ["en", "ko", "x-default"], rel)
-            self.assertIn('hreflang="x-default" href="%s/%s/"' % (BASE, doc), h, rel)
-            self.assertRegex(h, r'/assets/landing\.css\?v=\d+[a-z]?"', rel)
-            self.assertRegex(h, r'/assets/landing\.js\?v=\d+[a-z]?"', rel)
-            lang = "ko" if rel.startswith("ko/") else "en"
-            self.assertIn('<html lang="%s" data-lang="%s">' % (lang, lang), h, rel)
-
-    def test_header_select_two_languages_and_legal_only_in_footer(self):
-        for rel, h in self.pages.items():
-            header = re.search(r"<header.*?</header>", h, re.S).group(0)
-            footer = re.search(r"<footer.*?</footer>", h, re.S).group(0)
-            self.assertEqual(re.findall(r'<option value="[^"]*" lang="([^"]+)"', header), ["en", "ko"], rel)
-            nav = re.search(r'<nav class="topnav".*?</nav>', header, re.S).group(0)
-            self.assertNotRegex(nav, r'/(?:privacy|terms)/', rel)
-            self.assertEqual(len(re.findall(r'href="/(?:ko/)?(?:privacy|terms)/"', footer)), 2, rel)
-
-    def test_facts_and_operator_contact(self):
-        for rel, h in self.pages.items():
-            self.assertIn('mailto:ipe.haven@gmail.com', h, rel)
-            self.assertIn("Davy Kim (ipe Studio)", h, rel)
-            self.assertNotRegex(h, r"Google Analytics|_ga\b|gtag|Claimball|\[미검증\]", rel)
-        for rel in ("privacy/index.html", "ko/privacy/index.html"):
-            self.assertIn("16", self.pages[rel], rel)
-
-    def test_footer_links_by_language(self):
-        self.assertEqual(chrome.legal_path("privacy", "en"), "/privacy/")
-        self.assertEqual(chrome.legal_path("terms", "ko"), "/ko/terms/")
-        for lang in ("ja", "zh-Hant", "pt-BR", "tr"):   # untranslated -> English pages
-            self.assertEqual(chrome.legal_path("privacy", lang), "/privacy/")
+    def test_footer_links_by_language_point_to_ipe_rest(self):
         landing = bl.render(REPO)
-        self.assertIn('href="/ko/privacy/"', landing["ko/index.html"])
-        self.assertIn('href="/privacy/"', landing["ja/index.html"])
+        ko_footer = re.search(r"<footer.*?</footer>", landing["ko/index.html"], re.S).group(0)
+        self.assertIn('href="%s/ko/legal/privacy/"' % IPE, ko_footer)
+        self.assertIn('href="%s/ko/legal/terms/"' % IPE, ko_footer)
+        ja_footer = re.search(r"<footer.*?</footer>", landing["ja/index.html"], re.S).group(0)
+        self.assertIn('href="%s/legal/privacy/"' % IPE, ja_footer)
+        self.assertIn('href="%s/legal/terms/"' % IPE, ja_footer)
+        for rel, h in landing.items():
+            if rel.endswith("index.html"):
+                self.assertEqual(len(re.findall(LEGAL_HREF, h)), 2, rel)
 
-    def test_sitemap_has_four_legal_urls_with_hreflang(self):
+    def test_sitemap_has_no_legal_urls(self):
         sm = (REPO / "sitemap.xml").read_text(encoding="utf-8")
-        for p in PATHS.values():
-            self.assertIn("<loc>%s%s</loc>" % (BASE, p), sm)
+        self.assertNotRegex(sm, r"/(?:ko/)?(?:privacy|terms|legal)/")
         self.assertEqual(sm, bl.render(REPO)["sitemap.xml"])
+
+    def test_llms_txt_links_to_ipe_rest(self):
+        txt = (REPO / "llms.txt").read_text(encoding="utf-8")
+        self.assertIn("[Privacy Policy](%s/legal/privacy/)" % IPE, txt)
+        self.assertIn("[Terms of Use](%s/legal/terms/)" % IPE, txt)
+        self.assertNotIn(BASE + "/privacy/", txt)
+        self.assertNotIn(BASE + "/terms/", txt)
 
 
 if __name__ == "__main__":

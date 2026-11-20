@@ -7,8 +7,7 @@ Static site for Bottled Marbles (bottledmarbles.ipe.rest). Generated HTML is com
 ```
 python3 scripts/build_landing.py   # 12 landing pages + sitemap.xml
 python3 scripts/build_journal.py   # journal indexes + post pages (12 languages)
-python3 scripts/build_redirects.py # 10 redirect stubs for retired languages
-python3 scripts/build_legal.py     # /privacy/ /terms/ (en) + /ko/privacy/ /ko/terms/ from content/legal/<doc>/<lang>.md
+python3 scripts/build_redirects.py # 14 redirect stubs: 10 for retired languages + /privacy/ /terms/ /ko/privacy/ /ko/terms/ (→ ipe.rest)
 bash scripts/check.sh              # gate: unit tests, landing match, journal up to date
 ```
 
@@ -16,9 +15,9 @@ Languages (fixed): en (/), ko, ja, zh-Hant, es, pt-BR, fr, de, id, th, vi, tr.
 The header holds the language `<select>` and the Journal link; the footer holds only privacy/terms and the journal link.
 `assets/landing.js` picks the language: saved `ipe_lang` (localStorage) wins; otherwise, only on the language-less roots (`/`, `/journal/…`), `navigator.languages` decides and redirects. `/<lang>/…` URLs and bots are never redirected.
 
-**Retired-language stubs** (`scripts/build_redirects.py`, kit v0.7.0 rules): `/pt`→`/pt-BR/` · `/zh`→`/zh-Hant/` · `/ar` `/hi` `/ru`→`/` (home and `/journal/` only). GitHub Pages cannot 301, so each stub is meta refresh + `location.replace` (query/hash kept) + canonical + `noindex,follow` + visible link; never in sitemap/hreflang (tested).
+**Redirect stubs** (`scripts/build_redirects.py`). Retired-language stubs follow kit v0.7.0 rules: `/pt`→`/pt-BR/` · `/zh`→`/zh-Hant/` · `/ar` `/hi` `/ru`→`/` (home and `/journal/` only). GitHub Pages cannot 301, so each stub is meta refresh + `location.replace` (query/hash kept) + canonical + `noindex,follow` + visible link; never in sitemap/hreflang (tested).
 
-**Privacy / terms**: sources are `content/legal/{privacy,terms}/{en,ko}.md` (Korean is the operator's jurisdiction; operator and contact copied from Claimball). The footer of `ko` links `/ko/privacy/`·`/ko/terms/`; the other 10 languages link the English pages until they are translated and reviewed (`chrome.LEGAL_LANGS`). Facts stated: no accounts, no ads, no analytics, no cookies, age 16+; update the text first if any of that changes (e.g. AdMob).
+**Privacy / terms**: `ipe.rest/legal` is the source of truth (shared with the ipe apps; Korean under `/ko/legal/`), not this repo. This site keeps only the stubs `/privacy/` `/terms/` `/ko/privacy/` `/ko/terms/` (meta refresh + canonical + `noindex,follow`, no GA4) that hand the reader on to ipe.rest. The footer, `llms.txt` and the sitemap link to ipe.rest directly (`chrome.legal_path`: `ko` → `/ko/legal/…`, the other languages → `/legal/…`); the stubs are never in the sitemap. Do not write legal copy here; the site-wide tracking statement belongs to ipe.rest.
 
 ## Journal procedure (standing rules)
 

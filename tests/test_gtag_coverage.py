@@ -1,8 +1,8 @@
 """GA4 coverage: every public index.html loads gtag with the one company measurement ID — run: python3 -m unittest discover -s tests
 
 Exceptions are explicit (a new page without gtag fails here until it is added on purpose):
-  - redirect stubs (meta refresh + noindex, no analytics by design): /releases/ and the retired-language stubs
-  - ALLOWLIST: legal pages, intentionally bare pending Davy's decision
+  - redirect stubs (meta refresh + noindex, no GA4 tag by design): /releases/, the retired-language stubs and the
+    privacy/terms stubs that hand off to ipe.rest
 Source of the snippet: scripts/chrome.py ga_head() (used by build_landing.py and build_journal.py _head, so legal pages get it too).
 Modelled on idle-rest/tests/test_gtag_coverage.py.
 """
@@ -13,10 +13,7 @@ from helpers import REPO
 
 GA_ID = "G-XG4BH800J0"
 SKIP_TOP = ("content", "scripts", "tests", "assets", "node_modules", ".git")
-ALLOWLIST = {
-    # legal pages stay bare until Davy decides: privacy/terms say the site has no analytics (tests/test_legal.py guards it)
-    "privacy/index.html", "terms/index.html", "ko/privacy/index.html", "ko/terms/index.html",
-}
+ALLOWLIST = set()   # no bare public pages: every page is GA4 or a redirect stub
 
 
 def public_html():
@@ -62,12 +59,6 @@ class GtagCoverage(unittest.TestCase):
                 continue
             self.assertIn("'127.0.0.1'", text, rel)
             self.assertIn("'localhost'", text, rel)
-
-    def test_allowlist_entries_exist_and_stay_bare(self):
-        for rel in ALLOWLIST:
-            p = REPO / rel
-            self.assertTrue(p.exists(), "stale ALLOWLIST entry: %s" % rel)
-            self.assertNotIn("googletagmanager", p.read_text(encoding="utf-8"), "%s now has gtag — drop it from ALLOWLIST" % rel)
 
 
 if __name__ == "__main__":

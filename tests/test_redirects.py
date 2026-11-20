@@ -14,7 +14,7 @@ class Redirects(unittest.TestCase):
             self.assertEqual(br.target(old, "journal/"), "/journal/")
 
     def test_ten_stubs_with_refresh_js_canonical_noindex(self):
-        pages = br.render()
+        pages = {k: v for k, v in br.render().items() if k.split("/")[0] in br.LEGACY}   # legal stubs: tests/test_legal.py
         self.assertEqual(sorted(pages), sorted("%s/%sindex.html" % (o, r) for o in br.LEGACY for r in br.PATHS))
         for rel, text in pages.items():
             old = rel.split("/")[0]

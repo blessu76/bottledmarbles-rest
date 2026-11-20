@@ -17,8 +17,8 @@ The app is not released yet: the App Store listing is coming soon, and this site
 
 - [Home (English)](https://bottledmarbles.ipe.rest/): what the game is and how it plays
 - [Journal](https://bottledmarbles.ipe.rest/journal/): development notes written by the team, in 12 languages
-- [Privacy Policy](https://bottledmarbles.ipe.rest/privacy/)
-- [Terms of Use](https://bottledmarbles.ipe.rest/terms/)
+- [Privacy Policy](https://ipe.rest/legal/privacy/)
+- [Terms of Use](https://ipe.rest/legal/terms/)
 - [Sitemap](https://bottledmarbles.ipe.rest/sitemap.xml)
 
 ## Optional

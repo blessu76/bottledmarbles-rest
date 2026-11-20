@@ -1,14 +1,13 @@
 """Shared page chrome for the landing and the journal: the language <select> (+ no-JS link list) and the legal footer links.
 
 Privacy / terms links live ONLY in the footer (never in the header nav). Language options keep the fixed order of games.json "langs".
+Privacy / terms are owned by ipe.rest (https://ipe.rest/legal/…, Korean under /ko/legal/…); this site only keeps redirect stubs at /privacy/ /terms/ /ko/privacy/ /ko/terms/.
 """
 import html
 import json
 from pathlib import Path
 
-PRIVACY_HREF = "/privacy/"
-TERMS_HREF = "/terms/"
-LEGAL_LANGS = ("en", "ko")   # languages that have their own /<lang>/privacy/ and /<lang>/terms/ (the rest link the English pages)
+LEGAL_BASE = "https://ipe.rest"   # the policy source of truth (ipe.rest/legal/ is shared by the ipe apps and sites)
 GA_ID = "G-XG4BH800J0"       # company-wide GA4 measurement ID (ipe) — the same ID for every ipe *-rest site; never create a new one here
 SITE = "https://bottledmarbles.ipe.rest"
 
@@ -47,7 +46,8 @@ def lang_select(options, cur, label):
 
 
 def legal_path(doc, lang="en"):
-    return "/%s/" % doc if lang not in LEGAL_LANGS or lang == "en" else "/%s/%s/" % (lang, doc)
+    """ipe.rest address of the policy: Korean pages -> /ko/legal/<doc>/, every other language -> /legal/<doc>/ (English)."""
+    return "%s%s/legal/%s/" % (LEGAL_BASE, "/ko" if lang == "ko" else "", doc)
 
 
 def legal_links(privacy, terms, lang="en"):
