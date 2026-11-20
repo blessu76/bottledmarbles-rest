@@ -82,6 +82,17 @@ class Landing(unittest.TestCase):
             self.assertEqual(len(re.findall(r'href="https://ipe\.rest/(?:ko/)?legal/(?:privacy|terms)/"', footer)), 2, rel)
             self.assertEqual(len(re.findall(r'href="https://ipe\.rest/(?:ko/)?legal/(?:privacy|terms)/"', h)), 2, rel)
 
+    def test_legal_links_are_the_exact_address_for_each_page_language(self):
+        # Pinned per language (the test above accepts either /legal/ or /ko/legal/ on any page): each page's privacy and
+        # terms hrefs must be exactly its own language's ipe.rest address — no /en/legal/, no relative ../legal/ link.
+        for lang in LANGS:
+            rel = "index.html" if lang == "en" else lang + "/index.html"
+            h = self.pages[rel]
+            base = "https://ipe.rest/ko/legal/" if lang == "ko" else "https://ipe.rest/legal/"
+            with self.subTest(lang=lang):
+                hrefs = re.findall(r'href="([^"]*legal[^"]*)"', h)
+                self.assertEqual(sorted(hrefs), sorted([base + "privacy/", base + "terms/"]))
+
     def test_assets_are_cache_busted(self):
         for rel, h in self.pages.items():
             if rel.endswith("index.html"):

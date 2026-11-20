@@ -67,6 +67,19 @@ class JournalTest(unittest.TestCase):
             for ko in links:
                 self.assertEqual(bool(ko), want, rel)
 
+    def test_legal_hrefs_are_exact_absolute_addresses_per_language(self):
+        # Every href that mentions legal/ must be exactly the ipe.rest address for that page's language (ko -> /ko/legal/,
+        # the rest -> /legal/). This catches /en/legal/, a typo'd path, or a relative ../legal/ link on any journal page.
+        pages = bj.render(self.root())
+        for rel, h in pages.items():
+            if not rel.endswith(".html"):
+                continue
+            base = "https://ipe.rest/ko/legal/" if rel.startswith("ko/") else "https://ipe.rest/legal/"
+            with self.subTest(page=rel):
+                hrefs = re.findall(r'href="([^"]*legal[^"]*)"', h)
+                self.assertEqual(sorted(hrefs), sorted([base + "privacy/", base + "terms/"]))
+                self.assertFalse([x for x in hrefs if x.startswith(("/", "."))], rel)
+
     def test_hreflang_canonical_jsonld(self):
         pages = bj.render(self.root())
         for l in LANGS:

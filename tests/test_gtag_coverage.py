@@ -64,7 +64,8 @@ class GtagCoverage(unittest.TestCase):
             guard = block.index("return;")
             self.assertLess(guard, block.index("googletagmanager.com/gtag/js"), rel)
             self.assertLess(guard, block.index("createElement"), rel)
-            for needle in ("'localhost'", "'0.0.0.0'", "'[::1]'", "^127\\.", "^10\\.", "^192\\.168\\.", "^172\\.(1[6-9]|2\\d|3[01])\\."):
+            for needle in ("'localhost'", "'0.0.0.0'", "::1", "f[cd][0-9a-f]{2}:", "fe[89ab][0-9a-f]:", "^127\\.", "^10\\.", "^192\\.168\\.",
+                           "^172\\.(1[6-9]|2\\d|3[01])\\.", "^169\\.254\\.", "\\.local$"):
                 self.assertIn(needle, block.split("return;")[0], (rel, needle))
 
 

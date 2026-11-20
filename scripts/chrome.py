@@ -16,10 +16,14 @@ def _e(s):
     return html.escape(s, quote=True)
 
 
-# Local hosts: localhost, loopback 127.x, IPv6 loopback, the unspecified 0.0.0.0, and private LAN IPs
-# (10.x, 192.168.x, 172.16–31.x). The guard runs before the gtag loader is appended, so nothing is sent from a local preview.
-LOCAL_HOST_JS = (r"if(!h||h==='localhost'||h==='0.0.0.0'||h==='[::1]'"
-                 r"||/^127\.\d+\.\d+\.\d+$|^10\.\d+\.\d+\.\d+$|^192\.168\.\d+\.\d+$|^172\.(1[6-9]|2\d|3[01])\.\d+\.\d+$/.test(h))return;")
+# Local hosts: localhost, loopback 127.x, the unspecified 0.0.0.0, private LAN IPs (10.x, 192.168.x, 172.16–31.x),
+# link-local 169.254.x.x, *.local (mDNS), and IPv6 (bracketed as location.hostname shows it): loopback [::1],
+# unique-local fc00::/7 and link-local fe80::/10. Public names that only start like these (10.example.com,
+# local.example.com) stay public. The guard runs before the gtag loader is appended, so nothing is sent from a local preview.
+LOCAL_HOST_JS = (r"if(!h||h==='localhost'||h==='0.0.0.0'"
+                 r"||/^\[(::1|f[cd][0-9a-f]{2}:[0-9a-f:]*|fe[89ab][0-9a-f]:[0-9a-f:]*)\]$/i.test(h)"
+                 r"||/^127\.\d+\.\d+\.\d+$|^10\.\d+\.\d+\.\d+$|^192\.168\.\d+\.\d+$|^172\.(1[6-9]|2\d|3[01])\.\d+\.\d+$"
+                 r"|^169\.254\.\d+\.\d+$|\.local$/.test(h))return;")
 
 
 def ga_head():
