@@ -20,6 +20,6 @@ Trong phiên bản chúng tôi đang thử nghiệm, ứng dụng không chứa 
 
 Khi có giao dịch mua, việc thanh toán sẽ do App Store hoặc Google Play xử lý theo điều khoản của họ. Chúng tôi sẽ không nhận thông tin thẻ của bạn. Trước khi phát hành phiên bản đó, chúng tôi sẽ cập nhật chính sách quyền riêng tư trước, và sẽ viết về điều đó ở đây.
 
-## Đã cập nhật
+## Chính sách nằm ở đâu
 
-Chính sách quyền riêng tư trên trang này đã ghi rõ điều đó: không có quảng cáo, và dự định có giao dịch mua trong ứng dụng có trả phí.
+Chính sách quyền riêng tư và điều khoản của trò chơi này hiện nằm chung một chỗ trên ipe.rest: [chính sách quyền riêng tư](https://ipe.rest/legal/privacy/).

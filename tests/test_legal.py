@@ -36,6 +36,13 @@ class Legal(unittest.TestCase):
             self.assertNotIn("googletagmanager", text, rel)
             self.assertNotIn("<main", text, rel)   # a stub, not a page: no legal copy on this site
 
+    def test_stub_html_lang_and_total_stub_count(self):
+        pages = br.render()
+        self.assertEqual(len(pages), 14)   # 5 retired languages x (home, journal) + 4 legal stubs
+        for rel in STUBS:
+            want = "ko" if rel.startswith("ko/") else "en"
+            self.assertEqual(re.search(r'<html lang="([^"]+)"', pages[rel]).group(1), want, rel)
+
     def test_chrome_legal_paths(self):
         self.assertEqual(chrome.legal_path("privacy", "en"), IPE + "/legal/privacy/")
         self.assertEqual(chrome.legal_path("terms", "ko"), IPE + "/ko/legal/terms/")

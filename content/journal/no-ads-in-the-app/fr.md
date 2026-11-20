@@ -20,6 +20,6 @@ Dans la version que nous testons en ce moment, l'app ne contient aucun SDK publi
 
 Quand les achats arriveront, le paiement passera par l'App Store ou Google Play, selon leurs conditions. Nous ne recevrons pas les données de votre carte. Avant la sortie de cette version, nous mettrons d'abord à jour la politique de confidentialité, et nous en parlerons ici.
 
-## Déjà mis à jour
+## Où se trouvent les textes
 
-La politique de confidentialité de ce site le dit déjà : pas de publicité, et des achats intégrés payants prévus.
+La politique de confidentialité et les conditions de ce jeu se trouvent désormais au même endroit, sur ipe.rest : [politique de confidentialité](https://ipe.rest/legal/privacy/).

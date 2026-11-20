@@ -20,6 +20,6 @@ Uygulamada, ödüllü reklamlar da dahil olmak üzere reklam olmayacak. Bunun ye
 
 Satın alımlar geldiğinde ödemeler, kendi koşulları çerçevesinde App Store veya Google Play üzerinden yapılacak. Kart bilgileriniz bize ulaşmayacak. O sürüm çıkmadan önce gizlilik politikasını güncelleyeceğiz ve bunu burada yazacağız.
 
-## Zaten güncellendi
+## Politikalar nerede
 
-Bu sitedeki gizlilik politikası bunu zaten söylüyor: reklam yok ve ücretli uygulama içi satın alımlar planlanıyor.
+Bu oyunun gizlilik politikası ve kullanım koşulları artık ipe.rest üzerinde tek bir yerde: [gizlilik politikası](https://ipe.rest/legal/privacy/).

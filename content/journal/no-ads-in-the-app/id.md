@@ -20,6 +20,6 @@ Di versi yang sedang kami uji sekarang, aplikasi tidak memuat SDK iklan apa pun.
 
 Saat pembelian hadir, pembayaran akan diproses lewat App Store atau Google Play, sesuai ketentuan masing-masing. Kami tidak menerima data kartu Anda. Sebelum versi itu dirilis, kami akan memperbarui kebijakan privasi terlebih dahulu, dan kami akan menuliskannya di sini.
 
-## Sudah diperbarui
+## Tempat kebijakannya
 
-Kebijakan privasi di situs ini sudah menyebutkan hal ini: tanpa iklan, dan pembelian dalam aplikasi berbayar sedang direncanakan.
+Kebijakan privasi dan syarat penggunaan game ini sekarang ada di satu tempat, di ipe.rest: [kebijakan privasi](https://ipe.rest/legal/privacy/).

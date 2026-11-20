@@ -20,6 +20,6 @@ Na versão que estamos testando agora, o app não contém nenhum SDK de publicid
 
 Quando as compras chegarem, o pagamento será feito pela App Store ou pelo Google Play, conforme os termos de cada loja. Nós não receberemos os dados do seu cartão. Antes de lançar essa versão, atualizaremos primeiro a política de privacidade e escreveremos sobre isso aqui.
 
-## Já atualizado
+## Onde ficam as políticas
 
-A política de privacidade deste site já diz isso: sem anúncios, e com compras pagas dentro do app planejadas.
+A política de privacidade e os termos deste jogo agora ficam em um só lugar, no ipe.rest: [política de privacidade](https://ipe.rest/legal/privacy/).

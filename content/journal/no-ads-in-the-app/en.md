@@ -18,6 +18,6 @@ In the version we are testing now, the app contains no advertising SDK. Hints an
 
 When purchases arrive, payment will go through the App Store or Google Play, under their terms. We will not receive your card details. Before that version ships, we will update the privacy policy first, and we will write about it here.
 
-## Already updated
+## Where the policy lives
 
-The privacy policy on this site already says this: no ads, and paid in-app purchases planned.
+Privacy and terms for this game now live in one place on ipe.rest: [privacy policy](https://ipe.rest/legal/privacy/).

@@ -45,8 +45,12 @@ class JournalTest(unittest.TestCase):
             header = h.split("</header>")[0]
             footer = h.split("<footer")[1]
             self.assertNotRegex(header, r'href="https://ipe\.rest/(?:ko/)?legal/(privacy|terms)/"', rel)
-            self.assertEqual(len(re.findall(r'href="https://ipe\.rest/(?:ko/)?legal/(?:privacy|terms)/"', footer)), 2, rel)
-            self.assertEqual(len(re.findall(r'href="https://ipe\.rest/(?:ko/)?legal/(?:privacy|terms)/"', h)), 2, rel)
+            legal = (r'href="https://ipe\.rest/ko/legal/(?:privacy|terms)/"' if rel.startswith("ko/")
+                     else r'href="https://ipe\.rest/legal/(?:privacy|terms)/"')
+            self.assertEqual(len(re.findall(legal, footer)), 2, rel)
+            self.assertEqual(len(re.findall(legal, h)), 2, rel)
+            if not rel.startswith("ko/"):
+                self.assertNotIn("/ko/legal/", h, rel)
             self.assertRegex(header, r'<label for="langsel">[^<]+</label><select id="langsel"')
             self.assertIn('aria-current="true"', header, rel)
             self.assertEqual(re.findall(r'<option value="[^"]*" lang="([^"]+)"', h), list(LANGS), rel)

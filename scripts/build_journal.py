@@ -181,7 +181,7 @@ def load(root):
     return posts
 
 
-def _head(lang, title, desc, canon, alts, jsonld=None, feed=None, extra="", ga=True):
+def _head(lang, title, desc, canon, alts, jsonld=None, feed=None, extra=""):
     alt = "\n".join('<link rel="alternate" hreflang="%s" href="%s%s">' % (l, SITE, p) for l, p in alts)
     alt += '\n<link rel="alternate" hreflang="x-default" href="%s%s">' % (SITE, alts[0][1])
     ld = ""
@@ -205,7 +205,7 @@ def _head(lang, title, desc, canon, alts, jsonld=None, feed=None, extra="", ga=T
 <script src="/assets/landing.js?v={v}" defer></script>
 </head>
 """.format(lang=lang, title=_e(title), desc=_e(desc), canon=canon, alt=alt, ld=ld, fl=fl, extra=extra, v=ASSET_V,
-           og=chrome.og_tags(title, desc, canon), ga=chrome.ga_head() if ga else "")
+           og=chrome.og_tags(title, desc, canon), ga=chrome.ga_head())
 
 
 def _top(root, lang, slug=None, have=LANGS):

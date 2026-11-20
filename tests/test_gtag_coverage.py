@@ -3,7 +3,8 @@
 Exceptions are explicit (a new page without gtag fails here until it is added on purpose):
   - redirect stubs (meta refresh + noindex, no GA4 tag by design): /releases/, the retired-language stubs and the
     privacy/terms stubs that hand off to ipe.rest
-Source of the snippet: scripts/chrome.py ga_head() (used by build_landing.py and build_journal.py _head, so legal pages get it too).
+Source of the snippet: scripts/chrome.py ga_head() (used by build_landing.py and build_journal.py _head, so every journal page gets it too;
+the legal pages are no longer on this site — they are ipe.rest stubs, see the list above).
 Modelled on idle-rest/tests/test_gtag_coverage.py.
 """
 import re

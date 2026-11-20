@@ -20,6 +20,6 @@ En la versión que estamos probando ahora, la app no contiene ningún SDK de pub
 
 Cuando lleguen las compras, el pago pasará por la App Store o Google Play, según sus condiciones. Nosotros no recibiremos los datos de tu tarjeta. Antes de publicar esa versión, actualizaremos primero la política de privacidad y lo contaremos aquí.
 
-## Ya actualizado
+## Dónde están las políticas
 
-La política de privacidad de este sitio ya lo dice: sin anuncios, y con compras de pago dentro de la app previstas.
+La política de privacidad y las condiciones de este juego están ahora en un solo lugar, en ipe.rest: [política de privacidad](https://ipe.rest/legal/privacy/).

@@ -20,6 +20,6 @@ In der Version, die wir gerade testen, steckt kein Werbe-SDK. Tipps und die zus�
 
 Wenn Käufe kommen, läuft die Bezahlung über den App Store oder Google Play, zu deren Bedingungen. Wir erhalten Ihre Kartendaten nicht. Bevor diese Version erscheint, aktualisieren wir zuerst die Datenschutzerklärung und schreiben hier darüber.
 
-## Bereits aktualisiert
+## Wo die Richtlinie steht
 
-Die Datenschutzerklärung auf dieser Website sagt das bereits: keine Werbung, kostenpflichtige In-App-Käufe geplant.
+Datenschutzerklärung und Nutzungsbedingungen für dieses Spiel stehen jetzt gemeinsam auf ipe.rest: [Datenschutzerklärung](https://ipe.rest/legal/privacy/).
