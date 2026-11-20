@@ -31,6 +31,17 @@ class Geo(unittest.TestCase):
             self.assertEqual(game["gamePlatform"], "iOS", str(p))
             self.assertNotIn("offers", game, "no price until the store listing exists")
 
+    def test_jsonld_ids_are_the_same_entity_in_every_language(self):
+        # One @id per entity (site = WebSite, app = VideoGame) across all language pages, so search/AI engines
+        # see one site and one game, not one per language.
+        ids = {}
+        for lang in LANGS:
+            p = REPO / ("index.html" if lang == "en" else "%s/index.html" % lang)
+            m = re.search(r'<script type="application/ld\+json">(.*?)</script>', p.read_text(encoding="utf-8"), re.S)
+            for node in json.loads(m.group(1))["@graph"]:
+                ids.setdefault(node["@type"], set()).add(node["@id"])
+        self.assertEqual(ids, {"WebSite": {BASE + "/#website"}, "VideoGame": {BASE + "/#game"}})
+
     def test_landing_copy_says_300_levels_everywhere(self):
         strings = json.loads((REPO / "content" / "landing.json").read_text(encoding="utf-8"))["strings"]
         for lang in LANGS:

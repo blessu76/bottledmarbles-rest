@@ -23,7 +23,7 @@ from pathlib import Path
 import chrome
 
 HERE = Path(__file__).resolve().parent
-SITE = "https://bottledmarbles.ipe.rest"
+SITE = chrome.SITE   # the one domain constant lives in chrome.py
 ASSET_V = "20261120a"
 LANGS = ("en", "ko", "ja", "zh-Hant", "es", "pt-BR", "fr", "de", "id", "th", "vi", "tr")
 REVIEW_RE = re.compile(r"^iris( \d{4}-\d{2}-\d{2})?$")

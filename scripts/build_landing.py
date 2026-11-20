@@ -18,7 +18,7 @@ import build_journal  # noqa: E402
 import chrome  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
-SITE = "https://bottledmarbles.ipe.rest"
+SITE = chrome.SITE   # the one domain constant lives in chrome.py
 DEFAULT = "en"
 ASSET_V = "20261120a"
 KEYS = ("name", "genre", "tagline", "body", "f1", "f2", "f3", "store", "lang_label", "journal", "privacy", "terms")

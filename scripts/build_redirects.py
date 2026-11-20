@@ -19,7 +19,10 @@ import html
 import sys
 from pathlib import Path
 
-SITE = "https://bottledmarbles.ipe.rest"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import chrome  # noqa: E402
+
+SITE = chrome.SITE
 IPE = "https://ipe.rest"
 LEGACY = {"pt": "pt-BR", "zh": "zh-Hant", "ar": "en", "hi": "en", "ru": "en"}
 PATHS = ("", "journal/")

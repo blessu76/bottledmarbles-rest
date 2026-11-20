@@ -54,12 +54,18 @@ class GtagCoverage(unittest.TestCase):
                 other.append((rel, sorted(ids)))
         self.assertEqual(other, [])
 
-    def test_gtag_snippet_skips_localhost(self):
+    def test_gtag_snippet_skips_local_hosts_before_loading(self):
+        # The local-host guard must come first: its `return` has to precede the script that loads gtag.js.
+        # Behaviour (which hostnames are skipped) is run under node in tests/test_ga_guard.py.
         for rel, text in public_html():
             if "googletagmanager.com/gtag/js" not in text:
                 continue
-            self.assertIn("'127.0.0.1'", text, rel)
-            self.assertIn("'localhost'", text, rel)
+            block = text[text.index("var h=location.hostname"):]
+            guard = block.index("return;")
+            self.assertLess(guard, block.index("googletagmanager.com/gtag/js"), rel)
+            self.assertLess(guard, block.index("createElement"), rel)
+            for needle in ("'localhost'", "'0.0.0.0'", "'[::1]'", "^127\\.", "^10\\.", "^192\\.168\\.", "^172\\.(1[6-9]|2\\d|3[01])\\."):
+                self.assertIn(needle, block.split("return;")[0], (rel, needle))
 
 
 if __name__ == "__main__":

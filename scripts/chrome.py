@@ -16,10 +16,16 @@ def _e(s):
     return html.escape(s, quote=True)
 
 
+# Local hosts: localhost, loopback 127.x, IPv6 loopback, the unspecified 0.0.0.0, and private LAN IPs
+# (10.x, 192.168.x, 172.16–31.x). The guard runs before the gtag loader is appended, so nothing is sent from a local preview.
+LOCAL_HOST_JS = (r"if(!h||h==='localhost'||h==='0.0.0.0'||h==='[::1]'"
+                 r"||/^127\.|^10\.|^192\.168\.|^172\.(1[6-9]|2\d|3[01])\./.test(h))return;")
+
+
 def ga_head():
-    """GA4 gtag loader for <head> on every public page. Not loaded at all on localhost / 127.0.0.1 (local preview sends nothing)."""
+    """GA4 gtag loader for <head> on every public page. Not loaded on local hosts (see LOCAL_HOST_JS)."""
     return ("<script>(function(){var h=location.hostname;"
-            "if(!h||h==='localhost'||h==='127.0.0.1'||h==='[::1]')return;"
+            + LOCAL_HOST_JS +
             "var s=document.createElement('script');s.async=true;"
             "s.src='https://www.googletagmanager.com/gtag/js?id=%s';document.head.appendChild(s);"
             "window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments)};"
