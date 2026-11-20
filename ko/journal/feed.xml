@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/ko/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/ko/journal/"/>
 <id>https://bottledmarbles.ipe.rest/ko/journal/</id>
-<updated>2026-11-19T14:15:00+09:00</updated>
+<updated>2026-11-20T13:30:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>되돌리기에는 횟수 제한이 없습니다</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/ko/journal/undo-without-a-limit/"/>
+<id>https://bottledmarbles.ipe.rest/ko/journal/undo-without-a-limit/</id>
+<published>2026-11-20T13:30:00+09:00</published>
+<updated>2026-11-20T13:30:00+09:00</updated>
+<summary>구슬병의 되돌리기는 무료이고 횟수 제한이 없습니다. 어떻게 동작하는지, 이동 수에 어떻게 반영되는지, 구슬 여러 개를 한 번에 옮기면 왜 한 수로 세는지 적습니다.</summary>
+</entry>
 <entry>
 <title>구슬병에는 광고가 없습니다</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/ko/journal/no-ads-in-the-app/"/>

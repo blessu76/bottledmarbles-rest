@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/pt-BR/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/pt-BR/journal/"/>
 <id>https://bottledmarbles.ipe.rest/pt-BR/journal/</id>
-<updated>2026-11-19T14:15:00+09:00</updated>
+<updated>2026-11-20T13:30:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>Desfazer sem limite</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/pt-BR/journal/undo-without-a-limit/"/>
+<id>https://bottledmarbles.ipe.rest/pt-BR/journal/undo-without-a-limit/</id>
+<published>2026-11-20T13:30:00+09:00</published>
+<updated>2026-11-20T13:30:00+09:00</updated>
+<summary>Desfazer no Bottled Marbles é gratuito e não tem limite. Explicamos como funciona, como ele afeta o contador de movimentos e por que mover várias bolinhas de uma vez conta como um movimento só.</summary>
+</entry>
 <entry>
 <title>O Bottled Marbles não tem anúncios</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/pt-BR/journal/no-ads-in-the-app/"/>

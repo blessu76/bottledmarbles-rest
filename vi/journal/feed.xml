@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/vi/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/"/>
 <id>https://bottledmarbles.ipe.rest/vi/journal/</id>
-<updated>2026-11-19T14:15:00+09:00</updated>
+<updated>2026-11-20T13:30:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>Hoàn tác không giới hạn</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/undo-without-a-limit/"/>
+<id>https://bottledmarbles.ipe.rest/vi/journal/undo-without-a-limit/</id>
+<published>2026-11-20T13:30:00+09:00</published>
+<updated>2026-11-20T13:30:00+09:00</updated>
+<summary>Hoàn tác trong Bottled Marbles miễn phí và không giới hạn. Chúng tôi giải thích cách hoạt động, cách nó ảnh hưởng đến số nước đi, và vì sao chuyển nhiều viên bi cùng lúc chỉ tính là một nước.</summary>
+</entry>
 <entry>
 <title>Bottled Marbles không có quảng cáo</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/no-ads-in-the-app/"/>

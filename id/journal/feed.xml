@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/id/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/id/journal/"/>
 <id>https://bottledmarbles.ipe.rest/id/journal/</id>
-<updated>2026-11-19T14:15:00+09:00</updated>
+<updated>2026-11-20T13:30:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>Urungkan tanpa batas</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/id/journal/undo-without-a-limit/"/>
+<id>https://bottledmarbles.ipe.rest/id/journal/undo-without-a-limit/</id>
+<published>2026-11-20T13:30:00+09:00</published>
+<updated>2026-11-20T13:30:00+09:00</updated>
+<summary>Urungkan di Bottled Marbles gratis dan tanpa batas. Kami jelaskan cara kerjanya, pengaruhnya pada jumlah langkah, dan mengapa memindahkan beberapa marmer sekaligus dihitung sebagai satu langkah.</summary>
+</entry>
 <entry>
 <title>Tidak ada iklan di Bottled Marbles</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/id/journal/no-ads-in-the-app/"/>
