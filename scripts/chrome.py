@@ -19,7 +19,7 @@ def _e(s):
 # Local hosts: localhost, loopback 127.x, IPv6 loopback, the unspecified 0.0.0.0, and private LAN IPs
 # (10.x, 192.168.x, 172.16–31.x). The guard runs before the gtag loader is appended, so nothing is sent from a local preview.
 LOCAL_HOST_JS = (r"if(!h||h==='localhost'||h==='0.0.0.0'||h==='[::1]'"
-                 r"||/^127\.|^10\.|^192\.168\.|^172\.(1[6-9]|2\d|3[01])\./.test(h))return;")
+                 r"||/^127\.\d+\.\d+\.\d+$|^10\.\d+\.\d+\.\d+$|^192\.168\.\d+\.\d+$|^172\.(1[6-9]|2\d|3[01])\.\d+\.\d+$/.test(h))return;")
 
 
 def ga_head():

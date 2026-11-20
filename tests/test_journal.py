@@ -56,6 +56,17 @@ class JournalTest(unittest.TestCase):
             self.assertEqual(re.findall(r'<option value="[^"]*" lang="([^"]+)"', h), list(LANGS), rel)
             self.assertNotIn('class="langs"', h.split("</header>")[1], rel)
 
+    def test_legal_links_follow_language_on_every_page(self):
+        # The header/footer pattern above accepts both /ko/legal/ and /legal/; this pins each page to its own language.
+        for rel, h in bj.render(self.root()).items():
+            if not rel.endswith(".html"):
+                continue
+            links = re.findall(r'https://ipe\.rest/(ko/)?legal/(?:privacy|terms)/', h)
+            self.assertTrue(links, rel)
+            want = rel.startswith("ko/")
+            for ko in links:
+                self.assertEqual(bool(ko), want, rel)
+
     def test_hreflang_canonical_jsonld(self):
         pages = bj.render(self.root())
         for l in LANGS:
