@@ -1,0 +1,27 @@
+# Bottled Marbles
+
+> Bottled Marbles is a calm marble sorting puzzle for iOS, made by ipe Studio. Move the marbles until every bottle holds a single color. It has 300 levels, with hints when you get stuck. There is no account and no server.
+
+The app is not released yet: the App Store listing is coming soon, and this site has no store link or price. Pages below are the public site; the site is available in 12 languages (English, Korean, Japanese, Traditional Chinese, Spanish, Brazilian Portuguese, French, German, Indonesian, Thai, Vietnamese, Turkish).
+
+## Game facts
+
+- Name: Bottled Marbles (구슬병)
+- Genre: puzzle (sorting)
+- Platform: iOS
+- Levels: 300
+- Hints are available when a player is stuck
+- No account, no server: progress is kept on the device
+
+## Pages
+
+- [Home (English)](https://bottledmarbles.ipe.rest/): what the game is and how it plays
+- [Journal](https://bottledmarbles.ipe.rest/journal/): development notes written by the team, in 12 languages
+- [Privacy Policy](https://bottledmarbles.ipe.rest/privacy/)
+- [Terms of Use](https://bottledmarbles.ipe.rest/terms/)
+- [Sitemap](https://bottledmarbles.ipe.rest/sitemap.xml)
+
+## Optional
+
+- [Korean home](https://bottledmarbles.ipe.rest/ko/)
+- [Korean journal](https://bottledmarbles.ipe.rest/ko/journal/)

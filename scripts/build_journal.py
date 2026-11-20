@@ -24,7 +24,7 @@ import chrome
 
 HERE = Path(__file__).resolve().parent
 SITE = "https://bottledmarbles.ipe.rest"
-ASSET_V = "20261114b"
+ASSET_V = "20261120a"
 LANGS = ("en", "ko", "ja", "zh-Hant", "es", "pt-BR", "fr", "de", "id", "th", "vi", "tr")
 REVIEW_RE = re.compile(r"^iris( \d{4}-\d{2}-\d{2})?$")
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
@@ -181,7 +181,7 @@ def load(root):
     return posts
 
 
-def _head(lang, title, desc, canon, alts, jsonld=None, feed=None, extra=""):
+def _head(lang, title, desc, canon, alts, jsonld=None, feed=None, extra="", ga=True):
     alt = "\n".join('<link rel="alternate" hreflang="%s" href="%s%s">' % (l, SITE, p) for l, p in alts)
     alt += '\n<link rel="alternate" hreflang="x-default" href="%s%s">' % (SITE, alts[0][1])
     ld = ""
@@ -198,11 +198,14 @@ def _head(lang, title, desc, canon, alts, jsonld=None, feed=None, extra=""):
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{canon}">
+{og}
 {alt}{ld}{fl}{extra}
+{ga}
 <link rel="stylesheet" href="/assets/landing.css?v={v}">
 <script src="/assets/landing.js?v={v}" defer></script>
 </head>
-""".format(lang=lang, title=_e(title), desc=_e(desc), canon=canon, alt=alt, ld=ld, fl=fl, extra=extra, v=ASSET_V)
+""".format(lang=lang, title=_e(title), desc=_e(desc), canon=canon, alt=alt, ld=ld, fl=fl, extra=extra, v=ASSET_V,
+           og=chrome.og_tags(title, desc, canon), ga=chrome.ga_head() if ga else "")
 
 
 def _top(root, lang, slug=None, have=LANGS):

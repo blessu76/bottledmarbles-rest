@@ -9,10 +9,31 @@ from pathlib import Path
 PRIVACY_HREF = "/privacy/"
 TERMS_HREF = "/terms/"
 LEGAL_LANGS = ("en", "ko")   # languages that have their own /<lang>/privacy/ and /<lang>/terms/ (the rest link the English pages)
+GA_ID = "G-XG4BH800J0"       # company-wide GA4 measurement ID (ipe) — the same ID for every ipe *-rest site; never create a new one here
+SITE = "https://bottledmarbles.ipe.rest"
 
 
 def _e(s):
     return html.escape(s, quote=True)
+
+
+def ga_head():
+    """GA4 gtag loader for <head> on every public page. Not loaded at all on localhost / 127.0.0.1 (local preview sends nothing)."""
+    return ("<script>(function(){var h=location.hostname;"
+            "if(!h||h==='localhost'||h==='127.0.0.1'||h==='[::1]')return;"
+            "var s=document.createElement('script');s.async=true;"
+            "s.src='https://www.googletagmanager.com/gtag/js?id=%s';document.head.appendChild(s);"
+            "window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments)};"
+            "window.gtag('js',new Date());window.gtag('config','%s');})();</script>") % (GA_ID, GA_ID)
+
+
+def og_tags(title, desc, url):
+    """Open Graph basics for pages that do not write their own (journal, legal). Values are escaped."""
+    return ('<meta property="og:type" content="website">\n'
+            '<meta property="og:site_name" content="Bottled Marbles">\n'
+            '<meta property="og:title" content="%s">\n'
+            '<meta property="og:description" content="%s">\n'
+            '<meta property="og:url" content="%s">') % (_e(title), _e(desc), _e(url))
 
 
 def lang_select(options, cur, label):

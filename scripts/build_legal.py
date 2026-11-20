@@ -56,7 +56,8 @@ def page(doc, lang, docs, root):
     other = "terms" if doc == "privacy" else "privacy"
     alts = [(l, lpath(doc, l)) for l in LANGS]
     canon = SITE + lpath(doc, lang)
-    head = bj._head(lang, "%s — Bottled Marbles" % meta["title"], meta["description"], canon, alts)
+    # no GA4 on legal pages: the policy says the site has no analytics (decision pending, see web-ga4-seo-geo.md)
+    head = bj._head(lang, "%s — Bottled Marbles" % meta["title"], meta["description"], canon, alts, ga=False)
     opts = [(l, lpath(doc, l), st[l]["name"]) for l in LANGS]
     home = "/" if lang == "en" else "/%s/" % lang
     header = chrome.header([(home, bj.UI[lang]["home"], False), (bj.jpath(lang), st[lang]["journal"], False)],

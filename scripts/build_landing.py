@@ -21,7 +21,7 @@ import chrome  # noqa: E402
 HERE = Path(__file__).resolve().parent
 SITE = "https://bottledmarbles.ipe.rest"
 DEFAULT = "en"
-ASSET_V = "20261114b"
+ASSET_V = "20261120a"
 KEYS = ("name", "genre", "tagline", "body", "f1", "f2", "f3", "store", "lang_label", "journal", "privacy", "terms")
 MARBLES = ("c1", "c2", "c3", "c4", "c5", "c6")
 BOTTLES = (("c1", "c2", "c3"), ("c4", "c5", "c6"), ())
@@ -84,6 +84,21 @@ def _alternates(langs):
     return "\n".join(out)
 
 
+def _jsonld(lang, strings):
+    """GEO: WebSite + VideoGame for the page. Only facts we state elsewhere on the site (no price, rating or release date)."""
+    s = strings[lang]
+    graph = [
+        {"@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/", "name": "Bottled Marbles",
+         "inLanguage": lang, "publisher": {"@type": "Organization", "name": "ipe Studio", "url": "https://ipe.rest"}},
+        {"@type": "VideoGame", "@id": SITE + "/#game", "name": "Bottled Marbles", "url": SITE + ppath(lang),
+         "description": s["body"], "genre": "Puzzle", "gamePlatform": "iOS", "operatingSystem": "iOS",
+         "applicationCategory": "Game", "playMode": "SinglePlayer", "inLanguage": lang,
+         "publisher": {"@type": "Organization", "name": "ipe Studio", "url": "https://ipe.rest"}},
+    ]
+    data = {"@context": "https://schema.org", "@graph": graph}
+    return '<script type="application/ld+json">%s</script>' % json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
+
+
 def _page(lang, langs, strings):
     s = strings[lang]
     jpath = build_journal.jpath(lang)
@@ -102,7 +117,10 @@ def _page(lang, langs, strings):
 <meta property="og:title" content="Bottled Marbles: {genre}">
 <meta property="og:description" content="{body}">
 <meta property="og:url" content="{canon}">
+<meta property="og:site_name" content="Bottled Marbles">
 {alts}
+{jsonld}
+{ga}
 <link rel="stylesheet" href="/assets/landing.css?v={v}">
 <script src="/assets/landing.js?v={v}" defer></script>
 </head>
@@ -131,6 +149,8 @@ def _page(lang, langs, strings):
         tagline=_e(s["tagline"]),
         canon=SITE + ppath(lang),
         alts=_alternates(langs),
+        jsonld=_jsonld(lang, strings),
+        ga=chrome.ga_head(),
         v=ASSET_V,
         legal=chrome.legal_links(s["privacy"], s["terms"], lang),
         header=chrome.header([(jpath, s["journal"], False)], _picker(langs, strings, lang)),
