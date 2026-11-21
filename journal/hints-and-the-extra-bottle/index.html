@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How hints and the extra bottle work — Bottled Marbles</title>
+<meta name="description" content="Hints show the next move, and the extra bottle adds one empty bottle to a level. Here is what each does, the small limit per round, and how a helped round is recorded.">
+<link rel="canonical" href="https://bottledmarbles.ipe.rest/journal/hints-and-the-extra-bottle/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bottled Marbles">
+<meta property="og:title" content="How hints and the extra bottle work — Bottled Marbles">
+<meta property="og:description" content="Hints show the next move, and the extra bottle adds one empty bottle to a level. Here is what each does, the small limit per round, and how a helped round is recorded.">
+<meta property="og:url" content="https://bottledmarbles.ipe.rest/journal/hints-and-the-extra-bottle/">
+<link rel="alternate" hreflang="en" href="https://bottledmarbles.ipe.rest/journal/hints-and-the-extra-bottle/">
+<link rel="alternate" hreflang="ko" href="https://bottledmarbles.ipe.rest/ko/journal/hints-and-the-extra-bottle/">
+<link rel="alternate" hreflang="ja" href="https://bottledmarbles.ipe.rest/ja/journal/hints-and-the-extra-bottle/">
+<link rel="alternate" hreflang="zh-Hant" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/hints-and-the-extra-bottle/">
+<link rel="alternate" hreflang="es" href="https://bottledmarbles.ipe.rest/es/journal/hints-and-the-extra-bottle/">
+<link rel="alternate" hreflang="pt-BR" href="https://bottledmarbles.ipe.rest/pt-BR/journal/hints-and-the-extra-bottle/">
+<link rel="alternate" hreflang="fr" href="https://bottledmarbles.ipe.rest/fr/journal/hints-and-the-extra-bottle/">
+<link rel="alternate" hreflang="de" href="https://bottledmarbles.ipe.rest/de/journal/hints-and-the-extra-bottle/">
+<link rel="alternate" hreflang="id" href="https://bottledmarbles.ipe.rest/id/journal/hints-and-the-extra-bottle/">
+<link rel="alternate" hreflang="th" href="https://bottledmarbles.ipe.rest/th/journal/hints-and-the-extra-bottle/">
+<link rel="alternate" hreflang="vi" href="https://bottledmarbles.ipe.rest/vi/journal/hints-and-the-extra-bottle/">
+<link rel="alternate" hreflang="tr" href="https://bottledmarbles.ipe.rest/tr/journal/hints-and-the-extra-bottle/">
+<link rel="alternate" hreflang="x-default" href="https://bottledmarbles.ipe.rest/journal/hints-and-the-extra-bottle/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "How hints and the extra bottle work", "description": "Hints show the next move, and the extra bottle adds one empty bottle to a level. Here is what each does, the small limit per round, and how a helped round is recorded.", "inLanguage": "en", "datePublished": "2026-11-21T14:45:00+09:00", "mainEntityOfPage": "https://bottledmarbles.ipe.rest/journal/hints-and-the-extra-bottle/", "author": {"@type": "Organization", "name": "ipe Studio"}}</script>
+<link rel="alternate" type="application/atom+xml" title="Journal — Bottled Marbles" href="https://bottledmarbles.ipe.rest/journal/feed.xml">
+<meta property="article:published_time" content="2026-11-21T14:45:00+09:00">
+<script>(function(){var h=location.hostname;if(!h||h==='localhost'||h==='0.0.0.0'||/^\[(::1|f[cd][0-9a-f]{2}:[0-9a-f:]*|fe[89ab][0-9a-f]:[0-9a-f:]*)\]$/i.test(h)||/^127\.\d+\.\d+\.\d+$|^10\.\d+\.\d+\.\d+$|^192\.168\.\d+\.\d+$|^172\.(1[6-9]|2\d|3[01])\.\d+\.\d+$|^169\.254\.\d+\.\d+$|\.local$/.test(h))return;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-XG4BH800J0';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments)};window.gtag('js',new Date());window.gtag('config','G-XG4BH800J0');})();</script>
+<link rel="stylesheet" href="/assets/landing.css?v=20261120a">
+<script src="/assets/landing.js?v=20261120a" defer></script>
+</head>
+<body>
+<header class="top"><nav class="topnav" aria-label="Site"><a href="/">Bottled Marbles</a><a href="/journal/" aria-current="true">Journal</a></nav><div class="langs"><label for="langsel">Language</label><select id="langsel" class="langsel" data-langsel><option value="/journal/hints-and-the-extra-bottle/" lang="en" selected>English</option><option value="/ko/journal/hints-and-the-extra-bottle/" lang="ko">한국어</option><option value="/ja/journal/hints-and-the-extra-bottle/" lang="ja">日本語</option><option value="/zh-Hant/journal/hints-and-the-extra-bottle/" lang="zh-Hant">繁體中文</option><option value="/es/journal/hints-and-the-extra-bottle/" lang="es">Español</option><option value="/pt-BR/journal/hints-and-the-extra-bottle/" lang="pt-BR">Português (Brasil)</option><option value="/fr/journal/hints-and-the-extra-bottle/" lang="fr">Français</option><option value="/de/journal/hints-and-the-extra-bottle/" lang="de">Deutsch</option><option value="/id/journal/hints-and-the-extra-bottle/" lang="id">Bahasa Indonesia</option><option value="/th/journal/hints-and-the-extra-bottle/" lang="th">ไทย</option><option value="/vi/journal/hints-and-the-extra-bottle/" lang="vi">Tiếng Việt</option><option value="/tr/journal/hints-and-the-extra-bottle/" lang="tr">Türkçe</option></select><noscript><span class="langs-nojs"><a href="/journal/hints-and-the-extra-bottle/" hreflang="en" lang="en">English</a><a href="/ko/journal/hints-and-the-extra-bottle/" hreflang="ko" lang="ko">한국어</a><a href="/ja/journal/hints-and-the-extra-bottle/" hreflang="ja" lang="ja">日本語</a><a href="/zh-Hant/journal/hints-and-the-extra-bottle/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a><a href="/es/journal/hints-and-the-extra-bottle/" hreflang="es" lang="es">Español</a><a href="/pt-BR/journal/hints-and-the-extra-bottle/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a><a href="/fr/journal/hints-and-the-extra-bottle/" hreflang="fr" lang="fr">Français</a><a href="/de/journal/hints-and-the-extra-bottle/" hreflang="de" lang="de">Deutsch</a><a href="/id/journal/hints-and-the-extra-bottle/" hreflang="id" lang="id">Bahasa Indonesia</a><a href="/th/journal/hints-and-the-extra-bottle/" hreflang="th" lang="th">ไทย</a><a href="/vi/journal/hints-and-the-extra-bottle/" hreflang="vi" lang="vi">Tiếng Việt</a><a href="/tr/journal/hints-and-the-extra-bottle/" hreflang="tr" lang="tr">Türkçe</a></span></noscript></div></header>
+<main class="journal">
+<article>
+<h1>How hints and the extra bottle work</h1>
+<p class="when">Posted: <time datetime="2026-11-21T14:45:00+09:00">November 21, 2026 14:45 KST</time></p>
+<p>Bottled Marbles has two ways to get unstuck: a hint and an extra bottle. Neither is needed to finish a level, and neither involves watching anything.</p>
+<h2>What a hint does</h2>
+<p>A hint shows you the next move. The game works it out with a solver, so the move it points to is one that can lead to a solution. It tells you one move at a time, not the whole answer.</p>
+<h2>What the extra bottle does</h2>
+<p>The extra bottle adds one empty bottle to the level, which gives you more room to sort marbles. In the version we are testing, you can use it once per level, and a hint once per round.</p>
+<h2>How a helped round is recorded</h2>
+<p>If you use a hint or add a bottle, the round is marked as assisted. Both of them can make a level take fewer moves, so a round you finished without help takes the place of an assisted record, and an assisted record never replaces an unassisted one. Using help never blocks your progress: you can still finish the level and move on.</p>
+<h2>What stays the same</h2>
+<p>Undo is free and unlimited, and it does not count as help. The perfect challenge hides hints and the extra bottle altogether. These limits and the way purchases may change them can still change before release, and we will write about it here first.</p>
+</article>
+<p class="back"><a href="/journal/">&larr; All posts</a></p>
+</main>
+<footer><p class="legal"><a href="https://ipe.rest/legal/privacy/">Privacy Policy</a> · <a href="https://ipe.rest/legal/terms/">Terms of Use</a></p><p>ipe() 2026</p></footer>
+</body>
+</html>
