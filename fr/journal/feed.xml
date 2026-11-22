@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/fr/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/fr/journal/"/>
 <id>https://bottledmarbles.ipe.rest/fr/journal/</id>
-<updated>2026-11-21T14:45:00+09:00</updated>
+<updated>2026-11-22T12:30:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>Ce que mesurent les étoiles</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/fr/journal/stars-and-what-they-measure/"/>
+<id>https://bottledmarbles.ipe.rest/fr/journal/stars-and-what-they-measure/</id>
+<published>2026-11-22T12:30:00+09:00</published>
+<updated>2026-11-22T12:30:00+09:00</updated>
+<summary>Chaque niveau terminé rapporte de une à trois étoiles selon l&#x27;écart avec le nombre minimal de coups. Voici la règle, ce que signifient les chiffres et comment les étoiles s&#x27;affichent.</summary>
+</entry>
 <entry>
 <title>Comment fonctionnent les indices et la bouteille supplémentaire</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/fr/journal/hints-and-the-extra-bottle/"/>

@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/id/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/id/journal/"/>
 <id>https://bottledmarbles.ipe.rest/id/journal/</id>
-<updated>2026-11-21T14:45:00+09:00</updated>
+<updated>2026-11-22T12:30:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>Apa yang diukur oleh bintang</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/id/journal/stars-and-what-they-measure/"/>
+<id>https://bottledmarbles.ipe.rest/id/journal/stars-and-what-they-measure/</id>
+<published>2026-11-22T12:30:00+09:00</published>
+<updated>2026-11-22T12:30:00+09:00</updated>
+<summary>Setiap level yang diselesaikan memberi satu sampai tiga bintang, tergantung seberapa dekat jumlah langkahmu dengan langkah paling sedikit. Berikut aturannya, arti angkanya, dan cara bintang ditampilkan.</summary>
+</entry>
 <entry>
 <title>Cara kerja petunjuk dan botol tambahan</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/id/journal/hints-and-the-extra-bottle/"/>

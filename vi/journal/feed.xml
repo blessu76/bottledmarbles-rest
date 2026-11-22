@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/vi/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/"/>
 <id>https://bottledmarbles.ipe.rest/vi/journal/</id>
-<updated>2026-11-21T14:45:00+09:00</updated>
+<updated>2026-11-22T12:30:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>Ngôi sao đo điều gì</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/stars-and-what-they-measure/"/>
+<id>https://bottledmarbles.ipe.rest/vi/journal/stars-and-what-they-measure/</id>
+<published>2026-11-22T12:30:00+09:00</published>
+<updated>2026-11-22T12:30:00+09:00</updated>
+<summary>Mỗi màn chơi hoàn thành nhận từ một đến ba ngôi sao, tùy số nước đi của bạn gần mức tối thiểu đến đâu. Đây là quy tắc, ý nghĩa của các con số và cách hiển thị sao.</summary>
+</entry>
 <entry>
 <title>Gợi ý và chai phụ hoạt động thế nào</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/hints-and-the-extra-bottle/"/>
