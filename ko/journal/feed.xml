@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/ko/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/ko/journal/"/>
 <id>https://bottledmarbles.ipe.rest/ko/journal/</id>
-<updated>2026-11-22T12:30:00+09:00</updated>
+<updated>2026-11-23T13:45:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>하루에 한 레벨</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/ko/journal/one-level-a-day/"/>
+<id>https://bottledmarbles.ipe.rest/ko/journal/one-level-a-day/</id>
+<published>2026-11-23T13:45:00+09:00</published>
+<updated>2026-11-23T13:45:00+09:00</updated>
+<summary>일일 챌린지는 해금한 레벨 중 하루에 하나를 골라 줍니다. 레벨을 어떻게 정하는지, 무엇이 저장되는지, 연속일과 보상이 왜 없는지 적습니다.</summary>
+</entry>
 <entry>
 <title>별은 무엇을 재는가</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/ko/journal/stars-and-what-they-measure/"/>

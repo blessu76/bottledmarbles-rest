@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/journal/"/>
 <id>https://bottledmarbles.ipe.rest/journal/</id>
-<updated>2026-11-22T12:30:00+09:00</updated>
+<updated>2026-11-23T13:45:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>One level a day</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/journal/one-level-a-day/"/>
+<id>https://bottledmarbles.ipe.rest/journal/one-level-a-day/</id>
+<published>2026-11-23T13:45:00+09:00</published>
+<updated>2026-11-23T13:45:00+09:00</updated>
+<summary>The daily challenge picks one level per day from the levels you have unlocked. Here is how the level is chosen, what is saved, and why there are no streaks or rewards.</summary>
+</entry>
 <entry>
 <title>Stars, and what they measure</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/journal/stars-and-what-they-measure/"/>

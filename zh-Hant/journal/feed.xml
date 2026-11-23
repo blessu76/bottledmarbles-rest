@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/"/>
 <id>https://bottledmarbles.ipe.rest/zh-Hant/journal/</id>
-<updated>2026-11-22T12:30:00+09:00</updated>
+<updated>2026-11-23T13:45:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>每天一個關卡</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/one-level-a-day/"/>
+<id>https://bottledmarbles.ipe.rest/zh-Hant/journal/one-level-a-day/</id>
+<published>2026-11-23T13:45:00+09:00</published>
+<updated>2026-11-23T13:45:00+09:00</updated>
+<summary>每日挑戰會從你已解鎖的關卡中，每天挑出一關。這裡說明關卡如何決定、儲存了什麼，以及為什麼沒有連續天數與獎勵。</summary>
+</entry>
 <entry>
 <title>星星衡量的是什麼</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/stars-and-what-they-measure/"/>

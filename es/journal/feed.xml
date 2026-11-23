@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/es/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/es/journal/"/>
 <id>https://bottledmarbles.ipe.rest/es/journal/</id>
-<updated>2026-11-22T12:30:00+09:00</updated>
+<updated>2026-11-23T13:45:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>Un nivel al día</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/es/journal/one-level-a-day/"/>
+<id>https://bottledmarbles.ipe.rest/es/journal/one-level-a-day/</id>
+<published>2026-11-23T13:45:00+09:00</published>
+<updated>2026-11-23T13:45:00+09:00</updated>
+<summary>El desafío diario elige un nivel por día entre los que ya has desbloqueado. Así se elige el nivel, qué se guarda y por qué no hay rachas ni recompensas.</summary>
+</entry>
 <entry>
 <title>Qué miden las estrellas</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/es/journal/stars-and-what-they-measure/"/>

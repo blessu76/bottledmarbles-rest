@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/th/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/th/journal/"/>
 <id>https://bottledmarbles.ipe.rest/th/journal/</id>
-<updated>2026-11-22T12:30:00+09:00</updated>
+<updated>2026-11-23T13:45:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>วันละหนึ่งด่าน</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/th/journal/one-level-a-day/"/>
+<id>https://bottledmarbles.ipe.rest/th/journal/one-level-a-day/</id>
+<published>2026-11-23T13:45:00+09:00</published>
+<updated>2026-11-23T13:45:00+09:00</updated>
+<summary>ภารกิจประจำวันจะเลือกหนึ่งด่านต่อวันจากด่านที่คุณปลดล็อกแล้ว เรื่องนี้อธิบายวิธีเลือกด่าน สิ่งที่ถูกบันทึก และเหตุผลที่ไม่มีสถิติต่อเนื่องหรือรางวัล</summary>
+</entry>
 <entry>
 <title>ดาวใช้วัดอะไร</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/th/journal/stars-and-what-they-measure/"/>
