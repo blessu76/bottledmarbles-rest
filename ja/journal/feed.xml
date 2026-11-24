@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/ja/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/ja/journal/"/>
 <id>https://bottledmarbles.ipe.rest/ja/journal/</id>
-<updated>2026-11-23T13:45:00+09:00</updated>
+<updated>2026-11-24T17:00:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>実績が数えるもの</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/ja/journal/what-the-achievements-count/"/>
+<id>https://bottledmarbles.ipe.rest/ja/journal/what-the-achievements-count/</id>
+<published>2026-11-24T17:00:00+09:00</published>
+<updated>2026-11-24T17:00:00+09:00</updated>
+<summary>Bottled Marbles には16個の実績があります。それぞれが何を数え、いつ確認され、どこに保存されるかを説明します。</summary>
+</entry>
 <entry>
 <title>1日1ステージ</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/ja/journal/one-level-a-day/"/>
