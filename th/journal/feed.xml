@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/th/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/th/journal/"/>
 <id>https://bottledmarbles.ipe.rest/th/journal/</id>
-<updated>2026-11-24T17:00:00+09:00</updated>
+<updated>2026-11-25T13:00:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>การตั้งค่าเสียงและการสั่น</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/th/journal/sound-and-vibration/"/>
+<id>https://bottledmarbles.ipe.rest/th/journal/sound-and-vibration/</id>
+<published>2026-11-25T13:00:00+09:00</published>
+<updated>2026-11-25T13:00:00+09:00</updated>
+<summary>หน้าตั้งค่ามีสวิตช์เสียง ตัวปรับระดับเสียง และสวิตช์การสั่น นี่คือหน้าที่ของแต่ละอย่าง และวิธีที่เสียงทำตามการตั้งค่าของโทรศัพท์</summary>
+</entry>
 <entry>
 <title>ความสำเร็จนับอะไรบ้าง</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/th/journal/what-the-achievements-count/"/>

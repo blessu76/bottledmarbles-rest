@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/de/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/de/journal/"/>
 <id>https://bottledmarbles.ipe.rest/de/journal/</id>
-<updated>2026-11-24T17:00:00+09:00</updated>
+<updated>2026-11-25T13:00:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>Einstellungen für Ton und Vibration</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/de/journal/sound-and-vibration/"/>
+<id>https://bottledmarbles.ipe.rest/de/journal/sound-and-vibration/</id>
+<published>2026-11-25T13:00:00+09:00</published>
+<updated>2026-11-25T13:00:00+09:00</updated>
+<summary>In den Einstellungen gibt es einen Schalter „Ton“, einen Lautstärkeregler und einen Schalter „Vibrationen“. Hier steht, was jeder davon tut und wie sich die Töne nach deinem Telefon richten.</summary>
+</entry>
 <entry>
 <title>Was die Erfolge zählen</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/de/journal/what-the-achievements-count/"/>

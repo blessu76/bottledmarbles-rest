@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/"/>
 <id>https://bottledmarbles.ipe.rest/zh-Hant/journal/</id>
-<updated>2026-11-24T17:00:00+09:00</updated>
+<updated>2026-11-25T13:00:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>聲音與震動設定</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/sound-and-vibration/"/>
+<id>https://bottledmarbles.ipe.rest/zh-Hant/journal/sound-and-vibration/</id>
+<published>2026-11-25T13:00:00+09:00</published>
+<updated>2026-11-25T13:00:00+09:00</updated>
+<summary>設定中有「音效」與「震動」開關，以及音量滑桿。以下說明各項功能，以及聲音如何跟隨手機的設定。</summary>
+</entry>
 <entry>
 <title>成就計算的是什麼</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/what-the-achievements-count/"/>
