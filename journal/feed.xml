@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/journal/"/>
 <id>https://bottledmarbles.ipe.rest/journal/</id>
-<updated>2026-11-25T13:00:00+09:00</updated>
+<updated>2026-11-26T15:15:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>Sharing a level by code</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/journal/share-a-level-by-code/"/>
+<id>https://bottledmarbles.ipe.rest/journal/share-a-level-by-code/</id>
+<published>2026-11-26T15:15:00+09:00</published>
+<updated>2026-11-26T15:15:00+09:00</updated>
+<summary>Every level has a short code made from its number and its layout. Here is what the code holds, what its check is for, and why it never includes your progress.</summary>
+</entry>
 <entry>
 <title>Sound and vibration settings</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/journal/sound-and-vibration/"/>

@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/ja/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/ja/journal/"/>
 <id>https://bottledmarbles.ipe.rest/ja/journal/</id>
-<updated>2026-11-25T13:00:00+09:00</updated>
+<updated>2026-11-26T15:15:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>ステージをコードで共有する</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/ja/journal/share-a-level-by-code/"/>
+<id>https://bottledmarbles.ipe.rest/ja/journal/share-a-level-by-code/</id>
+<published>2026-11-26T15:15:00+09:00</published>
+<updated>2026-11-26T15:15:00+09:00</updated>
+<summary>どのステージにも、番号と配置から作られた短いコードがあります。コードに何が入っているか、チェック部分は何のためにあるか、そしてなぜ進み具合が入らないのかを説明します。</summary>
+</entry>
 <entry>
 <title>効果音とバイブレーションの設定</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/ja/journal/sound-and-vibration/"/>

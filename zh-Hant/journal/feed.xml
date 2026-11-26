@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/"/>
 <id>https://bottledmarbles.ipe.rest/zh-Hant/journal/</id>
-<updated>2026-11-25T13:00:00+09:00</updated>
+<updated>2026-11-26T15:15:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>用代碼分享關卡</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/share-a-level-by-code/"/>
+<id>https://bottledmarbles.ipe.rest/zh-Hant/journal/share-a-level-by-code/</id>
+<published>2026-11-26T15:15:00+09:00</published>
+<updated>2026-11-26T15:15:00+09:00</updated>
+<summary>每個關卡都有一段由編號與配置產生的短代碼。以下說明代碼裡有什麼、檢查碼的用途，以及為什麼代碼從不包含你的進度。</summary>
+</entry>
 <entry>
 <title>聲音與震動設定</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/zh-Hant/journal/sound-and-vibration/"/>

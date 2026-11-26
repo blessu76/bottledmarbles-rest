@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/es/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/es/journal/"/>
 <id>https://bottledmarbles.ipe.rest/es/journal/</id>
-<updated>2026-11-25T13:00:00+09:00</updated>
+<updated>2026-11-26T15:15:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>Compartir un nivel con un código</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/es/journal/share-a-level-by-code/"/>
+<id>https://bottledmarbles.ipe.rest/es/journal/share-a-level-by-code/</id>
+<published>2026-11-26T15:15:00+09:00</published>
+<updated>2026-11-26T15:15:00+09:00</updated>
+<summary>Cada nivel tiene un código corto hecho a partir de su número y su disposición. Aquí se explica qué contiene el código, para qué sirve su comprobación y por qué nunca incluye tu progreso.</summary>
+</entry>
 <entry>
 <title>Ajustes de sonido y vibración</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/es/journal/sound-and-vibration/"/>

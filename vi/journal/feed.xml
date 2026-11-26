@@ -4,8 +4,16 @@
 <link rel="self" type="application/atom+xml" href="https://bottledmarbles.ipe.rest/vi/journal/feed.xml"/>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/"/>
 <id>https://bottledmarbles.ipe.rest/vi/journal/</id>
-<updated>2026-11-25T13:00:00+09:00</updated>
+<updated>2026-11-26T15:15:00+09:00</updated>
 <author><name>ipe Studio</name></author>
+<entry>
+<title>Chia sẻ màn chơi bằng mã</title>
+<link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/share-a-level-by-code/"/>
+<id>https://bottledmarbles.ipe.rest/vi/journal/share-a-level-by-code/</id>
+<published>2026-11-26T15:15:00+09:00</published>
+<updated>2026-11-26T15:15:00+09:00</updated>
+<summary>Mỗi màn chơi có một mã ngắn được tạo từ số thứ tự và cách sắp xếp của màn. Dưới đây là mã chứa những gì, phần kiểm tra dùng để làm gì và vì sao mã không bao giờ chứa tiến độ của bạn.</summary>
+</entry>
 <entry>
 <title>Cài đặt âm thanh và rung</title>
 <link rel="alternate" type="text/html" href="https://bottledmarbles.ipe.rest/vi/journal/sound-and-vibration/"/>
